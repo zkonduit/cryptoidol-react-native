@@ -79,3 +79,4 @@ report.*.json
 # misc
 .DS_Store
 *.pem
+/.env
