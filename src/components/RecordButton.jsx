@@ -5,33 +5,40 @@ import Svg, { Path } from 'react-native-svg'
 const RED_COLOR = `#FF214D`
 const GREEN_COLOR = `#359008`
 
-export const RecordButton = ({ recordState = 'start', onPress }) => {
+export const RecordButton = ({ recordState = 'start', onPress, recording }) => {
   const outerCircleScale = useRef(new Animated.Value(1)).current
   const innerCircleScale = useRef(new Animated.Value(1)).current
+  const innerCircleOpacity = useRef(new Animated.Value(1)).current
   const outerCircleOpacity = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
     if (recordState === 'start') {
       animateCircles(1.3, 1.0, 0.5)
     } else if (recordState === 'inprogress') {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(outerCircleScale, {
-            toValue: 1.1,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(outerCircleScale, {
-            toValue: 1.3,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-        ]),
-      ).start()
+      if (recording) {
+        Animated.loop(
+          Animated.sequence([
+            Animated.timing(outerCircleScale, {
+              toValue: 1.1,
+              duration: 500,
+              useNativeDriver: true,
+            }),
+            Animated.timing(outerCircleScale, {
+              toValue: 1.3,
+              duration: 500,
+              useNativeDriver: true,
+            }),
+          ]),
+        ).start()
+      } else {
+        outerCircleScale.setValue(1) // reset scale to 1 for static display
+        innerCircleScale.setValue(1) // smaller scale to make inner circle appear as a square
+        innerCircleOpacity.setValue(1) // ensure opacity is fully visible
+      }
     } else if (recordState === 'end') {
       animateCircles(1, 0, 0) // Hide outer circle
     }
-  }, [recordState])
+  }, [recordState, recording])
 
   const animateCircles = (outerScale, innerScale, opacity) => {
     Animated.timing(outerCircleScale, {
@@ -50,6 +57,30 @@ export const RecordButton = ({ recordState = 'start', onPress }) => {
       useNativeDriver: true,
     }).start()
   }
+
+  // const animateToSquareAndPulse = () => {
+  //   Animated.sequence([
+  //     Animated.timing(innerCircleScale, {
+  //       toValue: 0.5, // square-like effect by reducing size
+  //       duration: 300,
+  //       useNativeDriver: true,
+  //     }).start(),
+  //     Animated.loop(
+  //       Animated.sequence([
+  //         Animated.timing(innerCircleScale, {
+  //           toValue: 0.7,
+  //           duration: 400,
+  //           useNativeDriver: true,
+  //         }),
+  //         Animated.timing(innerCircleScale, {
+  //           toValue: 0.4,
+  //           duration: 400,
+  //           useNativeDriver: true,
+  //         }),
+  //       ]),
+  //     ).start(),
+  //   ]).start()
+  // }
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
@@ -70,6 +101,7 @@ export const RecordButton = ({ recordState = 'start', onPress }) => {
               styles.innerCircle,
               {
                 transform: [{ scale: innerCircleScale }],
+                opacity: innerCircleOpacity,
                 backgroundColor: RED_COLOR,
               },
             ]}
@@ -102,8 +134,8 @@ const styles = StyleSheet.create({
     borderRadius: 9999,
   },
   innerCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 9999,
+    width: 50,
+    height: 50,
+    borderRadius: 15, // reduced radius to suggest a square effect
   },
 })
