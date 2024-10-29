@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RecordButton } from './RecordButton'
 
-const ActionButtons = ({ state, recording, onRecordPress, onSubmit, onRestart }) => {
+const ActionButtons = ({ state, setState, recording, setRecording, onSubmit, onRestart }) => {
   const submitButtonColor = '#38a169'
   const restartButtonColor = '#e53e3e'
 
@@ -10,7 +10,7 @@ const ActionButtons = ({ state, recording, onRecordPress, onSubmit, onRestart })
   return (
     <View style={styles.buttonContainer}>
       {state !== 'processing' && state !== 'result' && (
-        <RecordButton recordState={state} onPress={onRecordPress} recording={recording} />
+        <RecordButton state={state} setState={setState} recording={recording} setRecording={setRecording} />
       )}
       {state === 'end' && (
         <>
