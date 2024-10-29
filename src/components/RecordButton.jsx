@@ -76,7 +76,7 @@ export const RecordButton = ({ recordState = 'start', onPress }) => {
           />
         </>
       ) : (
-        <Svg width="75" height="75" viewBox="0 0 75 75" fill="none">
+        <Svg width="40" height="40" viewBox="0 0 75 75" fill="none">
           <Path
             d="M60 27.3397C66.6667 31.1887 66.6667 40.8113 60 44.6603L15 70.641C8.33333 74.49 -3.65772e-06 69.6788 -3.32122e-06 61.9808L-1.04991e-06 10.0192C-7.13424e-07 2.32124 8.33333 -2.49002 15 1.35898L60 27.3397Z"
             fill={GREEN_COLOR}
