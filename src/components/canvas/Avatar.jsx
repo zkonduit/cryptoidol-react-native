@@ -36,7 +36,7 @@ export default function Avatar({ avatarState = 'start', ...props }) {
   const [hatMaterial, setHatMaterial] = useState()
 
   useEffect(() => {
-    console.log('Loading model...')
+    console.debug('Loading model...')
     const loadModel = async () => {
       try {
         const localPath = `${FileSystem.cacheDirectory}smaller.vrm`
@@ -102,7 +102,7 @@ export default function Avatar({ avatarState = 'start', ...props }) {
             setVrm(vrm)
           },
           (progress) => {
-            console.log('Loading model...', (100.0 * progress.loaded) / progress.total, '%')
+            console.debug('Loading model...', (100.0 * progress.loaded) / progress.total, '%')
           },
           (error) => {
             console.error('Error loading model:', error) // Log the full error
@@ -136,13 +136,12 @@ export default function Avatar({ avatarState = 'start', ...props }) {
             texture.magFilter = LinearFilter
             texture.wrapT = 1000
             texture.wrapS = 1000
-            texture.colorSpace = SRGBColorSpace// console.log('Original Hat Material:', JSON.stringify(hatMaterial, undefined, 2))
+            texture.colorSpace = SRGBColorSpace
             let clond = bodyMaterial.clone()
             clond.map = texture
             clond.name = 'Material_Updated.001'
             texture.needsUpdate = true
             setBodyMaterial(clond)
-            console.log('Updated Body Material with an image')
 
           },
           undefined,
@@ -174,7 +173,6 @@ export default function Avatar({ avatarState = 'start', ...props }) {
             clond.name = 'Material_Updated.002'
             texture.needsUpdate = true
             setHatMaterial(clond)
-            console.log('Updated Hat Material with an image')
 
           },
           undefined,
@@ -189,14 +187,13 @@ export default function Avatar({ avatarState = 'start', ...props }) {
 
     const updateMaterials = () => {
       try {
-        console.log('Updating materials...')
+        console.debug('Updating materials...')
 
         // Traverse through all materials and adjust properties
         vrm.scene.traverse((obj) => {
           if (obj.isMesh) {
             // If the object material is `'Material.001'` then update it with the new body material
             if (obj.material && obj.material.name === 'Material.001') {
-              console.log('Updating body material:', obj.material.name, bodyMaterial.name)
               obj.material = bodyMaterial
               obj.needsUpdate = true
 
@@ -204,8 +201,6 @@ export default function Avatar({ avatarState = 'start', ...props }) {
 
             // If the object material is `'Material.002'` then update it with the new hat material
             if (obj.material && obj.material.name === 'Material.002') {
-              console.log('Updating hat material:', obj.material.name, hatMaterial.name)
-
               obj.material = hatMaterial
               obj.needsUpdate = true
 
@@ -227,14 +222,14 @@ export default function Avatar({ avatarState = 'start', ...props }) {
 
     if (bodyMaterial && hatMaterial && bodyMaterial.name === 'Material_Updated.001' && hatMaterial.name === 'Material_Updated.002') {
       updateMaterials()
-      console.log('Materials updated')
+      console.debug('Materials updated')
     }
   }, [bodyMaterial, hatMaterial])
 
   // animation handler
   useEffect(() => {
     if (vrm && mixer && animationUrl) {
-      console.log('Updating animation to:', animationUrl)
+      console.debug('Updating animation to:', animationUrl)
       mixer.stopAllAction()
       loadMixamoAnimation(animationUrl, vrm)
         .then((clip) => {
@@ -254,52 +249,50 @@ export default function Avatar({ avatarState = 'start', ...props }) {
       if (clock.elapsedTime > previousBlink) {
         setBlink(true)
         setPreviousBlink(clock.elapsedTime + 5)
-        console.log('Blink')
       }
 
       if (clock.elapsedTime > previousHappy) {
         setHappy(true)
         setPreviousHappy(clock.elapsedTime + 13)
-        console.log('Happy')
       }
 
       // animation sequence start
       if (avatarState === 'start') {
-        setAnimationUrl(PREFIX + 'Button_Pushing.fbx')
+        setAnimationUrl('Button Pushing.fbx')
       }
-      //
-      //     if (avatarState == 'inprogress') {
-      //       setAnimationUrl(PREFIX + 'Chicken Dance.fbx')
-      //     }
-      //
-      //     if (avatarState == 'end') {
-      //       setAnimationUrl(PREFIX + 'Thinking.fbx')
-      //     }
-      //
-      //     if (avatarState == 'processing') {
-      //       setAnimationUrl(PREFIX + 'Gangnam Style.fbx')
-      //     }
-      //
-      //     if (avatarState == 'result') {
-      //       setAnimationUrl(PREFIX + 'Thankful.fbx')
-      //     }
-      //
-      //     if (avatarState == 'committing') {
-      //       setAnimationUrl(PREFIX + 'Gangnam Style.fbx')
-      //     }
-      //
-      //     if (avatarState == 'mint') {
-      //       setAnimationUrl(PREFIX + 'Button Pushing.fbx')
-      //     }
-      //
-      //     if (avatarState == 'minting') {
-      //       setAnimationUrl(PREFIX + 'Gangnam Style.fbx')
-      //     }
-      //
-      //     if (avatarState == 'minted') {
-      //       setAnimationUrl(PREFIX + 'Thankful.fbx')
-      //     }
-      //
+
+      if (avatarState === 'inprogress') {
+        setAnimationUrl('Chicken Dance.fbx')
+      }
+
+      if (avatarState === 'end') {
+        setAnimationUrl('Thinking.fbx')
+      }
+
+      if (avatarState === 'processing') {
+        setAnimationUrl('Gangnam Style.fbx')
+      }
+
+      if (avatarState === 'result') {
+        setAnimationUrl('Thankful.fbx')
+      }
+
+      if (avatarState === 'committing') {
+        setAnimationUrl('Gangnam Style.fbx')
+      }
+
+      if (avatarState === 'mint') {
+        setAnimationUrl('Button Pushing.fbx')
+      }
+
+      if (avatarState === 'minting') {
+        setAnimationUrl('Gangnam Style.fbx')
+      }
+
+      if (avatarState === 'minted') {
+        setAnimationUrl('Thankful.fbx')
+      }
+
       // handle blink
       if (blink) {
         setBlink(false)

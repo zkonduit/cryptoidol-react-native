@@ -11,7 +11,23 @@ import { mixamoVRMRigMap } from './MixamoVRRigMap'
  */
 export function loadMixamoAnimation(url, vrm) {
   const loader = new FBXLoader() // A loader which loads FBX
-  return loader.loadAsync(require('../../../assets/3D/animations/Button_Pushing.fbx')).then((asset) => {
+
+  let animation = null
+  if (url === 'Button Pushing.fbx') {
+    animation = require('../../../assets/3D/animations/ButtonPushing.fbx')
+  } else if (url === 'Chicken Dance.fbx') {
+    animation = require('../../../assets/3D/animations/ChickenDance.fbx')
+  } else if (url === 'Thinking.fbx') {
+    animation = require('../../../assets/3D/animations/Thinking.fbx')
+  } else if (url === 'Gangnam Style.fbx') {
+    animation = require('../../../assets/3D/animations/GangnamStyle.fbx')
+  } else if (url === 'Thankful.fbx') {
+    animation = require('../../../assets/3D/animations/Thankful.fbx')
+  } else {
+    throw new Error('Unknown animation URL: ', url)
+  }
+
+  return loader.loadAsync(animation).then((asset) => {
     const clip = THREE.AnimationClip.findByName(asset.animations, 'mixamo.com') // extract the AnimationClip
 
     const tracks = [] // KeyframeTracks compatible with VRM will be added here
