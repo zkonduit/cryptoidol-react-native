@@ -1,26 +1,6 @@
-import React, { Suspense, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, SafeAreaView, Text } from 'react-native'
-import { Canvas, useFrame } from '@react-three/fiber'
-import Avatar from './canvas/Avatar'
-import { PerspectiveCamera } from '@react-three/drei'
-
-const Loading = () => {
-  const meshRef = useRef()
-
-  useFrame((state, delta, frame) => {
-    // const elapsed = clock.getElapsedTime()
-    // Rotate the mesh around the diagonal by rotating both x and y
-    meshRef.current.rotation.x += delta
-    meshRef.current.rotation.y += delta
-  })
-
-  return (
-    <mesh ref={meshRef} position={[0, 1, 0]}>
-      <boxGeometry args={[0.5, 0.5, 0.5]} />
-      <meshStandardMaterial color="hotpink" />
-    </mesh>
-  )
-}
+import ConfettiComponent from './ConfetiComponent'
 
 const MainBlock = () => {
   const [state, setState] = useState('start')
@@ -50,13 +30,9 @@ const MainBlock = () => {
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 5, 5]} intensity={1.5} />
         <pointLight position={[0, 5, 5]} intensity={1.2} />
+      {/*<CustomCanvas state={state} />*/}
 
-        <PerspectiveCamera makeDefault fov={80} position={[0, -0.5, 5]} />
 
-        <Suspense fallback={<Loading />}>
-          <Avatar position={[0, -1, 3.7]} rotation={[0, -Math.PI, 0]} avatarState={state} />
-        </Suspense>
-      </Canvas>
       {state === 'start' ? (
         <>
           <Text style={{ textAlign: 'center' }}>
@@ -70,7 +46,7 @@ const MainBlock = () => {
               // Time out for 10 seconds
               setTimeout(() => {
                 setState('minted')
-              }, 10000)
+              }, 1000)
             }}
           />
         </>

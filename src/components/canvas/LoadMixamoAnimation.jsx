@@ -24,7 +24,7 @@ export function loadMixamoAnimation(url, vrm) {
   } else if (url === 'Thankful.fbx') {
     animation = require('../../../assets/3D/animations/Thankful.fbx')
   } else {
-    throw new Error('Unknown animation URL: ', url)
+    throw new Error('Unknown animation URL: ' + url)
   }
 
   return loader.loadAsync(animation).then((asset) => {
