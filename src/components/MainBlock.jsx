@@ -1,11 +1,22 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
 import ConfettiComponent from './ConfettiComponent'
 import { RecordButton } from './RecordButton'
+import CustomCanvas from './canvas/CustomCanvas'
 
 const MainBlock = () => {
   const [state, setState] = useState('start')
   const [recording, setRecording] = useState(false)
+  const colorScheme = useColorScheme()
+
+  const isDarkMode = colorScheme === 'dark'
+
+  // Define colors for light and dark mode
+  const backgroundColor = isDarkMode ? '#121212' : '#FFFFFF'
+  const textColor = isDarkMode ? '#FFFFFF' : '#000000'
+  const submitButtonColor = isDarkMode ? '#27a745' : '#38a169' // Darker green for dark mode
+  const restartButtonColor = isDarkMode ? '#c53030' : '#e53e3e' // Darker red for dark mode
+
 
   const startRecord = () => {
     setState('inprogress')
@@ -37,26 +48,28 @@ const MainBlock = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/*<CustomCanvas state={state} />*/}
+      <CustomCanvas state={state} />
       {
         state === 'minted' &&
         <ConfettiComponent />
       }
 
 
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor }]}>
         <View style={styles.innerContainer}>
           {state === 'start' && (
-            <Text style={styles.headerText}>Think you can be the next <Text style={styles.boldText}>Crypto Idol</Text>?</Text>
+            <Text style={[styles.headerText, { color: textColor }]}>
+              Think you can be the next <Text style={styles.boldText}>Crypto Idol</Text>?
+            </Text>
           )}
           {state === 'inprogress' && recording && (
-            <Text style={styles.headerText}>Sing now! Press Stop when you're done️</Text>
+            <Text style={[styles.headerText, { color: textColor }]}>Sing now! Press Stop when you're done️</Text>
           )}
           {state === 'end' && !recording && (
-            <Text style={styles.headerText}>Will the AI like you? Get judged 🤔️</Text>
+            <Text style={[styles.headerText, { color: textColor }]}>Will the AI like you? Get judged 🤔️</Text>
           )}
           {state === 'inprogress' && !recording && (
-            <Text style={styles.headerText}>Here's what you've sung ❤️</Text>
+            <Text style={[styles.headerText, { color: textColor }]}>Here's what you've sung ❤️</Text>
           )}
 
           <View style={styles.buttonContainer}>
@@ -77,10 +90,12 @@ const MainBlock = () => {
             )}
             {state === 'end' && (
               <>
-                <TouchableOpacity style={styles.submitButton} onPress={submitRecording}>
+                <TouchableOpacity style={[styles.submitButton, { backgroundColor: submitButtonColor }]}
+                                  onPress={submitRecording}>
                   <Text style={styles.buttonText}>SUBMIT</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.restartButton} onPress={restart}>
+                <TouchableOpacity style={[styles.restartButton, { backgroundColor: restartButtonColor }]}
+                                  onPress={restart}>
                   <Text style={styles.buttonText}>RESTART</Text>
                 </TouchableOpacity>
               </>
