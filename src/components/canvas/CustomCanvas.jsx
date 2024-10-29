@@ -10,7 +10,6 @@ const CustomCanvas = ({ state }) => {
     <Canvas
       onCreated={(state) => {
         const renderer = state.gl
-        renderer.setClearColor('rgb(248,225,225)', 0.1)
 
         renderer.extensions.get('EXT_color_buffer_float')
 
