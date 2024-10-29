@@ -10,12 +10,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-navigation/native": "^6.1.18",
-    "@react-navigation/stack": "^6.4.1",
+    "@pixiv/three-vrm": "^3.1.4",
+    "@react-three/drei": "^9.114.6",
+    "@react-three/fiber": "^8.17.10",
+    "expo-asset": "^10.0.10",
+    "expo-file-system": "^17.0.1",
     "expo-gl": "^14.0.2",
-    "expo-three": "^8.0.0",
+    "expo-modules-core": "^1.12.26",
     "react": "18.3.1",
-    "react-native": "0.75.4"
+    "react-native": "0.75.4",
+    "react-native-confetti-cannon": "^1.5.2",
+    "text-encoding": "^0.7.0",
+    "three": "^0.169.0",
+    "three-stdlib": "^2.33.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
