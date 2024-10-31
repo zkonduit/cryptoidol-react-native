@@ -1,6 +1,7 @@
 import { Animated, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalStyles } from '../styles'
+import processAudioFile from '../audio/processAudioFile'
 
 const sentences = [
   'Analyzing audio! 🕒',
@@ -18,17 +19,29 @@ export const Processing = ({ onCancel, recording, onFinished }) => {
   const globalStyles = useGlobalStyles()
 
   useEffect(() => {
+    // Create an AbortController to handle cancellation
+    const controller = new AbortController()
+    const { signal } = controller
 
-    console.debug('Processing started for recording:', recording)
-    // Set a timeout for 15 seconds to simulate processing time
-    const timeout = setTimeout(() => {
-      onFinished()
-    }, 15000)
+    // Start processing with the ability to cancel
+    processAudioFile(recording, signal)
+      .then((result) => {
+        if (!signal.aborted) {
+          console.debug('Processing result:', result)
+          onFinished()
+        }
+      })
+      .catch((error) => {
+        if (error.name === 'AbortError') {
+          console.debug('Processing was canceled')
+        } else {
+          console.error('Processing error:', error)
+        }
+      })
 
-
-    // Cleanup function to clear the timeout if the component unmounts
-    return () => clearTimeout(timeout)
-  }, [])
+    // Cleanup function to abort processing if the component unmounts
+    return () => controller.abort()
+  }, [recording, onFinished])
 
   useEffect(() => {
     // Cycle through sentences every 5 seconds
@@ -84,7 +97,10 @@ export const Processing = ({ onCancel, recording, onFinished }) => {
           {sentences[currentSentence]}
         </Animated.Text>
       </View>
-      <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
+      <TouchableOpacity style={styles.cancelButton} onPress={() => {
+        controller.abort()
+        onCancel()
+      }}>
         <Text style={globalStyles.buttonText}>CANCEL</Text>
       </TouchableOpacity>
       <LinksSection isNightMode={globalStyles.isDarkMode} />

@@ -67,8 +67,8 @@ export const Recording = ({ onSubmit }) => {
 
     const audioSettings =
       {
-        AVSampleRateKeyIOS: 44100, // Set sample rate to 44.1 kHz
-        AVFormatIDKeyIOS: AVEncodingOption.lpcm, // Uncompressed format (LPCM)
+        AVSampleRateKeyIOS: 44100, // Sample rate of audio file in Hz (44.1 kHz is standard)
+        AVFormatIDKeyIOS: AVEncodingOption.wav, // Uncompressed format (LPCM)
         AVLinearPCMBitDepthKeyIOS: 16, // 16-bit depth for quality
         AVLinearPCMIsBigEndianKeyIOS: false, // Default to little-endian
         AVLinearPCMIsFloatKeyIOS: false, // Integer format (not float)
