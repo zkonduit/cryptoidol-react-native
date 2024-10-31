@@ -1,105 +1,43 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet, TouchableOpacity } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
-import AudioRecorderPlayer from 'react-native-audio-recorder-player'
 
 const RED_COLOR = `#FF214D`
 const GREEN_COLOR = `#359008`
 
-export const RecordButton = ({ state: state = 'start', setState, recording, setRecording }) => {
+export const RecordButton = ({ startRecord, stopRecord, startPlayback, stopPlayback, recordingState }) => {
   const outerCircleScale = useRef(new Animated.Value(1)).current
   const innerCircleScale = useRef(new Animated.Value(1)).current
   const innerCircleOpacity = useRef(new Animated.Value(1)).current
   const outerCircleOpacity = useRef(new Animated.Value(1)).current
 
-  const [recordFilePath, setRecordFilePath] = useState(null)
-  const audioRecorderPlayer = useRef(new AudioRecorderPlayer()).current
-
-
-  const startRecord = async () => {
-
-    // const hasPermission = await checkMicrophonePermission()
-    // if (!hasPermission) return
-
-    setState('inprogress')
-    setRecording(true)
-
-    try {
-      const result = await audioRecorderPlayer.startRecorder()
-      setRecordFilePath(result) // Set the file path for playback
-    } catch (error) {
-      console.error('Failed to start recording:', error)
-    }
-  }
-
-  // Function to stop recording
-  const stopRecord = async () => {
-    try {
-      const result = await audioRecorderPlayer.stopRecorder()
-      setRecordFilePath(result) // Store the recorded file path
-      setRecording(false)
-      setState('end')
-    } catch (error) {
-      console.error('Failed to stop recording:', error)
-    }
-  }
-
-  // Function to start playback
-  const startPlayback = async () => {
-    if (recordFilePath) {
-      setState('inprogress')
-      try {
-        await audioRecorderPlayer.startPlayer(recordFilePath)
-        audioRecorderPlayer.addPlayBackListener((e) => {
-          if (e.currentPosition === e.duration) {
-            stopPlayback()
-          }
-        })
-      } catch (error) {
-        console.error('Failed to start playback:', error)
-      }
-    }
-  }
-
-  // Function to stop playback
-  const stopPlayback = async () => {
-    try {
-      await audioRecorderPlayer.stopPlayer()
-      audioRecorderPlayer.removePlayBackListener()
-      setState('end')
-    } catch (error) {
-      console.error('Failed to stop playback:', error)
-    }
-  }
 
   useEffect(() => {
-    if (state === 'start') {
+    if (recordingState === 'start') {
       animateCircles(1.3, 1.0, 0.5)
-    } else if (state === 'inprogress') {
-      if (recording) {
-        Animated.loop(
-          Animated.sequence([
-            Animated.timing(outerCircleScale, {
-              toValue: 1.1,
-              duration: 500,
-              useNativeDriver: true,
-            }),
-            Animated.timing(outerCircleScale, {
-              toValue: 1.3,
-              duration: 500,
-              useNativeDriver: true,
-            }),
-          ]),
-        ).start()
-      } else {
-        outerCircleScale.setValue(1) // reset scale to 1 for static display
-        innerCircleScale.setValue(1) // smaller scale to make inner circle appear as a square
-        innerCircleOpacity.setValue(1) // ensure opacity is fully visible
-      }
-    } else if (state === 'end') {
+    } else if (recordingState === 'recording') {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(outerCircleScale, {
+            toValue: 1.1,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(outerCircleScale, {
+            toValue: 1.3,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+        ]),
+      ).start()
+    } else if (recordingState === 'listening') {
+      outerCircleScale.setValue(1) // reset scale to 1 for static display
+      innerCircleScale.setValue(1) // smaller scale to make inner circle appear as a square
+      innerCircleOpacity.setValue(1) // ensure opacity is fully visible
+    } else if (recordingState === 'end') {
       animateCircles(1, 0, 0) // Hide outer circle
     }
-  }, [state, recording])
+  }, [recordingState])
 
   const animateCircles = (outerScale, innerScale, opacity) => {
     Animated.timing(outerCircleScale, {
@@ -119,39 +57,15 @@ export const RecordButton = ({ state: state = 'start', setState, recording, setR
     }).start()
   }
 
-  // const animateToSquareAndPulse = () => {
-  //   Animated.sequence([
-  //     Animated.timing(innerCircleScale, {
-  //       toValue: 0.5, // square-like effect by reducing size
-  //       duration: 300,
-  //       useNativeDriver: true,
-  //     }).start(),
-  //     Animated.loop(
-  //       Animated.sequence([
-  //         Animated.timing(innerCircleScale, {
-  //           toValue: 0.7,
-  //           duration: 400,
-  //           useNativeDriver: true,
-  //         }),
-  //         Animated.timing(innerCircleScale, {
-  //           toValue: 0.4,
-  //           duration: 400,
-  //           useNativeDriver: true,
-  //         }),
-  //       ]),
-  //     ).start(),
-  //   ]).start()
-  // }
-
   return (
     <TouchableOpacity onPress={() => {
-      if (state === 'start') startRecord()
-      else if (state === 'inprogress') {
-        setState('end')
-        recording ? stopRecord() : stopPlayback()
-      } else if (state === 'end') startPlayback()
+      if (recordingState === 'start') startRecord()
+      else if (recordingState === 'recording') stopRecord()
+      else if (recordingState === 'listening') stopPlayback()
+      else if (recordingState === 'end') startPlayback()
+      else console.error('Invalid recording state:', recordingState)
     }} style={styles.container}>
-      {state !== 'end' ? (
+      {recordingState !== 'end' ? (
         <>
           <Animated.View
             style={[

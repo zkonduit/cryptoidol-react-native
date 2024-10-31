@@ -1,48 +1,52 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, useColorScheme, View } from 'react-native'
-import ConfettiComponent from './ConfettiComponent'
-import ActionButtons from './ActionButtons'
-import UserPrompt from './UserPrompt'
+import { Button, SafeAreaView, StyleSheet, Text } from 'react-native'
 import CustomCanvas from './canvas/CustomCanvas'
+import ConfettiComponent from './ConfettiComponent'
+import Processing from './Processing'
+import { Recording } from './Recording'
 
 const MainBlock = () => {
-  const [state, setState] = useState('start')
-  const [recording, setRecording] = useState(false)
+  const [state, setState] = useState('recording')
+  const renderAvatar = false // TODO - make this true to render the avatar
+  const [recording, setRecording] = useState(null)
 
-  const colorScheme = useColorScheme()
-  const isDarkMode = colorScheme === 'dark'
-
-  const submitRecording = () => {
+  const submitRecording = (record) => {
+    setRecording(record)
     setState('processing')
-    setTimeout(() => {
-      setState('result')
-    }, 2000)
   }
 
-  const restart = () => {
-    setState('start')
+  const onProcessingFinished = () => {
+    setState('result')
   }
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <CustomCanvas state={state} />
+      <Text> {'Debug State: ' + state}</Text>
+      {
+        renderAvatar &&
+        <CustomCanvas state={state} />
+      }
       {
         state === 'minted' &&
         <ConfettiComponent />
+        // TODO - also show the NFT image as in the web version
       }
 
-
-      <View style={[styles.container, { backgroundColor: isDarkMode ? '#252525' : '#FFFFFF' }]}>
-        <UserPrompt state={state} recording={recording} isDarkMode={isDarkMode} />
-        <ActionButtons
-          state={state}
-          setState={setState}
-          recording={recording}
-          setRecording={setRecording}
-          onSubmit={submitRecording}
-          onRestart={restart}
-        />
-      </View>
+      {state === 'recording' && (
+        <Recording onSubmit={submitRecording} />
+        // <Button title="Record" onPress={() => setState('processing')} />
+      )
+      }
+      {state === 'processing' && (
+        <Processing onCancel={() => setState('recording')} recording={recording} onFinished={onProcessingFinished} />
+        // <Button title="Finish" onPress={() => setState('result')} />
+      )
+      }
+      {
+        state === 'result' && (
+          <Button title="Record Again" onPress={() => setState('recording')} />
+        )}
     </SafeAreaView>
   )
 }
