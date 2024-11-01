@@ -1,7 +1,7 @@
-import { Animated, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Animated, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalStyles } from '../styles'
-import processAudioFile from '../audio/processAudioFile'
+import preprocessAudioFile from '../audio/preprocessAudioFile'
 
 const sentences = [
   'Analyzing audio! 🕒',
@@ -15,33 +15,44 @@ export const Processing = ({ onCancel, recording, onFinished }) => {
   const [currentSentence, setCurrentSentence] = useState(0)
   const fadeAnim = useRef(new Animated.Value(1)).current // Start with opacity 1 for instant display
   const scaleAnim = useRef(new Animated.Value(0.95)).current // Slight scale effect
+  const [preprocessedRecording, setPreprocessedRecording] = useState(null)
+  const cancelled = useRef(false)
 
   const globalStyles = useGlobalStyles()
 
-  useEffect(() => {
-    // Create an AbortController to handle cancellation
-    const controller = new AbortController()
-    const { signal } = controller
+  const handleCancel = () => {
+    cancelled.current = true
+    onCancel()
+    // TODO - figure out a way to handle cancel to run the processing while not blocking UI
+    // Currently we have a workaround by splitting the processing into multiple tasks
+    // And then checking if the task was cancelled before running the next step
+    // This is not ideal and should be fixed
+  }
 
-    // Start processing with the ability to cancel
-    processAudioFile(recording, signal)
-      .then((result) => {
-        if (!signal.aborted) {
-          console.debug('Processing result:', result)
+  useEffect(() => {
+    preprocessAudioFile(recording).then(
+      (result) => {
+        setPreprocessedRecording(result)
+      },
+      (error) => {
+        console.error(error)
+        Alert.alert('Error processing audio', 'Please try again', [{ text: 'OK' }])
+        handleCancel()
+      },
+    )
+
+  }, [recording, onFinished])
+
+  useEffect(() => {
+    // TODO - we currently have a timeout to allow all the blocked UI Cancel calls to run before we continue processing
+    setTimeout(() => {
+      if (preprocessedRecording) {
+        if (!cancelled.current) {
           onFinished()
         }
-      })
-      .catch((error) => {
-        if (error.name === 'AbortError') {
-          console.debug('Processing was canceled')
-        } else {
-          console.error('Processing error:', error)
-        }
-      })
-
-    // Cleanup function to abort processing if the component unmounts
-    return () => controller.abort()
-  }, [recording, onFinished])
+      }
+    }, 50)
+  }, [preprocessedRecording])
 
   useEffect(() => {
     // Cycle through sentences every 5 seconds
@@ -97,10 +108,7 @@ export const Processing = ({ onCancel, recording, onFinished }) => {
           {sentences[currentSentence]}
         </Animated.Text>
       </View>
-      <TouchableOpacity style={styles.cancelButton} onPress={() => {
-        controller.abort()
-        onCancel()
-      }}>
+      <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
         <Text style={globalStyles.buttonText}>CANCEL</Text>
       </TouchableOpacity>
       <LinksSection isNightMode={globalStyles.isDarkMode} />
