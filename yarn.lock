@@ -1888,6 +1888,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@expo/config-plugins@npm:^7.2.4":
+  version: 7.9.2
+  resolution: "@expo/config-plugins@npm:7.9.2"
+  dependencies:
+    "@expo/config-types": ^50.0.0-alpha.1
+    "@expo/fingerprint": ^0.6.0
+    "@expo/json-file": ~8.3.0
+    "@expo/plist": ^0.1.0
+    "@expo/sdk-runtime-versions": ^1.0.0
+    "@react-native/normalize-color": ^2.0.0
+    chalk: ^4.1.2
+    debug: ^4.3.1
+    find-up: ~5.0.0
+    getenv: ^1.0.0
+    glob: 7.1.6
+    resolve-from: ^5.0.0
+    semver: ^7.5.3
+    slash: ^3.0.0
+    slugify: ^1.6.6
+    xcode: ^3.0.1
+    xml2js: 0.6.0
+  checksum: cd3440558a6cb757626a21a945781bd1d43ed1b4ab268673c29a8eb2f6ed95217bf8a94b6093a0238c3ce6481c8c963598aab6334e10f72a594ce8d5b9f87505
+  languageName: node
+  linkType: hard
+
+"@expo/config-types@npm:^50.0.0-alpha.1":
+  version: 50.0.1
+  resolution: "@expo/config-types@npm:50.0.1"
+  checksum: f803730a5a56fb0b1ddc4385d7ac930935c88be4e5a5dfaa9b7733444ba4d6d784946ecdc1e414528e5f642a473ff01a1533b8c4174e87b35d15cdd88c96bf49
+  languageName: node
+  linkType: hard
+
 "@expo/config-types@npm:^51.0.3":
   version: 51.0.3
   resolution: "@expo/config-types@npm:51.0.3"
@@ -1944,6 +1976,23 @@ __metadata:
     dotenv-expand: ~11.0.6
     getenv: ^1.0.0
   checksum: 4199b7a3e186de81a5ddae4966d1a60694c1f0b3b24c190b9e5a584d47fb98254c8597ed66808511c09b3ee2774284fc72e03fc69ad9ee79005a7cd470ef6787
+  languageName: node
+  linkType: hard
+
+"@expo/fingerprint@npm:^0.6.0":
+  version: 0.6.1
+  resolution: "@expo/fingerprint@npm:0.6.1"
+  dependencies:
+    "@expo/spawn-async": ^1.5.0
+    chalk: ^4.1.2
+    debug: ^4.3.4
+    find-up: ^5.0.0
+    minimatch: ^3.0.4
+    p-limit: ^3.1.0
+    resolve-from: ^5.0.0
+  bin:
+    fingerprint: bin/cli.js
+  checksum: 8398d466a232604b54fc1438ece486753f6e8e65933ab270377b6f8ed1c4409a886031f0dff56b7f34d17774f71f9fd800e6b78f79fedceb2a6d4a3fdd9f490d
   languageName: node
   linkType: hard
 
@@ -2097,7 +2146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/spawn-async@npm:^1.7.2":
+"@expo/spawn-async@npm:^1.5.0, @expo/spawn-async@npm:^1.7.2":
   version: 1.7.2
   resolution: "@expo/spawn-async@npm:1.7.2"
   dependencies:
@@ -3229,6 +3278,13 @@ __metadata:
     metro-config: ^0.80.3
     metro-runtime: ^0.80.3
   checksum: 49608519e45396e1c6e5301dfa7af598f3309a1b7b7be4ac1e13a27de4a4ed09c9ca3d29abf0c5f9f391ebc7aa5ee13fb1f2bed00ba063d82b1b5ca27011d029
+  languageName: node
+  linkType: hard
+
+"@react-native/normalize-color@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "@react-native/normalize-color@npm:2.1.0"
+  checksum: 8ccbd40b3c7629f1dc97b3e9aadd95fd3507fcf2e37535a6299a70436ab891c34cbdc4240b07380553d6e85dd909e23d5773b5be1da2906b026312e0b0768838
   languageName: node
   linkType: hard
 
@@ -9532,6 +9588,7 @@ __metadata:
     expo-modules-core: ^1.12.26
     fft.js: ^4.0.4
     jest: ^29.6.3
+    onnxruntime-react-native: 1.19.2
     prettier: 2.8.8
     react: 18.3.1
     react-native: 0.75.4
@@ -9874,6 +9931,27 @@ __metadata:
   dependencies:
     mimic-fn: ^2.1.0
   checksum: 2478859ef817fc5d4e9c2f9e5728512ddd1dbc9fb7829ad263765bb6d3b91ce699d6e2332eef6b7dff183c2f490bd3349f1666427eaba4469fba0ac38dfd0d34
+  languageName: node
+  linkType: hard
+
+"onnxruntime-common@npm:1.19.2":
+  version: 1.19.2
+  resolution: "onnxruntime-common@npm:1.19.2"
+  checksum: 62f169624dae6ab4b43e9673e5ce620dc250bc0231d565b9de2fd1515a6da668ab8ac91ec54da65f86e9ce35078497ba9151fa5efd2433517c342831e231ae47
+  languageName: node
+  linkType: hard
+
+"onnxruntime-react-native@npm:1.19.2":
+  version: 1.19.2
+  resolution: "onnxruntime-react-native@npm:1.19.2"
+  dependencies:
+    "@expo/config-plugins": ^7.2.4
+    buffer: ^6.0.3
+    onnxruntime-common: 1.19.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 7a19bea4aa3342786cf1751b54e836ad6a75505f4745978a9d86e957ab447b660c8e0a9dc2f2473591d09ae07eec69d57239e14401865c5bfee6080cd5482d95
   languageName: node
   linkType: hard
 

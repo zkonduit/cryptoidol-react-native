@@ -2,6 +2,7 @@ import { Alert, Animated, Linking, StyleSheet, Text, TouchableOpacity, View } fr
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalStyles } from '../styles'
 import preprocessAudioFile from '../audio/preprocessAudioFile'
+import { runAudioClassifier } from '../audio/audioClassifier'
 
 const sentences = [
   'Analyzing audio! 🕒',
@@ -15,13 +16,14 @@ export const Processing = ({ onCancel, recording, onFinished }) => {
   const [currentSentence, setCurrentSentence] = useState(0)
   const fadeAnim = useRef(new Animated.Value(1)).current // Start with opacity 1 for instant display
   const scaleAnim = useRef(new Animated.Value(0.95)).current // Slight scale effect
-  const [preprocessedRecording, setPreprocessedRecording] = useState(null)
-  const cancelled = useRef(false)
+  const preprocessedRecording = useRef(null)
+  const modelResults = useRef(null)
+  const [processingState, setProcessingState] = useState('processing') // ['processing', 'finished'
 
   const globalStyles = useGlobalStyles()
 
   const handleCancel = () => {
-    cancelled.current = true
+    setProcessingState('cancelled')
     onCancel()
     // TODO - figure out a way to handle cancel to run the processing while not blocking UI
     // Currently we have a workaround by splitting the processing into multiple tasks
@@ -32,7 +34,8 @@ export const Processing = ({ onCancel, recording, onFinished }) => {
   useEffect(() => {
     preprocessAudioFile(recording).then(
       (result) => {
-        setPreprocessedRecording(result)
+        preprocessedRecording.current = result
+        setProcessingState('classification')
       },
       (error) => {
         console.error(error)
@@ -46,13 +49,23 @@ export const Processing = ({ onCancel, recording, onFinished }) => {
   useEffect(() => {
     // TODO - we currently have a timeout to allow all the blocked UI Cancel calls to run before we continue processing
     setTimeout(() => {
-      if (preprocessedRecording) {
-        if (!cancelled.current) {
-          onFinished()
-        }
+      if (processingState === 'classification') {
+        runAudioClassifier(preprocessedRecording.current).then(
+          (result) => {
+            modelResults.current = result
+            setProcessingState('finished')
+          },
+          (error) => {
+            console.error(error)
+            Alert.alert('Error processing audio', 'Please try again', [{ text: 'OK' }])
+            handleCancel()
+          },
+        )
+      } else if (processingState === 'finished') {
+        onFinished(modelResults.current)
       }
     }, 50)
-  }, [preprocessedRecording])
+  }, [processingState])
 
   useEffect(() => {
     // Cycle through sentences every 5 seconds

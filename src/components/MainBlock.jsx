@@ -15,8 +15,10 @@ const MainBlock = () => {
     setState('processing')
   }
 
-  const onProcessingFinished = () => {
+  const onProcessingFinished = (result) => {
     setState('result')
+    setResult(result)
+    console.log('Audio Classification Result:', result, '/ 10')
   }
 
 

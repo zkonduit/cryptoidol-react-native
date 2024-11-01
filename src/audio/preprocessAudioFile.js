@@ -26,11 +26,7 @@ async function preprocessAudioFile(audioFilePath) {
 
 
     // Step 4: Reshape the mel spectrogram
-    const reshapedMelSpectrogram = reshapeMelSpectrogram(melSpectrogram)
-
-    // Step 5: Convert the mel spectrogram to JSON input for the model
-    return generateInputJSON(reshapedMelSpectrogram)
-
+    return reshapeMelSpectrogram(melSpectrogram)
   } catch (error) {
     console.error('Error preprocessing audio file:', error)
   }
@@ -195,7 +191,8 @@ function reshapeMelSpectrogram(melSpectrogram) {
   return processedSpectrogram // 2D array [128, 130]
 }
 
-function generateInputJSON(processedMelSpectrogram) {
+// Generates the JSON files identical to `input.json` used by the python server model
+export function generateInputJSON(processedMelSpectrogram) {
   // Step 1: Flatten the 2D array [128, 130] to a 1D array
   const flattenedData = processedMelSpectrogram.reduce((acc, row) => acc.concat(Array.from(row)), [])
 
