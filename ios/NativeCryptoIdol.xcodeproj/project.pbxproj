@@ -12,6 +12,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4DE00357D32618BB571761DB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */; };
+		6067A4CB2CD5F0E7007A5B41 /* EzklPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6067A4CA2CD5F0E7007A5B41 /* EzklPackage */; };
+		6067A4D42CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */; };
+		6067A4D52CD5F34B007A5B41 /* NativeCryptoIdolModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */; };
 		7DD47F2D8EEBC260F9B3718E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A222568F7F3DFE3DEB918A /* ExpoModulesProvider.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CDEEAB5BA09F423CA7FFEEF1 /* libPods-NativeCryptoIdol-NativeCryptoIdolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C28841A9E9BA8162FF02E08D /* libPods-NativeCryptoIdol-NativeCryptoIdolTests.a */; };
@@ -43,6 +46,8 @@
 		1DB72C51A116CA33966D6B16 /* Pods-NativeCryptoIdol.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol.release.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol.release.xcconfig"; sourceTree = "<group>"; };
 		28C78712766AE9B858C0719B /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EEF394072B2009EFC04119C /* libPods-NativeCryptoIdol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NativeCryptoIdol.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeCryptoIdolModuleBridge.m; path = NativeCryptoIdol/NativeCryptoIdolModuleBridge.m; sourceTree = "<group>"; };
+		6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NativeCryptoIdolModule.swift; path = NativeCryptoIdol/NativeCryptoIdolModule.swift; sourceTree = "<group>"; };
 		6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NativeCryptoIdol/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		694ACC9DDCFDDA296F3FBE72 /* Pods-NativeCryptoIdol.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol.debug.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NativeCryptoIdol/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D86FA1EAEA754F2380A1753F /* libPods-NativeCryptoIdol.a in Frameworks */,
+				6067A4CB2CD5F0E7007A5B41 /* EzklPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +99,8 @@
 		13B07FAE1A68108700A75B9A /* NativeCryptoIdol */ = {
 			isa = PBXGroup;
 			children = (
+				6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */,
+				6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -226,6 +234,9 @@
 			dependencies = (
 			);
 			name = NativeCryptoIdol;
+			packageProductDependencies = (
+				6067A4CA2CD5F0E7007A5B41 /* EzklPackage */,
+			);
 			productName = NativeCryptoIdol;
 			productReference = 13B07F961A680F5B00A75B9A /* NativeCryptoIdol.app */;
 			productType = "com.apple.product-type.application";
@@ -256,6 +267,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				6067A4C92CD5F0E7007A5B41 /* XCRemoteSwiftPackageReference "ezkl-swift-package" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -469,6 +483,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6067A4D42CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m in Sources */,
+				6067A4D52CD5F34B007A5B41 /* NativeCryptoIdolModule.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				4DE00357D32618BB571761DB /* ExpoModulesProvider.swift in Sources */,
@@ -549,6 +565,7 @@
 				DEVELOPMENT_TEAM = LMRM26A744;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NativeCryptoIdol/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,6 +594,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LMRM26A744;
 				INFOPLIST_FILE = NativeCryptoIdol/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -668,10 +686,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -744,10 +759,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -786,6 +798,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6067A4C92CD5F0E7007A5B41 /* XCRemoteSwiftPackageReference "ezkl-swift-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/zkonduit/ezkl-swift-package";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6067A4CA2CD5F0E7007A5B41 /* EzklPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6067A4C92CD5F0E7007A5B41 /* XCRemoteSwiftPackageReference "ezkl-swift-package" */;
+			productName = EzklPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

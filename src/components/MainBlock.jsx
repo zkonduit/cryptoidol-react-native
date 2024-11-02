@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { Button, SafeAreaView, StyleSheet, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import CustomCanvas from './canvas/CustomCanvas'
 import ConfettiComponent from './ConfettiComponent'
 import Processing from './Processing'
 import { Recording } from './Recording'
+import { testAudioProcessing } from '../audio/TestAudio'
+import { prepareModelProver } from '../prover/modelProverSetup'
 
 const MainBlock = () => {
   const [state, setState] = useState('recording')

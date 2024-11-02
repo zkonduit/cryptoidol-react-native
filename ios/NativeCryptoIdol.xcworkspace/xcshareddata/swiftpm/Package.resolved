@@ -1,0 +1,15 @@
+{
+  "originHash" : "2cae61b36f587dc8c4a7b807972bef316ecb5c07f5136f1191db05506f648ddd",
+  "pins" : [
+    {
+      "identity" : "ezkl-swift-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zkonduit/ezkl-swift-package",
+      "state" : {
+        "branch" : "main",
+        "revision" : "605f3cf678073ba6bdc38073a61f168988c40de1"
+      }
+    }
+  ],
+  "version" : 3
+}

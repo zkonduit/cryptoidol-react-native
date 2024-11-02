@@ -9,7 +9,7 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config')
 const config = {
   resolver: {
     sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs', 'mjs'],
-    assetExts: ['vrm', 'gltf', 'obj', 'png', 'jpg', 'fbx', 'glb', 'json', 'onnx', 'wav'], // TODO - remove `wav` file format as it is only needed for testing
+    assetExts: ['vrm', 'gltf', 'obj', 'png', 'jpg', 'fbx', 'glb', 'json', 'onnx', 'wav', 'srs', 'ezkl'], // TODO - remove `wav` file format as it is only needed for testing
   },
 }
 
