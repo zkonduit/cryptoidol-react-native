@@ -11,7 +11,7 @@ const sentences = [
 ]
 
 
-export const Processing = ({ onCancel, recording, onFinished }) => {
+export const AudioScoring = ({ onCancel, recording, onFinished }) => {
 
   const [currentSentence, setCurrentSentence] = useState(0)
   const fadeAnim = useRef(new Animated.Value(1)).current // Start with opacity 1 for instant display
@@ -154,7 +154,7 @@ const LinksSection = ({ isNightMode }) => (
   </View>
 )
 
-export default Processing
+export default AudioScoring
 
 const styles = StyleSheet.create({
   container: {

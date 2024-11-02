@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import CustomCanvas from './canvas/CustomCanvas'
 import ConfettiComponent from './ConfettiComponent'
-import Processing from './Processing'
+import AudioScoring from './AudioScoring'
 import { Recording } from './Recording'
 import { testAudioProcessing } from '../audio/TestAudio'
-import { prepareModelProver } from '../prover/modelProverSetup'
+import { setupModelProver } from '../prover/setupModelProver'
+import { preloadModel } from '../audio/audioClassifier'
 
 const MainBlock = () => {
   const [state, setState] = useState('recording')
@@ -15,12 +16,13 @@ const MainBlock = () => {
 
   const submitRecording = (record) => {
     setRecording(record)
-    setState('processing')
+    setState('scoring')
+    console.debug('Recording Submitted for Scoring')
   }
 
   const onProcessingFinished = (result) => {
-    setState('result')
     setResult(result)
+    setState('scored')
     // Log the result rounding it to nearest 2 decimal places
     console.debug('Audio Scoring Result:', Math.round(result * 100) / 100)
   }
@@ -47,16 +49,16 @@ const MainBlock = () => {
 
       {state === 'recording' && (
         <Recording onSubmit={submitRecording} />
-        // <Button title="Record" onPress={() => setState('processing')} />
+        // <Button title="Record" onPress={() => setState('scoring')} />
       )
       }
-      {state === 'processing' && (
-        <Processing onCancel={() => setState('recording')} recording={recording} onFinished={onProcessingFinished} />
+      {state === 'scoring' && (
+        <AudioScoring onCancel={() => setState('recording')} recording={recording} onFinished={onProcessingFinished} />
         // <Button title="Finish" onPress={() => setState('result')} />
       )
       }
       {
-        state === 'result' && result !== null && (
+        state === 'result' && (
           // Show the score and option to record again
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Text style={{ fontSize: 18, marginBottom: 10 }}>Result is {Math.round(result * 100) / 100} / 1</Text>
