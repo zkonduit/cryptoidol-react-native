@@ -11,6 +11,7 @@ const MainBlock = () => {
   const [state, setState] = useState('recording')
   const renderAvatar = false // TODO - make this true to render the avatar
   const [recording, setRecording] = useState(null)
+  const [result, setResult] = useState(null)
 
   const submitRecording = (record) => {
     setRecording(record)
@@ -20,7 +21,8 @@ const MainBlock = () => {
   const onProcessingFinished = (result) => {
     setState('result')
     setResult(result)
-    console.log('Audio Classification Result:', result, '/ 10')
+    // Log the result rounding it to nearest 2 decimal places
+    console.debug('Audio Scoring Result:', Math.round(result * 100) / 100)
   }
 
 
@@ -37,6 +39,12 @@ const MainBlock = () => {
         // TODO - also show the NFT image as in the web version
       }
 
+      {
+        // TODO - remove this button after testing
+        <Button onPress={testAudioProcessing} title={'Process'}> Testing Processing</Button>
+      }
+
+
       {state === 'recording' && (
         <Recording onSubmit={submitRecording} />
         // <Button title="Record" onPress={() => setState('processing')} />
@@ -48,8 +56,14 @@ const MainBlock = () => {
       )
       }
       {
-        state === 'result' && (
-          <Button title="Record Again" onPress={() => setState('recording')} />
+        state === 'result' && result !== null && (
+          // Show the score and option to record again
+          <View style={{ alignItems: 'center', marginTop: 20 }}>
+            <Text style={{ fontSize: 18, marginBottom: 10 }}>Result is {Math.round(result * 100) / 100} / 1</Text>
+
+            <Button title="Record Again" onPress={() => setState('recording')} />
+          </View>
+
         )}
     </SafeAreaView>
   )
