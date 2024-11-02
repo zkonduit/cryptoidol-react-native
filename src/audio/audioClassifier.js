@@ -2,20 +2,29 @@ import * as ort from 'onnxruntime-react-native'
 import * as FileSystem from 'expo-file-system'
 import { Asset } from 'expo-asset'
 
-// Function to prepare the model and run inference
-export async function runAudioClassifier(processedMelSpectrogram) {
+export let preloadedModelSession = null
+
+// Preload model
+export async function preloadModel() {
+  const start = new Date()
 
   const localPath = `${FileSystem.cacheDirectory}network.onnx`
   const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/network.onnx')).uri, localPath)
+  preloadedModelSession = await ort.InferenceSession.create(uri)
 
-  const session = await ort.InferenceSession.create(uri)
+  console.debug('Model preloaded successfully')
+  console.debug('Preloading time:', (new Date().getTime() - start.getTime()) / 1000, 'seconds')
+}
 
-  // We hardcode the blockchain address for first mock run of the model
-  const blockchainAddress = 0.08811962604522705
+// Function to prepare the model and run inference
+export async function runAudioClassifier(processedMelSpectrogram, blockchainAddress = 0.08811962604522705) {
+  if (!preloadedModelSession) {
+    throw new Error('Model has not been preloaded. Please call preloadModel() first.')
+  }
 
   // Run inference and get results
   try {
-    return await runInference(session, processedMelSpectrogram, blockchainAddress)
+    return await runInference(preloadedModelSession, processedMelSpectrogram, blockchainAddress)
   } catch (error) {
     console.error('Error running Audio Classifier:', error)
   }
@@ -59,7 +68,9 @@ async function runInference(session, inputData, blockchainAddress) {
 
     // Extract the prediction output
     const prediction = outputData['10'].data[0]
-    return Number(prediction)
+
+    // Only leave 7 decimal places after the decimal point
+    return Number(prediction.toFixed(7))
 
   } catch (error) {
     console.error('Error during inference:', error)

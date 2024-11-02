@@ -27,6 +27,13 @@ const MainBlock = () => {
     console.debug('Audio Scoring Result:', Math.round(result * 100) / 100)
   }
 
+  useEffect(() => {
+
+    preloadModel().catch(error => console.error('Error preloading model:', error))
+    setupModelProver().catch(error => console.error('Error preparing model prover:', error))
+
+  }, [])
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -58,7 +65,7 @@ const MainBlock = () => {
       )
       }
       {
-        state === 'result' && (
+        state === 'scored' && (
           // Show the score and option to record again
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Text style={{ fontSize: 18, marginBottom: 10 }}>Result is {Math.round(result * 100) / 100} / 1</Text>

@@ -191,18 +191,4 @@ function reshapeMelSpectrogram(melSpectrogram) {
   return processedSpectrogram // 2D array [128, 130]
 }
 
-// Generates the JSON files identical to `input.json` used by the python server model
-export function generateInputJSON(processedMelSpectrogram) {
-  // Step 1: Flatten the 2D array [128, 130] to a 1D array
-  const flattenedData = processedMelSpectrogram.reduce((acc, row) => acc.concat(Array.from(row)), [])
-
-  // Step 2: Format as JSON with the flattened array
-  const inputJSON = {
-    input_data: [flattenedData],
-  }
-
-  return JSON.stringify(inputJSON)
-}
-
-
 export default preprocessAudioFile
