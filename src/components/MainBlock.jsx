@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { Button, SafeAreaView, Text, View } from 'react-native'
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import CustomCanvas from './canvas/CustomCanvas'
 import ConfettiComponent from './ConfettiComponent'
 import AudioScoring from './AudioScoring'
 import { Recording } from './Recording'
 import { testAudioProcessing } from '../audio/TestAudio'
-import { setupModelProver } from '../prover/setupModelProver'
+import { ScoreResult } from './ScoreResult'
+import { PublishScore } from './PublishScore'
 import { preloadModel } from '../audio/audioClassifier'
+import { setupModelProver } from '../prover/setupModelProver'
 
 const MainBlock = () => {
   const [state, setState] = useState('recording')
   const renderAvatar = false // TODO - make this true to render the avatar
-  const [recording, setRecording] = useState(null)
-  const [result, setResult] = useState(null)
+  const [recordingPath, setRecordingPath] = useState(null)
+  const [recordingScore, setRecordingScore] = useState(null)
+  const [preprocessedRecordingData, setPreprocessedRecordingData] = useState(null)
 
-  const submitRecording = (record) => {
-    setRecording(record)
+  const scoreRecording = (recordingPath) => {
+    setRecordingPath(recordingPath)
     setState('scoring')
     console.debug('Recording Submitted for Scoring')
   }
 
-  const onProcessingFinished = (result) => {
-    setResult(result)
+  const onScoringFinished = (processedData, score) => {
+    setPreprocessedRecordingData(processedData)
+    setRecordingScore(score)
     setState('scored')
-    // Log the result rounding it to nearest 2 decimal places
-    console.debug('Audio Scoring Result:', Math.round(result * 100) / 100)
+    console.debug('Audio Scoring Result:', score)
   }
 
   useEffect(() => {
@@ -55,27 +58,82 @@ const MainBlock = () => {
 
 
       {state === 'recording' && (
-        <Recording onSubmit={submitRecording} />
+        <Recording onSubmit={scoreRecording} />
         // <Button title="Record" onPress={() => setState('scoring')} />
       )
       }
       {state === 'scoring' && (
-        <AudioScoring onCancel={() => setState('recording')} recording={recording} onFinished={onProcessingFinished} />
+        <AudioScoring onCancel={() => setState('recording')} recording={recordingPath} onFinished={onScoringFinished} />
         // <Button title="Finish" onPress={() => setState('result')} />
       )
       }
       {
         state === 'scored' && (
-          // Show the score and option to record again
-          <View style={{ alignItems: 'center', marginTop: 20 }}>
-            <Text style={{ fontSize: 18, marginBottom: 10 }}>Result is {Math.round(result * 100) / 100} / 1</Text>
-
-            <Button title="Record Again" onPress={() => setState('recording')} />
+          <ScoreResult score={recordingScore} onRetryRecording={() => setState('recording')}
+                       onShare={() => setState('sharing')} />
+        )
+      }
+      {
+        state === 'sharing' && (
+          <PublishScore score={recordingScore} onPublish={() => setState('minted')}
+                        preprocessedRecordingData={preprocessedRecordingData} />
+        )
+      }
+      {
+        state === 'minted' && (
+          <View style={styles.finishedContainer}>
+            <Text style={styles.finishedText}>Score successfully published! 🎉</Text>
+            <Button onPress={() => setState('recording')} title={'Record Again'} />
           </View>
-
-        )}
+        )
+      }
     </SafeAreaView>
   )
 }
 
 export default MainBlock
+
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  textContainer: {
+    marginVertical: 10,
+    alignItems: 'center',
+  },
+  sentenceText: {
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+    lineHeight: 28,
+    paddingHorizontal: 15,
+    marginVertical: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+  cancelButton: {
+    marginTop: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    backgroundColor: '#E53E3E',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  finishedContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  finishedText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#38a169',
+  },
+})

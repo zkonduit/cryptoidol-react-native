@@ -44,7 +44,7 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
       },
     )
 
-  }, [recording, onFinished])
+  }, [recording])
 
   useEffect(() => {
     // TODO - we currently have a timeout to allow all the blocked UI Cancel calls to run before we continue processing
@@ -62,10 +62,10 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
           },
         )
       } else if (processingState === 'finished') {
-        onFinished(modelResults.current)
+        onFinished(preprocessedRecording.current, modelResults.current)
       }
     }, 50)
-  }, [processingState])
+  }, [processingState, onFinished])
 
   useEffect(() => {
     // Cycle through sentences every 5 seconds
