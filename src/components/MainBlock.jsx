@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Button, SafeAreaView, Text, View } from 'react-native'
 import CustomCanvas from './canvas/CustomCanvas'
 import ConfettiComponent from './ConfettiComponent'
 import AudioScoring from './AudioScoring'
@@ -79,15 +79,3 @@ const MainBlock = () => {
 }
 
 export default MainBlock
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-})
