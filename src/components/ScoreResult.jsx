@@ -25,12 +25,8 @@ export const ScoreResult = ({ score, onRetryRecording, onShare }) => {
     <View style={styles.container}>
       <Text style={styles.headerText}>🎤 Your Singing Score 🎤</Text>
       <Text style={[styles.scoreText, { color: getScoreColor(displayScore) }]}>{displayScore} / 10</Text>
-      <Text style={styles.promptText}>
-        Share your verifiable success with the world and mint your own NFT!
-      </Text>
       <Text style={styles.infoText}>
-        We'll generate a cryptographic proof of your score locally, and then you'll be able to mint your NFT directly
-        from your favorite wallet!
+        Share your verifiable success with the world and mint your own NFT!
       </Text>
 
       <View style={styles.buttonContainer}>
@@ -60,11 +56,6 @@ const styles = StyleSheet.create({
     fontSize: 48,
     fontWeight: 'bold',
     marginBottom: 20,
-  },
-  promptText: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 10,
   },
   infoText: {
     fontSize: 14,
