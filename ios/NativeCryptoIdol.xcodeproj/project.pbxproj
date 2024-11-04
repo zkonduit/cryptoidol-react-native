@@ -46,6 +46,7 @@
 		1DB72C51A116CA33966D6B16 /* Pods-NativeCryptoIdol.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol.release.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol.release.xcconfig"; sourceTree = "<group>"; };
 		28C78712766AE9B858C0719B /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EEF394072B2009EFC04119C /* libPods-NativeCryptoIdol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NativeCryptoIdol.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6056DACA2CD8708600E3D058 /* NativeCryptoIdol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NativeCryptoIdol.entitlements; path = NativeCryptoIdol/NativeCryptoIdol.entitlements; sourceTree = "<group>"; };
 		6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeCryptoIdolModuleBridge.m; path = NativeCryptoIdol/NativeCryptoIdolModuleBridge.m; sourceTree = "<group>"; };
 		6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NativeCryptoIdolModule.swift; path = NativeCryptoIdol/NativeCryptoIdolModule.swift; sourceTree = "<group>"; };
 		6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NativeCryptoIdol/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		13B07FAE1A68108700A75B9A /* NativeCryptoIdol */ = {
 			isa = PBXGroup;
 			children = (
+				6056DACA2CD8708600E3D058 /* NativeCryptoIdol.entitlements */,
 				6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */,
 				6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -561,6 +563,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NativeCryptoIdol/NativeCryptoIdol.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LMRM26A744;
 				ENABLE_BITCODE = NO;
@@ -591,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NativeCryptoIdol/NativeCryptoIdol.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LMRM26A744;
 				INFOPLIST_FILE = NativeCryptoIdol/Info.plist;
