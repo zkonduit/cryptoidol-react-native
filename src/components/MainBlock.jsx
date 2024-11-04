@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native'
 import CustomCanvas from './canvas/CustomCanvas'
 import ConfettiComponent from './ConfettiComponent'
 import AudioScoring from './AudioScoring'
@@ -9,6 +9,7 @@ import { PublishScore } from './PublishScore'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './DebugButton'
+import Minted from './Minted'
 
 const MainBlock = () => {
   const [state, setState] = useState('start')
@@ -17,8 +18,8 @@ const MainBlock = () => {
   const [recordingScore, setRecordingScore] = useState(null)
   const [preprocessedRecordingData, setPreprocessedRecordingData] = useState(null)
 
-  const scoreRecording = (recordingPath) => {
-    setRecordingPath(recordingPath)
+  const scoreRecording = (restingRecordingPath) => {
+    setRecordingPath(restingRecordingPath)
     setState('scoring')
     console.debug('Recording Submitted for Scoring')
   }
@@ -63,7 +64,6 @@ const MainBlock = () => {
       }
       {state === 'scoring' && (
         <AudioScoring onCancel={() => setState('recording')} recording={recordingPath} onFinished={onScoringFinished} />
-        // <Button title="Finish" onPress={() => setState('result')} />
       )
       }
       {
@@ -80,10 +80,7 @@ const MainBlock = () => {
       }
       {
         state === 'minted' && (
-          <View style={styles.finishedContainer}>
-            <Text style={styles.finishedText}>Score successfully published! 🎉</Text>
-            <Button onPress={() => setState('recording')} title={'Record Again'} />
-          </View>
+          <Minted onPress={() => setState('start')} />
         )
       }
     </SafeAreaView>
@@ -91,48 +88,3 @@ const MainBlock = () => {
 }
 
 export default MainBlock
-
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  textContainer: {
-    marginVertical: 10,
-    alignItems: 'center',
-  },
-  sentenceText: {
-    fontSize: 20,
-    fontWeight: '600',
-    textAlign: 'center',
-    lineHeight: 28,
-    paddingHorizontal: 15,
-    marginVertical: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-  },
-  cancelButton: {
-    marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    backgroundColor: '#E53E3E',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  finishedContainer: {
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  finishedText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#38a169',
-  },
-})
