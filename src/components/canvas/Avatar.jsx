@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm'
 import * as THREE from 'three'
 import { LinearFilter, LinearMipMapNearestFilter, MeshStandardMaterial, TextureLoader } from 'three'
@@ -8,8 +8,6 @@ import { GLTFLoader } from 'three-stdlib'
 import * as FileSystem from 'expo-file-system'
 import { SRGBColorSpace } from 'three/src/constants'
 import { loadMixamoAnimation } from './LoadMixamoAnimation'
-
-const PREFIX = '../../../assets/3D/animations/'
 
 const loader = new GLTFLoader()
 loader.register((parser) => {
@@ -26,8 +24,6 @@ export default function Avatar({ avatarState = 'start', onLoadedAvatar, ...props
   const [lookAtTarget, setLookAtTarget] = useState(null)
   const [previousBlink, setPreviousBlink] = useState(0)
   const [previousHappy, setPreviousHappy] = useState(0)
-  const { camera } = useThree() // Access the default camera from the canvas
-  const radius = 7 // Radius for the circular motion
   // animation states
   const [blink, setBlink] = useState(false)
   const [happy, setHappy] = useState(false)
