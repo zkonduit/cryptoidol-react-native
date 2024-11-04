@@ -258,15 +258,15 @@ export default function Avatar({ avatarState = 'start', onLoadedAvatar, ...props
         setAnimationUrl('Button Pushing.fbx')
       }
 
-      if (avatarState === 'inprogress') {
+      if (avatarState === 'recording') {
         setAnimationUrl('Chicken Dance.fbx')
       }
 
-      if (avatarState === 'end') {
+      if (avatarState === 'recorded' || avatarState === 'scored') {
         setAnimationUrl('Thinking.fbx')
       }
 
-      if (avatarState === 'processing') {
+      if (avatarState === 'scoring' || avatarState === 'sharing') {
         setAnimationUrl('Gangnam Style.fbx')
       }
 

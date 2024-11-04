@@ -13,6 +13,7 @@ import { setupModelProver } from '../prover/setupModelProver'
 const MainBlock = () => {
   const [state, setState] = useState('recording')
   const renderAvatar = false // TODO - make this true to render the avatar
+  const [state, setState] = useState('start')
   const [recordingPath, setRecordingPath] = useState(null)
   const [recordingScore, setRecordingScore] = useState(null)
   const [preprocessedRecordingData, setPreprocessedRecordingData] = useState(null)
@@ -56,10 +57,8 @@ const MainBlock = () => {
         <Button onPress={testAudioProcessing} title={'Process'}> Testing Processing</Button>
       }
 
-
-      {state === 'recording' && (
-        <Recording onSubmit={scoreRecording} />
-        // <Button title="Record" onPress={() => setState('scoring')} />
+      {(state === 'recording' || state === 'start' || state === 'listening' || state === 'recorded') && (
+        <Recording onSubmit={scoreRecording} state={state} setState={setState} />
       )
       }
       {state === 'scoring' && (

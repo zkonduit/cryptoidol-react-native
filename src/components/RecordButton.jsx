@@ -34,7 +34,7 @@ export const RecordButton = ({ startRecord, stopRecord, startPlayback, stopPlayb
       outerCircleScale.setValue(1) // reset scale to 1 for static display
       innerCircleScale.setValue(1) // smaller scale to make inner circle appear as a square
       innerCircleOpacity.setValue(1) // ensure opacity is fully visible
-    } else if (recordingState === 'end') {
+    } else if (recordingState === 'recorded') {
       animateCircles(1, 0, 0) // Hide outer circle
     }
   }, [recordingState])
@@ -62,10 +62,10 @@ export const RecordButton = ({ startRecord, stopRecord, startPlayback, stopPlayb
       if (recordingState === 'start') startRecord()
       else if (recordingState === 'recording') stopRecord()
       else if (recordingState === 'listening') stopPlayback()
-      else if (recordingState === 'end') startPlayback()
+      else if (recordingState === 'recorded') startPlayback()
       else console.error('Invalid recording state:', recordingState)
     }} style={styles.container}>
-      {recordingState !== 'end' ? (
+      {recordingState !== 'recorded' ? (
         <>
           <Animated.View
             style={[

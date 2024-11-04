@@ -8,28 +8,29 @@ import AudioRecorderPlayer, {
 import { RecordButton } from './RecordButton'
 import { useGlobalStyles } from '../styles'
 
-export const Recording = ({ onSubmit }) => {
+
+// TODO - consider splitting this into recording and recorded components
+export const Recording = ({ onSubmit, state, setState }) => {
   const globalStyles = useGlobalStyles()
 
-  const [recordingState, setRecordingState] = useState('start')
   const [recordFilePath, setRecordFilePath] = useState(null)
   const audioRecorderPlayer = useRef(new AudioRecorderPlayer()).current
   const [promptText, setPromptText] = useState('')
 
   useEffect(() => {
-    if (recordingState === 'start') {
+    if (state === 'start') {
       setPromptText('Think you can be the next Crypto Idol?')
-    } else if (recordingState === 'recording') {
+    } else if (state === 'recording') {
       setPromptText('Sing now! Press Stop when you\'re done️')
-    } else if (recordingState === 'end') {
+    } else if (state === 'recorded') {
       setPromptText('Will the AI like you? Get judged 🤔️')
-    } else if (recordingState === 'listening') {
+    } else if (state === 'listening') {
       setPromptText('Here\'s what you\'ve sung ❤️')
     } else {
       setPromptText('Invalid application state ⛔️\nPlease reload the app')
-      console.error('Invalid recording state:', recordingState)
+      console.error('Invalid recording state:', state)
     }
-  }, [recordingState])
+  }, [state])
 
   // const checkMicrophonePermission = async () => {
   //   // Define platform-specific permissions
@@ -63,7 +64,7 @@ export const Recording = ({ onSubmit }) => {
     // const hasPermission = await checkMicrophonePermission()
     // if (!hasPermission) return
 
-    setRecordingState('recording')
+    setState('recording')
 
     const audioSettings =
       {
@@ -96,7 +97,7 @@ export const Recording = ({ onSubmit }) => {
       const result = await audioRecorderPlayer.stopRecorder()
       audioRecorderPlayer.removeRecordBackListener()
       setRecordFilePath(result) // Store the recorded file path
-      setRecordingState('end')
+      setState('recorded')
     } catch (error) {
       console.error('Failed to stop recording:', error)
     }
@@ -105,7 +106,7 @@ export const Recording = ({ onSubmit }) => {
   // Function to start playback
   const startPlayback = async () => {
     if (recordFilePath) {
-      setRecordingState('listening')
+      setState('listening')
       try {
         await audioRecorderPlayer.startPlayer(recordFilePath)
         audioRecorderPlayer.addPlayBackListener((e) => {
@@ -124,7 +125,7 @@ export const Recording = ({ onSubmit }) => {
     try {
       await audioRecorderPlayer.stopPlayer()
       audioRecorderPlayer.removePlayBackListener()
-      setRecordingState('end')
+      setState('recorded')
     } catch (error) {
       console.error('Failed to stop playback:', error)
     }
@@ -146,15 +147,15 @@ export const Recording = ({ onSubmit }) => {
       <Text style={[styles.headerText]}>{promptText}</Text>
       <View style={styles.buttonContainer}>
         <RecordButton startRecord={startRecord} stopRecord={stopRecord}
-                      startPlayback={startPlayback} stopPlayback={stopPlayback} recordingState={recordingState} />
-        {recordingState === 'end' && (
+                      startPlayback={startPlayback} stopPlayback={stopPlayback} recordingState={state} />
+        {state === 'recorded' && (
           <>
             <TouchableOpacity style={styles.submitButton}
                               onPress={() => onSubmit(collectRecording())}>
               <Text style={globalStyles.buttonText}>SUBMIT</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.restartButton}
-                              onPress={() => setRecordingState('start')}>
+                              onPress={() => setState('start')}>
               <Text style={globalStyles.buttonText}>RESTART</Text>
             </TouchableOpacity>
           </>
