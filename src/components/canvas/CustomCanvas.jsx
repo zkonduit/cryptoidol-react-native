@@ -1,11 +1,18 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import Avatar from './Avatar'
-import Loading from './Loading'
+import { AvatarPlaceholder } from './AvatarPlaceholder'
 
+const CustomCanvas = ({ state, renderAvatar = false }) => {
+  // State to manage whether the avatar has finished loading
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false)
 
-const CustomCanvas = ({ state }) => {
+  // This function will be called once the avatar has finished setting up
+  const onLoadedAvatar = () => {
+    setIsAvatarLoaded(true) // Hide loading and show the avatar
+  }
+
   return (
     <Canvas
       onCreated={(state) => {
@@ -13,7 +20,7 @@ const CustomCanvas = ({ state }) => {
 
         renderer.extensions.get('EXT_color_buffer_float')
 
-        // TODO - a fix from https://github.com/expo/expo-three/issues/196#issuecomment-1334807693
+        // Fix related to https://github.com/expo/expo-three/issues/196#issuecomment-1334807693
         const _gl = state.gl.getContext()
         const pixelStorei = _gl.pixelStorei.bind(_gl)
         _gl.pixelStorei = function(...args) {
@@ -29,11 +36,26 @@ const CustomCanvas = ({ state }) => {
       <directionalLight position={[5, 5, 5]} intensity={1.5} />
       <pointLight position={[0, 5, 5]} intensity={1.2} />
 
-      <PerspectiveCamera makeDefault fov={80} position={[0, -0.5, 5]} />
+      <PerspectiveCamera makeDefault fov={80} position={[0, -0.5, 5.2]} />
 
-      <Suspense fallback={<Loading />}>
-        <Avatar position={[0, -1, 3.7]} rotation={[0, -Math.PI, 0]} avatarState={state} />
-      </Suspense>
+      {/* Show loading if the avatar hasn't loaded yet */}
+      {(!isAvatarLoaded || !renderAvatar) && <AvatarPlaceholder />}
+
+      {
+        renderAvatar && (
+          <Suspense fallback={null}>
+            {/* Render the Avatar but keep it hidden until fully loaded */}
+            <Avatar
+              position={[0, -1, 3.7]}
+              rotation={[0, -Math.PI, 0]}
+              avatarState={state}
+              onLoadedAvatar={onLoadedAvatar} // Call this once avatar setup is complete
+              visible={isAvatarLoaded} // Control avatar visibility
+            />
+          </Suspense>
+        )
+      }
+
     </Canvas>
   )
 }

@@ -16,7 +16,7 @@ loader.register((parser) => {
   return new VRMLoaderPlugin(parser)
 })
 
-export default function Avatar({ avatarState = 'start', ...props }) {
+export default function Avatar({ avatarState = 'start', onLoadedAvatar, ...props }) {
 
 
   const [vrm, setVrm] = useState(null)
@@ -222,7 +222,8 @@ export default function Avatar({ avatarState = 'start', ...props }) {
 
     if (bodyMaterial && hatMaterial && bodyMaterial.name === 'Material_Updated.001' && hatMaterial.name === 'Material_Updated.002') {
       updateMaterials()
-      console.debug('Materials updated')
+      console.debug('Avatar setup complete')
+      onLoadedAvatar()
     }
   }, [bodyMaterial, hatMaterial])
 
