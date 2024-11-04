@@ -4,16 +4,15 @@ import CustomCanvas from './canvas/CustomCanvas'
 import ConfettiComponent from './ConfettiComponent'
 import AudioScoring from './AudioScoring'
 import { Recording } from './Recording'
-import { testAudioProcessing } from '../audio/TestAudio'
 import { ScoreResult } from './ScoreResult'
 import { PublishScore } from './PublishScore'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
+import DebugControls from './DebugButton'
 
 const MainBlock = () => {
-  const [state, setState] = useState('recording')
-  const renderAvatar = false // TODO - make this true to render the avatar
   const [state, setState] = useState('start')
+  const [renderAvatar, setRenderAvatar] = useState(false) // TODO - set this to true after testing
   const [recordingPath, setRecordingPath] = useState(null)
   const [recordingScore, setRecordingScore] = useState(null)
   const [preprocessedRecordingData, setPreprocessedRecordingData] = useState(null)
@@ -41,21 +40,22 @@ const MainBlock = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Text> {'Debug State: ' + state}</Text>
+
       {
-        renderAvatar &&
-        <CustomCanvas state={state} />
+        <DebugControls state={state} onFinished={() => setState('minted')} renderAvatar={renderAvatar}
+                       onRenderSelected={(selection) => setRenderAvatar(selection)} /> // TODO - remove this button after testing
+
       }
+
+
+      <CustomCanvas state={state} renderAvatar={renderAvatar} />
+
       {
         state === 'minted' &&
         <ConfettiComponent />
         // TODO - also show the NFT image as in the web version
       }
 
-      {
-        // TODO - remove this button after testing
-        <Button onPress={testAudioProcessing} title={'Process'}> Testing Processing</Button>
-      }
 
       {(state === 'recording' || state === 'start' || state === 'listening' || state === 'recorded') && (
         <Recording onSubmit={scoreRecording} state={state} setState={setState} />
