@@ -9,10 +9,11 @@ import { GeneratingProof } from './GeneratingProof'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './DebugButton'
+import Minting from './Minting'
 import Minted from './Minted'
 
 const MainBlock = () => {
-  const [state, setState] = useState('start')
+  const [state, setState] = useState('minting')
   const [renderAvatar, setRenderAvatar] = useState(false) // TODO - set this to true after testing
   const [recordingPath, setRecordingPath] = useState(null)
   const [recordingScore, setRecordingScore] = useState(null)
@@ -85,6 +86,12 @@ const MainBlock = () => {
         state === 'proving' && (
           <GeneratingProof score={recordingScore} onProofGenerated={onProofGenerated}
                            preprocessedRecordingData={preprocessedRecordingData} onCancelled={() => setState('scored')} />
+        )
+      }
+      {
+        state === 'minting' && (
+          <Minting onTransactionComplete={() => setState('minted')} onCancelled={() => setState('scored')}
+                   proof={proof} />
         )
       }
       {

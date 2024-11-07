@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4DE00357D32618BB571761DB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */; };
-		6067A4CB2CD5F0E7007A5B41 /* EzklPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6067A4CA2CD5F0E7007A5B41 /* EzklPackage */; };
+		60063C492CDC7A3700C1B0FF /* EzklPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 60063C482CDC7A3700C1B0FF /* EzklPackage */; };
 		6067A4D42CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */; };
 		6067A4D52CD5F34B007A5B41 /* NativeCryptoIdolModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */; };
 		7DD47F2D8EEBC260F9B3718E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A222568F7F3DFE3DEB918A /* ExpoModulesProvider.swift */; };
@@ -73,7 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D86FA1EAEA754F2380A1753F /* libPods-NativeCryptoIdol.a in Frameworks */,
-				6067A4CB2CD5F0E7007A5B41 /* EzklPackage in Frameworks */,
+				60063C492CDC7A3700C1B0FF /* EzklPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +237,7 @@
 			);
 			name = NativeCryptoIdol;
 			packageProductDependencies = (
-				6067A4CA2CD5F0E7007A5B41 /* EzklPackage */,
+				60063C482CDC7A3700C1B0FF /* EzklPackage */,
 			);
 			productName = NativeCryptoIdol;
 			productReference = 13B07F961A680F5B00A75B9A /* NativeCryptoIdol.app */;
@@ -270,7 +270,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				6067A4C92CD5F0E7007A5B41 /* XCRemoteSwiftPackageReference "ezkl-swift-package" */,
+				60063C472CDC7A0B00C1B0FF /* XCRemoteSwiftPackageReference "ezkl-swift-package" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -690,10 +690,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -766,10 +763,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -810,7 +804,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6067A4C92CD5F0E7007A5B41 /* XCRemoteSwiftPackageReference "ezkl-swift-package" */ = {
+		60063C472CDC7A0B00C1B0FF /* XCRemoteSwiftPackageReference "ezkl-swift-package" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/zkonduit/ezkl-swift-package";
 			requirement = {
@@ -821,9 +815,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6067A4CA2CD5F0E7007A5B41 /* EzklPackage */ = {
+		60063C482CDC7A3700C1B0FF /* EzklPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6067A4C92CD5F0E7007A5B41 /* XCRemoteSwiftPackageReference "ezkl-swift-package" */;
+			package = 60063C472CDC7A0B00C1B0FF /* XCRemoteSwiftPackageReference "ezkl-swift-package" */;
 			productName = EzklPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
