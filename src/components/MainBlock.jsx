@@ -5,7 +5,7 @@ import ConfettiComponent from './ConfettiComponent'
 import AudioScoring from './AudioScoring'
 import { Recording } from './Recording'
 import { ScoreResult } from './ScoreResult'
-import { PublishScore } from './PublishScore'
+import { GeneratingProof } from './GeneratingProof'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './DebugButton'
@@ -17,8 +17,9 @@ const MainBlock = () => {
   const [recordingPath, setRecordingPath] = useState(null)
   const [recordingScore, setRecordingScore] = useState(null)
   const [preprocessedRecordingData, setPreprocessedRecordingData] = useState(null)
+  const [proof, setProof] = useState(null)
 
-  const scoreRecording = (restingRecordingPath) => {
+  const onRecorded = (restingRecordingPath) => {
     setRecordingPath(restingRecordingPath)
     setState('scoring')
     console.debug('Recording Submitted for Scoring')
@@ -29,6 +30,12 @@ const MainBlock = () => {
     setRecordingScore(score)
     setState('scored')
     console.debug('Audio Scoring Result:', score)
+  }
+
+  const onProofGenerated = (proof) => {
+    setProof(proof)
+    setState('minted')
+    console.debug('Proof generated successfully')
   }
 
   useEffect(() => {
@@ -61,7 +68,7 @@ const MainBlock = () => {
 
 
       {(state === 'recording' || state === 'start' || state === 'listening' || state === 'recorded') && (
-        <Recording onSubmit={scoreRecording} state={state} setState={setState} />
+        <Recording onSubmit={onRecorded} state={state} setState={setState} />
       )
       }
       {state === 'scoring' && (
@@ -70,14 +77,14 @@ const MainBlock = () => {
       }
       {
         state === 'scored' && (
-                       onShare={() => setState('sharing')} />
           <ScoreResult score={recordingScore} onRetryRecording={() => setState('start')}
+                       onShare={() => setState('proving')} />
         )
       }
       {
-        state === 'sharing' && (
-          <PublishScore score={recordingScore} onPublish={() => setState('minted')}
-                        preprocessedRecordingData={preprocessedRecordingData} />
+        state === 'proving' && (
+          <GeneratingProof score={recordingScore} onProofGenerated={onProofGenerated}
+                           preprocessedRecordingData={preprocessedRecordingData} onCancelled={() => setState('scored')} />
         )
       }
       {
