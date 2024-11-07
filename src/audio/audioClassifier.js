@@ -1,6 +1,7 @@
 import * as ort from 'onnxruntime-react-native'
 import * as FileSystem from 'expo-file-system'
 import { Asset } from 'expo-asset'
+import { sleepUntilPreloaded } from '../util/sleepUntilPreloaded'
 
 export let preloadedModelSession = null
 
@@ -18,9 +19,7 @@ export async function preloadModel() {
 
 // Function to prepare the model and run inference
 export async function runAudioClassifier(processedMelSpectrogram, blockchainAddress = 0.08811962604522705) {
-  if (!preloadedModelSession) {
-    throw new Error('Model has not been preloaded. Please call preloadModel() first.')
-  }
+  await sleepUntilPreloaded(() => preloadedModelSession, 3000)
 
   // Run inference and get results
   try {

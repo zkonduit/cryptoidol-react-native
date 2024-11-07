@@ -1,6 +1,7 @@
 // Generates the JSON files identical to `input.json` used by the python server model
 import { proverAssets } from './setupModelProver'
 import { NativeModules } from 'react-native'
+import { sleepUntilPreloaded } from '../util/sleepUntilPreloaded'
 
 const { NativeModelProver } = NativeModules
 
@@ -20,9 +21,7 @@ export function generateProverInputJSON(processedMelSpectrogram, modelScore, blo
 
 
 export const runModelProver = async (inputData) => {
-  if (!proverAssets.pkPath || !proverAssets.compiledCircuitPath || !proverAssets.srsPath) {
-    throw new Error('Model Prover has not been set up. Please call `prepareModelProver()` first.')
-  }
+  await sleepUntilPreloaded(() => proverAssets, 15000)
 
   // Prepare input parameter as JSON string with paths
   const inputParam = JSON.stringify({
