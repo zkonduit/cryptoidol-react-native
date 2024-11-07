@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
-export const AvatarPlaceholder = () => {
+export const CryptoIdolPlaceholder = () => {
   const microphoneRef = useRef()
   const wave1Ref = useRef()
   const wave2Ref = useRef()

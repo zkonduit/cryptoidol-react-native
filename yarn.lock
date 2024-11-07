@@ -9594,6 +9594,7 @@ __metadata:
     react-native: 0.75.4
     react-native-audio-recorder-player: ^3.6.12
     react-native-confetti-cannon: ^1.5.2
+    react-native-device-info: ^14.0.0
     react-native-permissions: ^5.0.2
     react-native-svg: ^15.8.0
     react-test-renderer: 18.3.1
@@ -10607,6 +10608,15 @@ __metadata:
   version: 1.5.2
   resolution: "react-native-confetti-cannon@npm:1.5.2"
   checksum: 09026fd93304c0f3c3acfcf8dfc9b25003b30826031dffd81df6eea3b66dcee84f6ac4237719a84d3d71cb430f4fbf53d4c22b64ef17d439d5a3e5986c2ada83
+  languageName: node
+  linkType: hard
+
+"react-native-device-info@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "react-native-device-info@npm:14.0.0"
+  peerDependencies:
+    react-native: "*"
+  checksum: d9990fce678c6c179f498866d5042f08dc9c3fec1a139fc12a83341b3289f4ee954e86613b1794047d7646d25f04a902d96927b0a52db9d324e194ffb99e8946
   languageName: node
   linkType: hard
 

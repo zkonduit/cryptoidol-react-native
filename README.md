@@ -71,7 +71,7 @@ minting feature is currently in development and will be released in upcoming upd
 
 ### Notes:
 
-- **Avatar Rendering**: The avatar (dancing girl) will only render on a physical device. It will not appear on
+- **CryptoIdol Rendering**: The avatar (dancing girl) will only render on a physical device. It will not appear on
   simulators due to hardware constraints. Ensure you test on a real iPhone for full functionality.
 - **NFT Minting**: This feature is currently a work in progress. Future updates will unlock the ability to mint NFTs
   based on your singing performance.

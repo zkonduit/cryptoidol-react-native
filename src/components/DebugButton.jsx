@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native'
-import { testAudioProcessing } from '../audio/TestAudio'
+import DeviceInfo from 'react-native-device-info'
+import { testAudioProcessing } from '../audio/TestAudio' // Assuming this is the correct import for testAudioProcessing
 
 const DebugControls = ({ state, onFinished, renderAvatar, onRenderSelected }) => {
   const [isProcessing, setIsProcessing] = useState(false) // State for button processing
+  const [isSimulator, setIsSimulator] = useState(false) // State to check if running in a simulator
+
+  // Detect if running on a simulator
+  useEffect(() => {
+    DeviceInfo.isEmulator().then((emulator) => setIsSimulator(emulator))
+  }, [])
 
   // Handles processing dummy recording
   const handleProcess = () => {
@@ -23,7 +30,9 @@ const DebugControls = ({ state, onFinished, renderAvatar, onRenderSelected }) =>
 
   // Handles toggle switch for avatar rendering
   const handleToggleAvatar = (value) => {
-    onRenderSelected(value)
+    if (!isSimulator) {
+      onRenderSelected(value)
+    }
   }
 
   return (
@@ -42,12 +51,15 @@ const DebugControls = ({ state, onFinished, renderAvatar, onRenderSelected }) =>
 
       {/* Toggle switch for avatar rendering */}
       <View style={styles.toggleContainer}>
-        <Text style={styles.toggleLabel}>Render Avatar (Only Real iPhone)</Text>
+        <Text style={styles.toggleLabel}>
+          {isSimulator ? 'Render Avatar (Unavailable in Simulator)' : 'Render Avatar (Only Real iPhone)'}
+        </Text>
         <Switch
           value={renderAvatar}
           onValueChange={handleToggleAvatar}
-          trackColor={{ false: '#767577', true: '#007bff' }} // Colors for switch
+          trackColor={{ false: '#767577', true: '#007bff' }}
           thumbColor={renderAvatar ? '#f4f3f4' : '#f4f3f4'}
+          disabled={isSimulator} // Disable the switch if in a simulator
         />
       </View>
     </View>

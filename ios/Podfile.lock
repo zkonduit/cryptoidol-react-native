@@ -1541,6 +1541,8 @@ PODS:
     - React-utils (= 0.75.4)
   - RNAudioRecorderPlayer (3.6.12):
     - React-Core
+  - RNDeviceInfo (14.0.0):
+    - React-Core
   - RNPermissions (5.0.2):
     - React-Core
   - RNSVG (15.8.0):
@@ -1622,6 +1624,7 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNAudioRecorderPlayer (from `../node_modules/react-native-audio-recorder-player`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -1775,6 +1778,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNAudioRecorderPlayer:
     :path: "../node_modules/react-native-audio-recorder-player"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNSVG:
@@ -1855,6 +1860,7 @@ SPEC CHECKSUMS:
   ReactCodegen: 4bcb34e6b5ebf6eef5cee34f55aa39991ea1c1f1
   ReactCommon: 6a952e50c2a4b694731d7682aaa6c79bc156e4ad
   RNAudioRecorderPlayer: 224c7de87722938aedce04000d09baa633148f5b
+  RNDeviceInfo: 6192a9c9167e256803e554038b22b3b2b40163dc
   RNPermissions: e188b28600dea84115f0635e6ebcb7ba50fe5e89
   RNSVG: 8b1a777d54096b8c2a0fd38fc9d5a454332bbb4d
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import CustomCanvas from './canvas/CustomCanvas'
+import Avatar from './canvas/Avatar'
 import ConfettiComponent from './ConfettiComponent'
 import AudioScoring from './AudioScoring'
 import { Recording } from './Recording'
@@ -49,7 +49,9 @@ const MainBlock = () => {
       }
 
 
-      <CustomCanvas state={state} renderAvatar={renderAvatar} />
+      {
+        renderAvatar && <Avatar state={state} />
+      }
 
       {
         state === 'minted' &&

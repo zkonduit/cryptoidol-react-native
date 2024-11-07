@@ -1,327 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm'
-import * as THREE from 'three'
-import { LinearFilter, LinearMipMapNearestFilter, MeshStandardMaterial, TextureLoader } from 'three'
-import { Asset } from 'expo-asset'
-import { GLTFLoader } from 'three-stdlib'
-import * as FileSystem from 'expo-file-system'
-import { SRGBColorSpace } from 'three/src/constants'
-import { loadMixamoAnimation } from './LoadMixamoAnimation'
+import React, { Suspense, useState } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { PerspectiveCamera } from '@react-three/drei'
+import CryptoIdol from './CryptoIdol'
+import { CryptoIdolPlaceholder } from './CryptoIdolPlaceholder'
 
-const loader = new GLTFLoader()
-loader.register((parser) => {
-  return new VRMLoaderPlugin(parser)
-})
+const Avatar = ({ state }) => {
+  // State to manage whether the avatar has finished loading
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false)
 
-export default function Avatar({ avatarState = 'start', onLoadedAvatar, ...props }) {
+  // This function will be called once the avatar has finished setting up
+  const onLoadedAvatar = () => {
+    setIsAvatarLoaded(true) // Hide loading and show the avatar
+  }
 
+  return (
+    <Canvas
+      onCreated={(state) => {
+        const renderer = state.gl
 
-  const [vrm, setVrm] = useState(null)
-  const [gltf, setGltf] = useState(null)
-  const [animationUrl, setAnimationUrl] = useState('')
-  const [mixer, setMixer] = useState(null)
-  const [lookAtTarget, setLookAtTarget] = useState(null)
-  const [previousBlink, setPreviousBlink] = useState(0)
-  const [previousHappy, setPreviousHappy] = useState(0)
-  // animation states
-  const [blink, setBlink] = useState(false)
-  const [happy, setHappy] = useState(false)
+        renderer.extensions.get('EXT_color_buffer_float')
 
-  const [bodyMaterial, setBodyMaterial] = useState()
-  const [hatMaterial, setHatMaterial] = useState()
-
-  useEffect(() => {
-    console.debug('Loading model...')
-    const loadModel = async () => {
-      try {
-        const localPath = `${FileSystem.cacheDirectory}smaller.vrm`
-        const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../../assets/3D/smaller.vrm')).uri, localPath)
-
-        loader.load(
-          uri,
-          (gltf) => {
-            setGltf(gltf)
-            const vrm = gltf.userData.vrm
-
-            // Disable frustum culling
-            vrm.scene.traverse((obj) => {
-              obj.frustumCulled = false
-            })
-
-            setLookAtTarget(new THREE.Object3D)
-            vrm.lookAt.target = lookAtTarget
-
-
-            // create animation mixer
-            setMixer(new THREE.AnimationMixer(gltf.scene))
-
-            VRMUtils.removeUnnecessaryVertices(gltf.scene)
-            VRMUtils.removeUnnecessaryJoints(gltf.scene)
-
-            vrm.scene.traverse((obj) => {
-              obj.frustumCulled = false
-            })
-
-
-            vrm.scene.traverse((obj) => {
-              if (obj.isMesh) {
-                // If the object material is `'Material.001'` then update it with the new body material
-                if (obj.material && obj.material.name === 'Material.001') {
-                  setBodyMaterial(obj.material)
-                  obj.material = new MeshStandardMaterial(
-                    {
-                      name: 'Material.001',
-                      color: new THREE.Color('hotpink'), // Initial pink color
-                      metalness: 1,
-                      roughness: 0.5,
-                    },
-                  )
-                }
-
-                // If the object material is `'Material.002'` then update it with the new hat material
-                if (obj.material && obj.material.name === 'Material.002') {
-                  setHatMaterial(obj.material)
-                  obj.material = new MeshStandardMaterial(
-                    {
-                      name: 'Material.002',
-                      color: new THREE.Color('hotpink'), // Initial pink color
-                      metalness: 1,
-                      roughness: 0.5,
-                    },
-                  )
-
-                }
-              }
-            })
-
-            setVrm(vrm)
-          },
-          (progress) => {
-            console.debug('Loading model...', (100.0 * progress.loaded) / progress.total, '%')
-          },
-          (error) => {
-            console.error('Error loading model:', error) // Log the full error
-          },
-        )
-      } catch (err) {
-        console.error('Error during model loading process:', err)
-      }
-    }
-
-    loadModel()
-  }, [])
-
-  useEffect(() => {
-
-
-    const localBodyPath = `${FileSystem.cacheDirectory}texture_body.png` // Local storage path for the image
-    const localHatPath = `${FileSystem.cacheDirectory}texture_hat.png` // Local storage path for the image
-    const textureLoader = new TextureLoader()
-
-    const loadBodyTexture = async () => {
-      try {
-        // Download the image to the local filesystem
-        const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../../assets/3D/body.png')).uri, localBodyPath)
-        // Load the texture from the local file URI
-        textureLoader.load(
-          uri,
-          (texture) => {
-            texture.flipY = false
-            texture.minFilter = LinearMipMapNearestFilter
-            texture.magFilter = LinearFilter
-            texture.wrapT = 1000
-            texture.wrapS = 1000
-            texture.colorSpace = SRGBColorSpace
-            let clond = bodyMaterial.clone()
-            clond.map = texture
-            clond.name = 'Material_Updated.001'
-            texture.needsUpdate = true
-            setBodyMaterial(clond)
-
-          },
-          undefined,
-          (error) => {
-            console.error('An error happened while loading the texture:', error)
-          },
-        )
-      } catch (error) {
-        console.error('Error downloading image:', error)
-      }
-    }
-    const loadHatTexture = async () => {
-      try {
-        // Download the image to the local filesystem
-        const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../../assets/3D/hat.png')).uri, localHatPath)
-
-        // Load the texture from the local file URI
-        textureLoader.load(
-          uri,
-          (texture) => {
-            texture.flipY = false
-            texture.minFilter = LinearMipMapNearestFilter
-            texture.magFilter = LinearFilter
-            texture.wrapT = 1000
-            texture.wrapS = 1000
-            texture.colorSpace = SRGBColorSpace
-            let clond = hatMaterial.clone()
-            clond.map = texture
-            clond.name = 'Material_Updated.002'
-            texture.needsUpdate = true
-            setHatMaterial(clond)
-
-          },
-          undefined,
-          (error) => {
-            console.error('An error happened while loading the texture:', error)
-          },
-        )
-      } catch (error) {
-        console.error('Error downloading image:', error)
-      }
-    }
-
-    const updateMaterials = () => {
-      try {
-        console.debug('Updating materials...')
-
-        // Traverse through all materials and adjust properties
-        vrm.scene.traverse((obj) => {
-          if (obj.isMesh) {
-            // If the object material is `'Material.001'` then update it with the new body material
-            if (obj.material && obj.material.name === 'Material.001') {
-              obj.material = bodyMaterial
-              obj.needsUpdate = true
-
-            }
-
-            // If the object material is `'Material.002'` then update it with the new hat material
-            if (obj.material && obj.material.name === 'Material.002') {
-              obj.material = hatMaterial
-              obj.needsUpdate = true
-
-            }
+        // Fix related to https://github.com/expo/expo-three/issues/196#issuecomment-1334807693
+        const _gl = state.gl.getContext()
+        const pixelStorei = _gl.pixelStorei.bind(_gl)
+        _gl.pixelStorei = function(...args) {
+          const [parameter] = args
+          switch (parameter) {
+            case _gl.UNPACK_FLIP_Y_WEBGL:
+              return pixelStorei(...args)
           }
-        })
-      } catch (error) {
-        console.error('Error updating materials:', error)
-      }
-    }
-
-    if (bodyMaterial && bodyMaterial.name === 'Material.001' && hatMaterial && hatMaterial.name === 'Material.002') {
-      loadBodyTexture()
-    }
-
-    if (hatMaterial && hatMaterial.name === 'Material.002' && bodyMaterial && bodyMaterial.name === 'Material.001') {
-      loadHatTexture()
-    }
-
-    if (bodyMaterial && hatMaterial && bodyMaterial.name === 'Material_Updated.001' && hatMaterial.name === 'Material_Updated.002') {
-      updateMaterials()
-      console.debug('Avatar setup complete')
-      onLoadedAvatar()
-    }
-  }, [bodyMaterial, hatMaterial])
-
-  // animation handler
-  useEffect(() => {
-    if (vrm && mixer && animationUrl) {
-      console.debug('Updating animation to:', animationUrl)
-      mixer.stopAllAction()
-      loadMixamoAnimation(animationUrl, vrm)
-        .then((clip) => {
-          mixer.clipAction(clip).play()
-          mixer.timeScale = 1.0
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-  }, [vrm, mixer, animationUrl])
-
-  // handle periodic events
-  useFrame(({ clock }, delta) => {
-    if (vrm && mixer) {
-      // blink every ~5 seconds
-      if (clock.elapsedTime > previousBlink) {
-        setBlink(true)
-        setPreviousBlink(clock.elapsedTime + 5)
-      }
-
-      if (clock.elapsedTime > previousHappy) {
-        setHappy(true)
-        setPreviousHappy(clock.elapsedTime + 13)
-      }
-
-      // animation sequence start
-      if (avatarState === 'start') {
-        setAnimationUrl('Button Pushing.fbx')
-      }
-
-      if (avatarState === 'recording') {
-        setAnimationUrl('Chicken Dance.fbx')
-      }
-
-      if (avatarState === 'recorded' || avatarState === 'scored') {
-        setAnimationUrl('Thinking.fbx')
-      }
-
-      if (avatarState === 'scoring' || avatarState === 'sharing') {
-        setAnimationUrl('Gangnam Style.fbx')
-      }
-
-      if (avatarState === 'result') {
-        setAnimationUrl('Thankful.fbx')
-      }
-
-      if (avatarState === 'committing') {
-        setAnimationUrl('Gangnam Style.fbx')
-      }
-
-      if (avatarState === 'mint') {
-        setAnimationUrl('Button Pushing.fbx')
-      }
-
-      if (avatarState === 'minting') {
-        setAnimationUrl('Gangnam Style.fbx')
-      }
-
-      if (avatarState === 'minted') {
-        setAnimationUrl('Thankful.fbx')
-      }
-
-      // handle blink
-      if (blink) {
-        setBlink(false)
-
-        // tweak expressions
-        const s = Math.sin(2 * Math.PI * clock.elapsedTime)
-        vrm.expressionManager.setValue('blink', 0.5 + 0.5 * s)
-        vrm.update(delta)
-
-        // don't blink when eyes are open
-        if (0.5 + 0.5 * s <= 0.01) {
-          setBlink(false)
         }
-      }
+      }}
+    >
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[5, 5, 5]} intensity={1.5} />
+      <pointLight position={[0, 5, 5]} intensity={1.2} />
 
-      // handle happy
-      if (happy && !blink) {
-        // tweak expressions
-        const s = Math.sin(Math.PI * clock.elapsedTime)
-        vrm.expressionManager.setValue('relaxed', 0.5 + 0.5 * s)
+      <PerspectiveCamera makeDefault fov={80} position={[0, -0.5, 5.2]} />
 
-        // don't blink when happy is done
-        if (0.5 + 0.5 * s <= 0.01) {
-          setHappy(false)
-        }
-      }
+      {/* Show loading if the avatar hasn't loaded yet */}
+      {!isAvatarLoaded && <CryptoIdolPlaceholder />}
 
-      // update deltas
-      mixer.update(delta)
-      vrm.update(delta)
-    }
-  })
+      <Suspense fallback={CryptoIdolPlaceholder}>
+        {/* Render the Avatar but keep it hidden until fully loaded */}
+        <CryptoIdol
+          position={[0, -1, 3.7]}
+          rotation={[0, -Math.PI, 0]}
+          avatarState={state}
+          onLoadedAvatar={onLoadedAvatar} // Call this once avatar setup is complete
+          visible={isAvatarLoaded} // Control avatar visibility
+        />
+      </Suspense>
 
-  if (gltf) return <primitive object={gltf.scene} {...props} />
+    </Canvas>
+  )
 }
+
+export default Avatar
