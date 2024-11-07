@@ -65,13 +65,13 @@ const MainBlock = () => {
       )
       }
       {state === 'scoring' && (
-        <AudioScoring onCancel={() => setState('recording')} recording={recordingPath} onFinished={onScoringFinished} />
+        <AudioScoring onCancel={() => setState('start')} recording={recordingPath} onFinished={onScoringFinished} />
       )
       }
       {
         state === 'scored' && (
-          <ScoreResult score={recordingScore} onRetryRecording={() => setState('recording')}
                        onShare={() => setState('sharing')} />
+          <ScoreResult score={recordingScore} onRetryRecording={() => setState('start')}
         )
       }
       {
