@@ -29,7 +29,7 @@ export const testWorkflow = async () => {
     let proof = await runModelProver(proverInput)
 
     console.log('Proof generated')
-    return score
+    return proof
   } catch (error) {
     console.error('Error processing audio:', error)
   }
