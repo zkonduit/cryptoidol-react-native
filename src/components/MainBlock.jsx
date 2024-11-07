@@ -9,7 +9,7 @@ import { GeneratingProof } from './GeneratingProof'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './DebugButton'
-import Minting from './Minting'
+import { Minting } from './Minting'
 import Minted from './Minted'
 
 const MainBlock = () => {
