@@ -9,7 +9,7 @@ import { GeneratingProof } from './GeneratingProof'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './elements/DebugButton'
-import { Blockchain } from './Blockchain'
+import { Minting } from './Minting'
 import DeviceInfo from 'react-native-device-info'
 import Minted from './Minted'
 
@@ -116,8 +116,8 @@ const MainBlock = () => {
       }
       {
         state === 'minting' && (
-          <Blockchain onMinted={onMinted} onCancelled={() => setState('scored')}
-                      proof={proof} onRecordAgain={onTryAgain} />
+          <Minting onMinted={onMinted} onCancelled={() => setState('scored')}
+                   proof={proof} onRecordAgain={onTryAgain} />
         )
       }
       {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { ActivityIndicator, Text, View } from 'react-native'
 import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
-import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './Minting'
+import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './TransactionPanel'
 import { encodeFunctionData, parseEther } from 'viem'
 
 export default function MintingTransaction({ proofData, onSuccess, onError }) {

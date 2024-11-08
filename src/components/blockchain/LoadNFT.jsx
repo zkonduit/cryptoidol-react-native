@@ -3,7 +3,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import * as FileSystem from 'expo-file-system'
 import { Buffer } from 'buffer'
 import { useReadContract } from 'wagmi'
-import { cryptoIdolABI, cryptoIdolAddresses } from './Minting'
+import { cryptoIdolABI, cryptoIdolAddresses } from './TransactionPanel'
 
 export const NFTLoader = ({ tokenId, onLoadedNFT }) => {
   const [loading, setLoading] = useState(true)

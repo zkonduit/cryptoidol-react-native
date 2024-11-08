@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ActivityIndicator, Text, View } from 'react-native'
-import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './Minting'
+import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './TransactionPanel'
 import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
 import { encodeFunctionData } from 'viem'
 

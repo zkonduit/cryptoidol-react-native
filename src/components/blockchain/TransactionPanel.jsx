@@ -13,7 +13,7 @@ import { NFTLoader } from './LoadNFT'
 export const cryptoIdolAddresses = require('../../../assets/blockchain/addresses.json')
 export const cryptoIdolABI = require('../../../assets/blockchain/abi.json')
 
-export default function Minting({ onNftLoaded, onCancelled, proof }) {
+export default function TransactionPanel({ onNftLoaded, onCancelled, proof }) {
   const [stage, setStage] = useState('connecting')
   const [error, setError] = useState(null)
   const [proofData, setProofData] = useState(null)
