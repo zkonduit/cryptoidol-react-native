@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-const CancelButton = ({ onCancel, styleOverwrite = [], textStyleOverwrite = [] }) => {
+const CancelButton = ({ onCancel, styleOverwrite = {}, textStyleOverwrite = {} }) => {
   return (
     <TouchableOpacity style={[styles.cancelButton, styleOverwrite]} onPress={onCancel}>
       <Text style={[styles.buttonText, textStyleOverwrite]}>CANCEL</Text>
@@ -11,7 +11,6 @@ const CancelButton = ({ onCancel, styleOverwrite = [], textStyleOverwrite = [] }
 
 const styles = StyleSheet.create({
   cancelButton: {
-    marginTop: 20,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 10,

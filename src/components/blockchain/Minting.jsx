@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useAccount } from 'wagmi'
 import { encodeAbiParameters, keccak256 } from 'viem'
 
@@ -7,6 +7,7 @@ import CommittingTransaction from './CommittingTransaction'
 import { bigEndianToLittleEndian } from '../../util/bigEndianToLittleEndian'
 import MintingTransaction from './MintingTransaction'
 import { AppKit, AppKitButton } from '@reown/appkit-wagmi-react-native'
+import CancelButton from '../elements/CancelButton'
 
 export const cryptoIdolAddresses = require('../../../assets/blockchain/addresses.json')
 export const cryptoIdolABI = require('../../../assets/blockchain/abi.json')
@@ -33,8 +34,7 @@ export default function Minting({ onTransactionsComplete, onCancelled, proof }) 
 
       setProofData({ hexProof, instances, dataHash })
     } catch (err) {
-      setError('Error preprocessing proof.')
-      Alert.alert('Error', err.toString(), [{ text: 'OK' }])
+      setError('Error preprocessing proof.\n ' + err.toString())
     }
   }
 
@@ -65,12 +65,18 @@ export default function Minting({ onTransactionsComplete, onCancelled, proof }) 
 
   const handleError = (err) => {
     setError(err)
-    Alert.alert('Error', err.toString(), [{ text: 'OK' }])
-    setStage('error')
   }
+
+  useEffect(() => {
+    if (error) {
+      console.debug('Error occurred:', error)
+      setStage('error')
+    }
+  }, [error])
 
   const handleRetry = () => {
     setError(null) // Clear the error
+    setStage('connecting') // Reset the stage
     handleStartProcess() // Retry the process
   }
 
@@ -78,6 +84,7 @@ export default function Minting({ onTransactionsComplete, onCancelled, proof }) 
     <View style={styles.container}>
       <AppKitButton balance="show" />
       <AppKit />
+
       {/* Show connection message when waiting for user to connect wallet */}
       {stage === 'connecting' && (
         <View style={styles.infoContainer}>
@@ -88,12 +95,15 @@ export default function Minting({ onTransactionsComplete, onCancelled, proof }) 
       {/* Display error message if there's an error */}
       {stage === 'error' && (
         <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>
-            An error occurred: {error.substring(0, 60)}{error.length > 60 ? '...' : ''}
-          </Text>
-          <TouchableOpacity style={styles.retryButton} onPress={handleRetry}>
-            <Text style={styles.retryButtonText}>Try Again</Text>
-          </TouchableOpacity>
+          <Text style={styles.errorTitle}>An error occurred:</Text>
+          <Text style={styles.errorMessage}>{error.substring(0, 100)}{error.length > 100 ? '...' : ''}</Text>
+
+          <View style={styles.errorButtonContainer}>
+            <TouchableOpacity style={styles.retryButton} onPress={handleRetry}>
+              <Text style={styles.retryButtonText}>Try Again</Text>
+            </TouchableOpacity>
+            <CancelButton onCancel={onCancelled} styleOverwrite={styles.cancelButton} />
+          </View>
         </View>
       )}
 
@@ -110,64 +120,94 @@ export default function Minting({ onTransactionsComplete, onCancelled, proof }) 
       {stage === 'minting' && proofData && (
         <MintingTransaction proofData={proofData} onSuccess={handleMintSuccess} onError={handleError} />
       )}
+
+      {/* Bottom Cancel Button */}
+      {
+        stage !== 'error' &&
+        <CancelButton onCancel={onCancelled} styleOverwrite={styles.bottomCancelButton} />
+      }
+
     </View>
   )
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    backgroundColor: '#f9f9f9',
   },
-  errorContainer: {
+  infoContainer: {
     alignItems: 'center',
-    marginVertical: 20,
+    backgroundColor: '#e3f2fd',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 20,
   },
-  errorText: {
-    color: 'red',
-    marginBottom: 10,
+  infoText: {
     fontSize: 16,
+    color: '#007bff',
+    fontWeight: '600',
     textAlign: 'center',
   },
-  retryButton: {
-    backgroundColor: '#e53e3e',
-    paddingVertical: 12,
+  errorContainer: {
+    backgroundColor: '#fdecea',
+    padding: 20,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  errorTitle: {
+    color: 'red',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  errorMessage: {
+    color: '#d32f2f',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+  errorButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
     paddingHorizontal: 20,
+  },
+  retryButton: {
+    backgroundColor: '#4A90E2',
+    paddingVertical: 10,
+    paddingHorizontal: 25,
     borderRadius: 10,
     alignItems: 'center',
+    marginRight: 10,
+    flex: 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   retryButtonText: {
     color: '#fff',
     fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#007bff',
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  infoContainer: {
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#f0f4f8',
-    borderRadius: 8,
-    marginBottom: 20,
-    marginTop: 20,
-  },
-  infoText: {
-    color: '#007bff',
     fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  },
+  cancelButton: {
+    flex: 1,
+  },
+  bottomCancelButton: {
+    marginTop: 20,
+    alignSelf: 'center',
   },
 })
-
 
 export const transactionsStyles = StyleSheet.create({
   container: {
