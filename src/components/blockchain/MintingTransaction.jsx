@@ -1,79 +1,83 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { useContractWrite, useWaitForTransactionReceipt } from 'wagmi'
-import { cryptoIdolABI, cryptoIdolAddresses } from './Transactions'
-import { encodeFunctionData } from 'viem'
+import { ActivityIndicator, Text, View } from 'react-native'
+import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
+import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './Transactions'
+import { encodeFunctionData, parseEther } from 'viem'
 
 export default function MintingTransaction({ proofData, onSuccess, onError }) {
   const { hexProof, instances } = proofData
   const contractAddress = cryptoIdolAddresses.sepolia // Use appropriate address based on chain
 
-  const { data, isLoading, isSuccess, write, error } = useContractWrite({
-    to: contractAddress,
-    data: encodeFunctionData({
-      abi: cryptoIdolABI,
-      functionName: 'mint',
-      args: [hexProof, instances],
-    }),
-  })
+  const { data: hash, isLoading, isSuccess, error, sendTransaction } = useSendTransaction()
 
   const { isLoading: isTxLoading, isSuccess: isTxSuccess, error: txError } = useWaitForTransactionReceipt({
-    hash: data?.hash,
+    hash,
   })
 
   useEffect(() => {
     if (error) {
-      onError('Mint transaction failed.')
+      onError('Mint transaction failed.\n' + error.message)
     }
-  }, [error])
+  }, [error, onError])
 
   useEffect(() => {
     if (txError) {
-      onError('Transaction failed or was rejected.')
+      onError('Mint transaction failed or was rejected.\n' + txError.message)
     }
-  }, [txError])
+  }, [onError, txError])
 
   useEffect(() => {
     if (isSuccess) {
       // Transaction sent, wait for confirmation
+      console.debug('Mint transaction sent:', hash)
     }
-  }, [isSuccess])
+  }, [hash, isSuccess])
 
   useEffect(() => {
     if (isTxSuccess) {
+      console.debug('Mint transaction confirmed:', hash)
       onSuccess()
     }
-  }, [isTxSuccess])
+  }, [hash, isTxSuccess, onSuccess])
 
-  // Initiate the transaction when the component mounts
   useEffect(() => {
-    if (write) {
-      write()
-    }
-  }, [write])
+    sendTransaction({
+      to: contractAddress,
+      value: parseEther('0'),
+      data: encodeFunctionData({
+        abi: cryptoIdolABI,
+        functionName: 'mint',
+        args: [hexProof, instances.flat()],
+      }),
+    })
+  }, [hexProof, instances, contractAddress, sendTransaction])
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Mint Transaction</Text>
-      {isLoading && <Text>Waiting for user approval...</Text>}
-      {isTxLoading && <Text>Transaction is being confirmed...</Text>}
-      {error && <Text style={styles.errorText}>{error.message}</Text>}
-      {txError && <Text style={styles.errorText}>{txError.message}</Text>}
+    <View style={transactionsStyles.container}>
+      {/* Title */}
+      <Text style={transactionsStyles.title}>Mint Transaction</Text>
+
+      {/* Description */}
+      <Text style={transactionsStyles.description}>
+        You’re about to mint your unique NFT, marking your achievement permanently on the blockchain. Please confirm the
+        transaction in your wallet.
+      </Text>
+
+      {/* Loading Indicators */}
+      {!isSuccess && (
+        <View style={transactionsStyles.loadingContainer}>
+          <ActivityIndicator size="large" color="#007bff" />
+          <Text style={transactionsStyles.loadingText}>Waiting for user approval...</Text>
+        </View>
+      )}
+
+      {isTxLoading && (
+        <View style={transactionsStyles.loadingContainer}>
+          <ActivityIndicator size="large" color="#4CAF50" />
+          <Text style={[transactionsStyles.loadingText, { color: '#4CAF50' }]}>Transaction is being confirmed...</Text>
+        </View>
+      )}
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  errorText: {
-    color: 'red',
-    marginTop: 10,
-  },
-})

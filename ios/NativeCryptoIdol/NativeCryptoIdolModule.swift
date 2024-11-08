@@ -28,7 +28,7 @@ class NativeModelProver: NSObject {
         let srsData = try Data(contentsOf: URL(fileURLWithPath: srsPath))
 
         // Generate vk and pk using the functions in EzklPackage
-        let vk = try EzklPackage.genVk(compiledCircuit: compiledCircuitData, srs: srsData, compressSelectors: false)
+        let vk = try EzklPackage.genVk(compiledCircuit: compiledCircuitData, srs: srsData, compressSelectors: true)
         let pk = try EzklPackage.genPk(vk: vk, compiledCircuit: compiledCircuitData, srs: srsData)
 
         // Save vk and pk to local files

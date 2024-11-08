@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { cryptoIdolABI, cryptoIdolAddresses } from './Transactions'
+import { ActivityIndicator, Text, View } from 'react-native'
+import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './Transactions'
 import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
 import { encodeFunctionData } from 'viem'
 
@@ -8,7 +8,7 @@ export default function CommittingTransaction({ proofData, onSuccess, onError })
   const { dataHash } = proofData
   const contractAddress = cryptoIdolAddresses.sepolia // TODO - Use appropriate address based on chain
 
-  const { data: hash, isLoading, isSuccess, write, error, status, sendTransaction } = useSendTransaction()
+  const { data: hash, isSuccess, error, sendTransaction } = useSendTransaction()
 
   const { isLoading: isTxLoading, isSuccess: isTxSuccess, error: txError } = useWaitForTransactionReceipt({
     hash,
@@ -16,40 +16,29 @@ export default function CommittingTransaction({ proofData, onSuccess, onError })
 
   useEffect(() => {
     if (error) {
-      onError('Commit transaction failed.')
+      onError('Commit transaction failed.\n' + error.message)
     }
-  }, [error])
+  }, [error, onError])
 
   useEffect(() => {
     if (txError) {
-      onError('Transaction failed or was rejected.')
+      onError('Commit transaction failed or was rejected.\n' + txError.message)
     }
-  }, [txError])
+  }, [onError, txError])
 
   useEffect(() => {
     if (isSuccess) {
       // Transaction sent, wait for confirmation
       console.debug('Commit transaction sent:', hash)
     }
-  }, [isSuccess])
+  }, [hash, isSuccess])
 
   useEffect(() => {
     if (isTxSuccess) {
       console.debug('Commit transaction confirmed:', hash)
       onSuccess()
     }
-  }, [isTxSuccess])
-
-  // Initiate the transaction when the component mounts
-  useEffect(() => {
-    if (write) {
-      write()
-    }
-  }, [write])
-
-  useEffect(() => {
-    console.debug('Sending commit transaction...', hash)
-  }, [hash])
+  }, [hash, isTxSuccess, onSuccess])
 
   useEffect(() => {
     sendTransaction({
@@ -60,31 +49,34 @@ export default function CommittingTransaction({ proofData, onSuccess, onError })
         args: [dataHash],
       }),
     })
-  }, [dataHash, contractAddress])
+  }, [dataHash, contractAddress, sendTransaction])
 
   return (
-    <View style={styles.container}>
-      <Text> {status}</Text>
-      <Text style={styles.title}>Commit Transaction</Text>
-      {isLoading && <Text>Waiting for user approval...</Text>}
-      {isTxLoading && <Text>Transaction is being confirmed...</Text>}
-      {error && <Text style={styles.errorText}>{error.message}</Text>}
-      {txError && <Text style={styles.errorText}>{txError.message}</Text>}
+    <View style={transactionsStyles.container}>
+      {/* Transaction Status Title */}
+      <Text style={transactionsStyles.title}>Issuing "Commit" Transaction</Text>
+
+      {/* Description */}
+      <Text style={transactionsStyles.description}>
+        This transaction locks in your spot to prevent others from frontrunning you and ensures that your NFT can be
+        minted securely.
+      </Text>
+
+      {/* Loading Indicators */}
+      {!isSuccess && (
+        <View style={transactionsStyles.loadingContainer}>
+          <ActivityIndicator size="large" color="#007bff" />
+          <Text style={transactionsStyles.loadingText}>Waiting for user approval...</Text>
+        </View>
+      )}
+
+      {isTxLoading && (
+        <View style={transactionsStyles.loadingContainer}>
+          <ActivityIndicator size="large" color="#4CAF50" />
+          <Text style={[transactionsStyles.loadingText, { color: '#4CAF50' }]}>Transaction is being confirmed...</Text>
+        </View>
+      )}
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  errorText: {
-    color: 'red',
-    marginTop: 10,
-  },
-})

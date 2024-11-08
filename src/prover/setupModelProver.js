@@ -9,8 +9,8 @@ export let proverAssets = null
 export const setupModelProver = async () => {
   const start = new Date()
 
-  const compiledCircuitPath = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/model.ezkl')).uri, `${FileSystem.cacheDirectory}model.ezkl`)
-  const srsPath = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/kzg17.srs')).uri, `${FileSystem.cacheDirectory}kzg17.srs`)
+  const compiledCircuitPath = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/model.compiled')).uri, `${FileSystem.cacheDirectory}model.ezkl`)
+  const srsPath = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/kzg16.srs')).uri, `${FileSystem.cacheDirectory}kzg17.srs`)
 
 
   // Prepare input parameter as JSON string with paths

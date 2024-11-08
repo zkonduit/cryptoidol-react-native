@@ -6,8 +6,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zkonduit/ezkl-swift-package",
       "state" : {
-        "branch" : "main",
-        "revision" : "605f3cf678073ba6bdc38073a61f168988c40de1"
+        "revision" : "1d49e9291893fae45c7210efd6c3e0a10f9d9a22"
       }
     }
   ],

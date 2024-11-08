@@ -5,6 +5,7 @@ import { createAppKit, defaultWagmiConfig } from '@reown/appkit-wagmi-react-nati
 import { WALLETCONNECT_CLOUD_PROJECT_ID } from '@env'
 import { WagmiProvider } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import React from 'react'
 
 const queryClient = new QueryClient()
 

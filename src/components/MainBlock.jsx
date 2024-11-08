@@ -13,7 +13,7 @@ import { Minting } from './Minting'
 import Minted from './Minted'
 
 const MainBlock = () => {
-  const [state, setState] = useState('minting')
+  const [state, setState] = useState('start')
   const [renderAvatar, setRenderAvatar] = useState(false) // TODO - set this to true after testing
   const [recordingPath, setRecordingPath] = useState(null)
   const [recordingScore, setRecordingScore] = useState(null)
@@ -35,7 +35,7 @@ const MainBlock = () => {
 
   const onProofGenerated = (proof) => {
     setProof(proof)
-    setState('minted')
+    setState('minting')
     console.debug('Proof generated successfully')
   }
 
