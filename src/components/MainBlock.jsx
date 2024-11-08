@@ -8,12 +8,13 @@ import { ScoreResult } from './ScoreResult'
 import { GeneratingProof } from './GeneratingProof'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
-import DebugControls from './DebugButton'
+import DebugControls from './elements/DebugButton'
 import { Blockchain } from './Blockchain'
+import DeviceInfo from 'react-native-device-info'
 
 const MainBlock = () => {
   const [state, setState] = useState('start')
-  const [renderAvatar, setRenderAvatar] = useState(false) // TODO - set this to true after testing
+  const [renderAvatar, setRenderAvatar] = useState(false)
   const [recordingPath, setRecordingPath] = useState(null)
   const [recordingScore, setRecordingScore] = useState(null)
   const [preprocessedRecordingData, setPreprocessedRecordingData] = useState(null)
@@ -46,6 +47,11 @@ const MainBlock = () => {
     setState('start')
   }
 
+  // Only render the avatar on real devices
+  useEffect(() => {
+    DeviceInfo.isEmulator().then((emulator) => setRenderAvatar(!emulator))
+  }, [])
+
   useEffect(() => {
 
     preloadModel().catch(error => console.error('Error preloading model:', error))
@@ -58,7 +64,7 @@ const MainBlock = () => {
     <SafeAreaView style={{ flex: 1 }}>
 
       {
-        <DebugControls state={state} onFinished={() => setState('minted')} renderAvatar={renderAvatar}
+        <DebugControls state={state} renderAvatar={renderAvatar}
                        onRenderSelected={(selection) => setRenderAvatar(selection)} /> // TODO - remove this button after testing
 
       }

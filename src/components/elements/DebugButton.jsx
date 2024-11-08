@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import { testWorkflow } from '../util/TestSystem' // Assuming this is the correct import for testAudioProcessing
+import { testWorkflow } from '../../util/TestSystem' // Assuming this is the correct import for testAudioProcessing
 
 const DebugControls = ({ state, onFinished, renderAvatar, onRenderSelected }) => {
   const [isProcessing, setIsProcessing] = useState(false) // State for button processing
@@ -19,7 +19,9 @@ const DebugControls = ({ state, onFinished, renderAvatar, onRenderSelected }) =>
       () => {
         console.log('Processing complete')
         setIsProcessing(false)
-        onFinished()
+        if (onFinished) {
+          onFinished()
+        }
       },
       (error) => {
         console.error('Error processing audio:', error)
