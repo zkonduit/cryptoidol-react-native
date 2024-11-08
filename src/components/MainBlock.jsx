@@ -39,6 +39,14 @@ const MainBlock = () => {
     console.debug('Proof generated successfully')
   }
 
+  const onTryAgain = () => {
+    setProof(null)
+    setRecordingPath(null)
+    setRecordingScore(null)
+    setPreprocessedRecordingData(null)
+    setState('start')
+  }
+
   useEffect(() => {
 
     preloadModel().catch(error => console.error('Error preloading model:', error))
@@ -96,7 +104,7 @@ const MainBlock = () => {
       }
       {
         state === 'minted' && (
-          <Minted onPress={() => setState('start')} />
+          <Minted onPress={onTryAgain} />
         )
       }
     </SafeAreaView>
