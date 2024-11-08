@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native'
 import Avatar from './canvas/Avatar'
-import ConfettiComponent from './ConfettiComponent'
+import ConfettiComponent from './elements/ConfettiComponent'
 import AudioScoring from './AudioScoring'
 import { Recording } from './Recording'
 import { ScoreResult } from './ScoreResult'
