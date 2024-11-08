@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 import { ActivityIndicator, Text, View } from 'react-native'
 import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
-import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './Transactions'
+import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './Minting'
 import { encodeFunctionData, parseEther } from 'viem'
 
 export default function MintingTransaction({ proofData, onSuccess, onError }) {
   const { hexProof, instances } = proofData
   const contractAddress = cryptoIdolAddresses.sepolia // Use appropriate address based on chain
 
-  const { data: hash, isLoading, isSuccess, error, sendTransaction } = useSendTransaction()
+  const { data: hash, isSuccess, error, sendTransaction } = useSendTransaction()
 
-  const { isLoading: isTxLoading, isSuccess: isTxSuccess, error: txError } = useWaitForTransactionReceipt({
+  const { isLoading: isTxLoading, isSuccess: isTxSuccess, error: txError, data } = useWaitForTransactionReceipt({
     hash,
   })
 
@@ -36,7 +36,9 @@ export default function MintingTransaction({ proofData, onSuccess, onError }) {
   useEffect(() => {
     if (isTxSuccess) {
       console.debug('Mint transaction confirmed:', hash)
-      onSuccess()
+      const tokenId = data?.logs[0].topics[3]
+      console.debug('Minted NFT with ID:', tokenId)
+      onSuccess(tokenId)
     }
   }, [hash, isTxSuccess, onSuccess])
 

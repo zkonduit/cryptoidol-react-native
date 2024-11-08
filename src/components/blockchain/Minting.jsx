@@ -11,7 +11,7 @@ import { AppKit, AppKitButton } from '@reown/appkit-wagmi-react-native'
 export const cryptoIdolAddresses = require('../../../assets/blockchain/addresses.json')
 export const cryptoIdolABI = require('../../../assets/blockchain/abi.json')
 
-export default function Transactions({ onTransactionComplete, onCancelled, proof }) {
+export default function Minting({ onTransactionsComplete, onCancelled, proof }) {
   const [stage, setStage] = useState('connecting')
   const [error, setError] = useState(null)
   const [proofData, setProofData] = useState(null)
@@ -58,9 +58,9 @@ export default function Transactions({ onTransactionComplete, onCancelled, proof
     setStage('minting')
   }
 
-  const handleMintSuccess = () => {
-    console.debug('Minted NFT completed successfully!')
-    onTransactionComplete()
+  const handleMintSuccess = (nftId) => {
+    console.debug('Minted NFT completed successfully with ID:', nftId)
+    onTransactionsComplete(nftId)
   }
 
   const handleError = (err) => {

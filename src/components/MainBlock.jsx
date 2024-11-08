@@ -9,8 +9,7 @@ import { GeneratingProof } from './GeneratingProof'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './DebugButton'
-import { Minting } from './Minting'
-import Minted from './Minted'
+import { Blockchain } from './Blockchain'
 
 const MainBlock = () => {
   const [state, setState] = useState('start')
@@ -66,12 +65,16 @@ const MainBlock = () => {
 
 
       {
-        renderAvatar && <Avatar state={state} />
+        state !== 'minted' && renderAvatar && <Avatar state={state} />
       }
 
       {
         state === 'minted' &&
-        <ConfettiComponent />
+        <>
+          <ConfettiComponent />
+        </>
+
+
         // TODO - also show the NFT image as in the web version
       }
 
@@ -97,14 +100,9 @@ const MainBlock = () => {
         )
       }
       {
-        state === 'minting' && (
-          <Minting onTransactionComplete={() => setState('minted')} onCancelled={() => setState('scored')}
-                   proof={proof} />
-        )
-      }
-      {
-        state === 'minted' && (
-          <Minted onPress={onTryAgain} />
+        (state === 'minting' || state === 'minted') && (
+          <Blockchain onMinted={() => setState('minted')} onCancelled={() => setState('scored')}
+                      proof={proof} onRecordAgain={onTryAgain} />
         )
       }
     </SafeAreaView>

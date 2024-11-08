@@ -78,6 +78,4 @@ minting feature is currently in development and will be released in upcoming upd
 
 ## Future Updates
 
-- **NFT Minting**: Full integration with blockchain technologies to allow users to mint their singing performance as
-  unique NFTs.
 - **Performance Improvements**: Ongoing optimizations to ensure smoother performance on older devices.

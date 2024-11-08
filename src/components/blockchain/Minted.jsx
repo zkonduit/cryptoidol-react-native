@@ -1,17 +1,22 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { NFT } from './NFT'
 
-const Minted = ({ onPress }) => {
+const Minted = ({ onRecordAgain, tokenIdMinted }) => {
   return (
-    <View style={styles.finishedContainer}>
+    <>
       {/* Success message */}
-      <Text style={styles.finishedText}>Score successfully published! 🎉</Text>
+      <NFT tokenIdMinted={tokenIdMinted} />
+      <View style={styles.finishedContainer}>
+        <Text style={styles.finishedText}>NFT successfully minted! 🎉</Text>
 
-      {/* Share button */}
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>Record Again</Text>
-      </TouchableOpacity>
-    </View>
+        {/* Share button */}
+        <TouchableOpacity style={styles.button} onPress={onRecordAgain}>
+          <Text style={styles.buttonText}>Record Again</Text>
+        </TouchableOpacity>
+      </View>
+
+    </>
   )
 }
 

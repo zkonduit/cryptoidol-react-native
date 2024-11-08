@@ -1,11 +1,14 @@
-import Transactions from './blockchain/Transactions'
-import { arbitrum, mainnet, polygon, sepolia } from 'viem/chains'
+import { mainnet, sepolia } from 'viem/chains'
 import { createAppKit, defaultWagmiConfig } from '@reown/appkit-wagmi-react-native'
 
-import { WALLETCONNECT_CLOUD_PROJECT_ID } from '@env'
 import { WagmiProvider } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
+
+import Minting from './blockchain/Minting'
+import Minted from './blockchain/Minted'
+
+import { WALLETCONNECT_CLOUD_PROJECT_ID } from '@env'
 
 const queryClient = new QueryClient()
 
@@ -20,7 +23,7 @@ const metadata = {
     // universal: 'YOUR_APP_UNIVERSAL_LINK.com', // TODO - add universal link to cryptoidol.tech domain
   },
 }
-const chains = [mainnet, polygon, arbitrum, sepolia]
+const chains = [sepolia] // TODO - expand to include arbitrum, polygon, and mainnet
 const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
 
 createAppKit({
@@ -30,15 +33,27 @@ createAppKit({
   enableAnalytics: true,
 })
 
-export const Minting = ({ onTransactionComplete, onCancelled, proof }) => { // Add new parameters here
+export const Blockchain = ({ onMinted, onRecordAgain, onCancelled, proof }) => {
+  const [nftId, setNftId] = React.useState(null)
+
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <Transactions
-          onTransactionComplete={onTransactionComplete}
-          onCancelled={onCancelled}
-          proof={proof}
-        />
+
+        {
+          nftId ? (<Minted tokenIdMinted={nftId} onRecordAgain={() => {
+            setNftId(null)
+            onRecordAgain()
+          }} />) : <Minting
+            onTransactionsComplete={(newNftId) => {
+              setNftId(newNftId)
+              onMinted()
+            }}
+            onCancelled={onCancelled}
+            proof={proof}
+          />
+        }
+
       </QueryClientProvider>
     </WagmiProvider>
   )
