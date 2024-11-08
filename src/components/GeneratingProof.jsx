@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Alert, Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useGlobalStyles } from '../styles'
 import { generateProverInputJSON, runModelProver } from '../prover/runModelProver'
+import { LinksSection } from './elements/LinkSection'
 
 const sentences = [
   'Generating cryptographic proof... 🔐',
@@ -93,6 +94,7 @@ export const GeneratingProof = ({ score, preprocessedRecordingData, onProofGener
         <Text style={globalStyles.buttonText}>CANCEL</Text>
       </TouchableOpacity>
 
+      <LinksSection />
 
     </View>
   )

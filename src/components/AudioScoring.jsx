@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalStyles } from '../styles'
 import preprocessAudioFile from '../audio/preprocessAudioFile'
 import { runAudioClassifier } from '../audio/audioClassifier'
+import { LinksSection } from './elements/LinkSection'
 
 const sentences = [
   'Analyzing audio! 🕒',
@@ -121,38 +122,12 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
           {sentences[currentSentence]}
         </Animated.Text>
       </View>
-      <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
-        <Text style={globalStyles.buttonText}>CANCEL</Text>
-      </TouchableOpacity>
       <LinksSection isNightMode={globalStyles.isDarkMode} />
+      <LinksSection />
     </View>
   )
 }
 
-
-const LinksSection = ({ isNightMode }) => (
-  <View style={styles.linksContainer}>
-    <Text style={[styles.linksHeader, { color: isNightMode ? '#cccccc' : '#555555' }]}>
-      Tap below to learn more:
-    </Text>
-    <View style={styles.linksRow}>
-      <Text style={[styles.linkText, { color: isNightMode ? '#aaaaaa' : '#666666' }]}
-            onPress={() => Linking.openURL('https://ezkl.xyz/')}>
-        ezkl.xyz
-      </Text>
-      <Text style={styles.divider}>|</Text>
-      <Text style={[styles.linkText, { color: isNightMode ? '#aaaaaa' : '#666666' }]}
-            onPress={() => Linking.openURL('https://discord.gg/cbNvpsThmd')}>
-        Discord
-      </Text>
-      <Text style={styles.divider}>|</Text>
-      <Text style={[styles.linkText, { color: isNightMode ? '#aaaaaa' : '#666666' }]}
-            onPress={() => Linking.openURL('https://t.me/+QRzaRvTPIthlYWMx')}>
-        Telegram
-      </Text>
-    </View>
-  </View>
-)
 
 export default AudioScoring
 
@@ -188,28 +163,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-  },
-  linksContainer: {
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  linksHeader: {
-    fontSize: 14,
-    fontWeight: '500',
-    marginBottom: 5,
-  },
-  linksRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  linkText: {
-    fontSize: 14,
-    textDecorationLine: 'underline',
-    fontWeight: '500',
-  },
-  divider: {
-    marginHorizontal: 8,
-    fontSize: 14,
-    color: '#888888',
   },
 })
