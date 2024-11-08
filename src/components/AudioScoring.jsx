@@ -1,9 +1,10 @@
-import { Alert, Animated, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Animated, StyleSheet, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalStyles } from '../styles'
 import preprocessAudioFile from '../audio/preprocessAudioFile'
 import { runAudioClassifier } from '../audio/audioClassifier'
 import { LinksSection } from './elements/LinkSection'
+import CancelButton from './elements/CancelButton'
 
 const sentences = [
   'Analyzing audio! 🕒',
@@ -122,7 +123,7 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
           {sentences[currentSentence]}
         </Animated.Text>
       </View>
-      <LinksSection isNightMode={globalStyles.isDarkMode} />
+      <CancelButton onCancel={handleCancel} />
       <LinksSection />
     </View>
   )
@@ -150,18 +151,6 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.1,
-    shadowRadius: 3,
-  },
-  cancelButton: {
-    marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    backgroundColor: '#E53E3E',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
     shadowRadius: 3,
   },
 })

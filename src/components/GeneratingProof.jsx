@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Alert, Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Animated, StyleSheet, View } from 'react-native'
 import { useGlobalStyles } from '../styles'
 import { generateProverInputJSON, runModelProver } from '../prover/runModelProver'
 import { LinksSection } from './elements/LinkSection'
+import CancelButton from './elements/CancelButton'
 
 const sentences = [
   'Generating cryptographic proof... 🔐',
@@ -87,13 +88,10 @@ export const GeneratingProof = ({ score, preprocessedRecordingData, onProofGener
         </Animated.Text>
       </View>
 
-      <TouchableOpacity style={styles.cancelButton} onPress={() => {
+      <CancelButton onCancel={() => {
         canceled.current = true
         onCancelled()
-      }}>
-        <Text style={globalStyles.buttonText}>CANCEL</Text>
-      </TouchableOpacity>
-
+      }} />
       <LinksSection />
 
     </View>
@@ -119,18 +117,6 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.1,
-    shadowRadius: 3,
-  },
-  cancelButton: {
-    marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    backgroundColor: '#E53E3E',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
     shadowRadius: 3,
   },
 })
