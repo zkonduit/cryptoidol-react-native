@@ -25,6 +25,7 @@ async function preprocessAudioFile(audioFilePath) {
     const melSpectrogram = calculateMelSpectrogram(trimmedAudioData, sampleRate)
 
 
+    // TODO - adjust the mel spectrogram to match the data format of the small model - currently implemented for large model
     // Step 4: Reshape the mel spectrogram
     return reshapeMelSpectrogram(melSpectrogram)
   } catch (error) {
