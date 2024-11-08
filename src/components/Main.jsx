@@ -13,7 +13,7 @@ import { Minting } from './Minting'
 import DeviceInfo from 'react-native-device-info'
 import Minted from './Minted'
 
-const MainBlock = () => {
+const Main = () => {
   const [state, setState] = useState('start')
   const [renderAvatar, setRenderAvatar] = useState(false)
   const [recordingPath, setRecordingPath] = useState(null)
@@ -129,4 +129,4 @@ const MainBlock = () => {
   )
 }
 
-export default MainBlock
+export default Main
