@@ -1,12 +1,23 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { NFT } from './NFT'
+import { SvgUri } from 'react-native-svg'
 
-const Minted = ({ onRecordAgain, tokenIdMinted }) => {
+const Minted = ({ nft, onRecordAgain }) => {
   return (
     <>
       {/* Success message */}
-      <NFT tokenIdMinted={tokenIdMinted} />
+      <View style={styles.container}>
+        <Text style={styles.title}>NFT #{BigInt(nft.id).toString()}</Text>
+        {nft.uri ? (
+          <SvgUri
+            width="100%"
+            height="100%"
+            uri={nft.uri}
+          />
+        ) : (
+          <Text style={styles.errorText}>Image data not available.</Text>
+        )}
+      </View>
       <View style={styles.finishedContainer}>
         <Text style={styles.finishedText}>NFT successfully minted! 🎉</Text>
 
@@ -43,6 +54,24 @@ const styles = StyleSheet.create({
     fontSize: 16, // Adjust the size for readability
     color: '#fff', // White text color for better contrast
     fontWeight: 'bold',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginTop: 10,
+  },
+  errorText: {
+    fontSize: 16,
+    color: 'red',
+    textAlign: 'center',
   },
 })
 

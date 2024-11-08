@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 
 import Minting from './blockchain/Minting'
-import Minted from './blockchain/Minted'
 
 import { WALLETCONNECT_CLOUD_PROJECT_ID } from '@env'
 
@@ -34,25 +33,16 @@ createAppKit({
 })
 
 export const Blockchain = ({ onMinted, onRecordAgain, onCancelled, proof }) => {
-  const [nftId, setNftId] = React.useState(null)
 
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
 
-        {
-          nftId ? (<Minted tokenIdMinted={nftId} onRecordAgain={() => {
-            setNftId(null)
-            onRecordAgain()
-          }} />) : <Minting
-            onTransactionsComplete={(newNftId) => {
-              setNftId(newNftId)
-              onMinted()
-            }}
-            onCancelled={onCancelled}
-            proof={proof}
-          />
-        }
+        <Minting
+          onNftLoaded={onMinted}
+          onCancelled={onCancelled}
+          proof={proof}
+        />
 
       </QueryClientProvider>
     </WagmiProvider>

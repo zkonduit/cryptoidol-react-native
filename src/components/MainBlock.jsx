@@ -11,6 +11,7 @@ import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './elements/DebugButton'
 import { Blockchain } from './Blockchain'
 import DeviceInfo from 'react-native-device-info'
+import Minted from './Minted'
 
 const MainBlock = () => {
   const [state, setState] = useState('start')
@@ -18,6 +19,7 @@ const MainBlock = () => {
   const [recordingPath, setRecordingPath] = useState(null)
   const [recordingScore, setRecordingScore] = useState(null)
   const [preprocessedRecordingData, setPreprocessedRecordingData] = useState(null)
+  const [nftData, setNftData] = useState(null)
   const [proof, setProof] = useState(null)
 
   const onRecorded = (restingRecordingPath) => {
@@ -39,11 +41,18 @@ const MainBlock = () => {
     console.debug('Proof generated successfully')
   }
 
+  const onMinted = (nftId, uri) => {
+    setNftData({ id: nftId, uri })
+    setState('minted')
+    console.debug('NFT minted successfully with ID:', nftId + ' and Image URI:', uri)
+  }
+
   const onTryAgain = () => {
     setProof(null)
     setRecordingPath(null)
     setRecordingScore(null)
     setPreprocessedRecordingData(null)
+    setNftData(null)
     setState('start')
   }
 
@@ -106,9 +115,14 @@ const MainBlock = () => {
         )
       }
       {
-        (state === 'minting' || state === 'minted') && (
-          <Blockchain onMinted={() => setState('minted')} onCancelled={() => setState('scored')}
+        state === 'minting' && (
+          <Blockchain onMinted={onMinted} onCancelled={() => setState('scored')}
                       proof={proof} onRecordAgain={onTryAgain} />
+        )
+      }
+      {
+        state === 'minted' && (
+          <Minted nft={nftData} />
         )
       }
     </SafeAreaView>

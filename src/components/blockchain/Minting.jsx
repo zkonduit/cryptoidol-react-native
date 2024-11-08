@@ -8,14 +8,16 @@ import { bigEndianToLittleEndian } from '../../util/bigEndianToLittleEndian'
 import MintingTransaction from './MintingTransaction'
 import { AppKit, AppKitButton } from '@reown/appkit-wagmi-react-native'
 import CancelButton from '../elements/CancelButton'
+import { NFTLoader } from './LoadNFT'
 
 export const cryptoIdolAddresses = require('../../../assets/blockchain/addresses.json')
 export const cryptoIdolABI = require('../../../assets/blockchain/abi.json')
 
-export default function Minting({ onTransactionsComplete, onCancelled, proof }) {
+export default function Minting({ onNftLoaded, onCancelled, proof }) {
   const [stage, setStage] = useState('connecting')
   const [error, setError] = useState(null)
   const [proofData, setProofData] = useState(null)
+  const [nftId, setNftId] = useState(null)
   const { isConnected } = useAccount()
 
   // Preprocess the proof before starting transactions
@@ -60,7 +62,13 @@ export default function Minting({ onTransactionsComplete, onCancelled, proof }) 
 
   const handleMintSuccess = (nftId) => {
     console.debug('Minted NFT completed successfully with ID:', nftId)
-    onTransactionsComplete(nftId)
+    setNftId(nftId)
+    setStage('loadingnft')
+  }
+
+  const handleNFTLoaded = (fileUri) => {
+    console.debug('NFT loaded:', fileUri)
+    onNftLoaded(nftId, fileUri)
   }
 
   const handleError = (err) => {
@@ -120,6 +128,13 @@ export default function Minting({ onTransactionsComplete, onCancelled, proof }) 
       {stage === 'minting' && proofData && (
         <MintingTransaction proofData={proofData} onSuccess={handleMintSuccess} onError={handleError} />
       )}
+
+      {
+        stage === 'loadingnft' && (
+          <NFTLoader tokenId={nftId} onLoadedNFT={handleNFTLoaded} />
+
+        )
+      }
 
       {/* Bottom Cancel Button */}
       {
