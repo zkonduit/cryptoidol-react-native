@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from './src/components/Main'
+import MainFlow from './src/components/MainFlow'
 
 import { TextDecoder, TextEncoder } from 'text-encoding'
 
@@ -8,7 +8,7 @@ global.TextDecoder = TextDecoder
 global.TextEncoder = TextEncoder
 
 const App = () => {
-  return <Main />
+  return <MainFlow />
 }
 
 export default App
