@@ -5,7 +5,7 @@ import AudioRecorderPlayer, {
   AVEncodingOption,
   AVModeIOSOption,
 } from 'react-native-audio-recorder-player'
-import { RecordButton } from './RecordButton'
+import { RecordButton } from './elements/RecordButton'
 import { useGlobalStyles } from '../styles'
 
 
