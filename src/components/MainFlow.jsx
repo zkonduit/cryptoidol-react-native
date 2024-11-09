@@ -99,7 +99,7 @@ const MainFlow = () => {
       }
 
 
-      {(state === 'recording' || state === 'start' || state === 'listening' || state === 'recorded') && (
+      {(state === 'start' || state === 'recording' || state === 'listening' || state === 'recorded') && (
         <Recording onSubmit={onRecorded} state={state} setState={setState} />
       )
       }
