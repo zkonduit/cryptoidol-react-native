@@ -14,6 +14,8 @@ import DeviceInfo from 'react-native-device-info'
 import { Minted } from './Minted'
 
 const MainFlow = () => {
+  const [debug, setDebug] = useState(false)
+
   const [state, setState] = useState('start')
   const [renderAvatar, setRenderAvatar] = useState(false)
   const [recordingPath, setRecordingPath] = useState(null)
@@ -59,7 +61,10 @@ const MainFlow = () => {
 
   // Only render the avatar on real devices
   useEffect(() => {
-    DeviceInfo.isEmulator().then((emulator) => setRenderAvatar(!emulator))
+    DeviceInfo.isEmulator().then((emulator) => {
+      setRenderAvatar(!emulator)
+      setDebug(emulator)
+    })
   }, [])
 
   useEffect(() => {
@@ -74,9 +79,8 @@ const MainFlow = () => {
     <SafeAreaView style={{ flex: 1 }}>
 
       {
-        <DebugControls state={state} renderAvatar={renderAvatar}
-                       onRenderSelected={(selection) => setRenderAvatar(selection)} /> // TODO - remove this button after testing
-
+        debug && <DebugControls state={state} renderAvatar={renderAvatar}
+                                onRenderSelected={(selection) => setRenderAvatar(selection)} />
       }
 
 
