@@ -38,8 +38,8 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
         setProcessingState('classification')
       },
       (error) => {
-        console.error(error)
-        Alert.alert('Error processing audio', 'Please try again', [{ text: 'OK' }])
+        console.error('Error preprocessing audio', error)
+        Alert.alert('Error preprocessing your audio', 'Please try again.\n\n' + error.toString(), [{ text: 'OK' }])
         handleCancel()
       },
     )
@@ -56,8 +56,8 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
             setProcessingState('finished')
           },
           (error) => {
-            console.error(error)
-            Alert.alert('Error processing audio', 'Please try again', [{ text: 'OK' }])
+            console.error('Error scoring audio', error)
+            Alert.alert('Error scoring your audio', 'Please try again.\n\n' + error.toString(), [{ text: 'OK' }])
             handleCancel()
           },
         )

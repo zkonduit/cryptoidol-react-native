@@ -4,33 +4,29 @@ import calculateMelSpectrogram from './melSpectogram'
 
 // Function to preprocess audio data
 async function preprocessAudioFile(audioFilePath) {
-  try {
-    // Step 1: Load audio file (this will likely require a backend or a specific library)
-    const [audioData, sampleRate] = await loadAndTrimWavFile(audioFilePath)
+  // Step 1: Load audio file (this will likely require a backend or a specific library)
+  const [audioData, sampleRate] = await loadAndTrimWavFile(audioFilePath)
 
-    if (!audioData) {
-      console.error('Failed to load audio data')
-      return
-    }
-
-    // Step 2: Trim silent segments from the audio
-    const trimmedAudioData = await trimSilence(audioData)
-
-    if (!trimmedAudioData.length) {
-      console.warn('The audio file is silent or too short')
-      return []
-    }
-
-    // Step 3: Convert audio data to a mel spectrogram
-    const melSpectrogram = calculateMelSpectrogram(trimmedAudioData, sampleRate)
-
-
-    // TODO - adjust the mel spectrogram to match the data format of the small model - currently implemented for large model
-    // Step 4: Reshape the mel spectrogram
-    return reshapeMelSpectrogram(melSpectrogram)
-  } catch (error) {
-    console.error('Error preprocessing audio file:', error)
+  if (!audioData) {
+    console.error('Failed to load audio data')
+    throw new Error('Failed to load audio data')
   }
+
+  // Step 2: Trim silent segments from the audio
+  const trimmedAudioData = await trimSilence(audioData)
+
+  if (!trimmedAudioData.length) {
+    console.warn('The audio file is silent or too short')
+    throw new Error('The audio file is silent or too short')
+  }
+
+  // Step 3: Convert audio data to a mel spectrogram
+  const melSpectrogram = calculateMelSpectrogram(trimmedAudioData, sampleRate)
+
+
+  // TODO - adjust the mel spectrogram to match the data format of the small model - currently implemented for large model
+  // Step 4: Reshape the mel spectrogram
+  return reshapeMelSpectrogram(melSpectrogram)
 }
 
 // Function to load, trim, and convert WAV audio file to Meyda Signal format

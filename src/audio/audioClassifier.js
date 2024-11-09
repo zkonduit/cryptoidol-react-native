@@ -22,11 +22,7 @@ export async function runAudioClassifier(processedMelSpectrogram, blockchainAddr
   await sleepUntilPreloaded(() => preloadedModelSession, 3000)
 
   // Run inference and get results
-  try {
-    return await runInference(preloadedModelSession, processedMelSpectrogram, blockchainAddress)
-  } catch (error) {
-    console.error('Error running Audio Classifier:', error)
-  }
+  return await runInference(preloadedModelSession, processedMelSpectrogram, blockchainAddress)
 }
 
 // Function to run inference
