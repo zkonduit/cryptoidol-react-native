@@ -12,7 +12,7 @@ const sentences = [
   'Almost there! ⚙️',
 ]
 
-export const GeneratingProof = ({ score, preprocessedRecordingData, onProofGenerated, onCancelled }) => {
+export const Proving = ({ score, preprocessedRecordingData, onProofGenerated, onCancelled }) => {
   const canceled = useRef(false)
 
   const globalStyles = useGlobalStyles()

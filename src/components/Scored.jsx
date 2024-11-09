@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useGlobalStyles } from '../styles'
 
-export const ScoreResult = ({ score, onRetryRecording, onShare }) => {
+export const Scored = ({ score, onRetryRecording, onShare }) => {
   const globalStyles = useGlobalStyles()
 
   // Convert score from [0, 1] to [0, 10] for display

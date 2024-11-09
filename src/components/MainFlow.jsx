@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native'
 import Avatar from './canvas/Avatar'
 import ConfettiComponent from './elements/ConfettiComponent'
-import AudioScoring from './AudioScoring'
+import Scoring from './Scoring'
 import { Recording } from './Recording'
-import { ScoreResult } from './ScoreResult'
-import { GeneratingProof } from './GeneratingProof'
+import { Scored } from './Scored'
+import { Proving } from './Proving'
 import { preloadModel } from '../audio/audioClassifier'
 import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './elements/DebugButton'
@@ -100,19 +100,19 @@ const MainFlow = () => {
       )
       }
       {state === 'scoring' && (
-        <AudioScoring onCancel={() => setState('start')} recording={recordingPath} onFinished={onScoringFinished} />
+        <Scoring onCancel={() => setState('start')} recording={recordingPath} onFinished={onScoringFinished} />
       )
       }
       {
         state === 'scored' && (
-          <ScoreResult score={recordingScore} onRetryRecording={() => setState('start')}
-                       onShare={() => setState('proving')} />
+          <Scored score={recordingScore} onRetryRecording={() => setState('start')}
+                  onShare={() => setState('proving')} />
         )
       }
       {
         state === 'proving' && (
-          <GeneratingProof score={recordingScore} onProofGenerated={onProofGenerated}
-                           preprocessedRecordingData={preprocessedRecordingData} onCancelled={() => setState('scored')} />
+          <Proving score={recordingScore} onProofGenerated={onProofGenerated}
+                   preprocessedRecordingData={preprocessedRecordingData} onCancelled={() => setState('scored')} />
         )
       }
       {

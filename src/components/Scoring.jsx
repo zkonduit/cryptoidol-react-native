@@ -14,7 +14,7 @@ const sentences = [
 ]
 
 
-export const AudioScoring = ({ onCancel, recording, onFinished }) => {
+export const Scoring = ({ onCancel, recording, onFinished }) => {
 
   const preprocessedRecording = useRef(null)
   const modelResults = useRef(null)
@@ -78,7 +78,7 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
 }
 
 
-export default AudioScoring
+export default Scoring
 
 const styles = StyleSheet.create({
   container: {
