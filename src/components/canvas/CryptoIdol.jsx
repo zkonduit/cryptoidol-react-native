@@ -262,27 +262,15 @@ export default function CryptoIdol({ avatarState = 'start', onLoadedAvatar, ...p
         setAnimationUrl('Chicken Dance.fbx')
       }
 
-      if (avatarState === 'recorded' || avatarState === 'scored') {
+      if (avatarState === 'listening' || avatarState === 'recorded' || avatarState === 'scoring') {
         setAnimationUrl('Thinking.fbx')
       }
 
-      if (avatarState === 'scoring' || avatarState === 'sharing') {
-        setAnimationUrl('Gangnam Style.fbx')
-      }
-
-      if (avatarState === 'result') {
+      if (avatarState === 'scored') {
         setAnimationUrl('Thankful.fbx')
       }
 
-      if (avatarState === 'committing') {
-        setAnimationUrl('Gangnam Style.fbx')
-      }
-
-      if (avatarState === 'mint') {
-        setAnimationUrl('Button Pushing.fbx')
-      }
-
-      if (avatarState === 'minting') {
+      if (avatarState === 'proving' || avatarState === 'minting') {
         setAnimationUrl('Gangnam Style.fbx')
       }
 
