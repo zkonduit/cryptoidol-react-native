@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* NativeCryptoIdolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NativeCryptoIdolTests.m */; };
+		00E356F31AD99517003FC87E /* CryptoIdolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CryptoIdolTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4DE00357D32618BB571761DB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */; };
 		60063C492CDC7A3700C1B0FF /* EzklPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 60063C482CDC7A3700C1B0FF /* EzklPackage */; };
-		6067A4D42CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */; };
-		6067A4D52CD5F34B007A5B41 /* NativeCryptoIdolModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */; };
+		6067A4D42CD5F34B007A5B41 /* CryptoIdolModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D22CD5F34B007A5B41 /* CryptoIdolModuleBridge.m */; };
+		6067A4D52CD5F34B007A5B41 /* CryptoIdolModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D32CD5F34B007A5B41 /* CryptoIdolModule.swift */; };
 		7DD47F2D8EEBC260F9B3718E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A222568F7F3DFE3DEB918A /* ExpoModulesProvider.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		CDEEAB5BA09F423CA7FFEEF1 /* libPods-NativeCryptoIdol-NativeCryptoIdolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C28841A9E9BA8162FF02E08D /* libPods-NativeCryptoIdol-NativeCryptoIdolTests.a */; };
+		CDEEAB5BA09F423CA7FFEEF1 /* libPods-CryptoIdol-CryptoIdolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C28841A9E9BA8162FF02E08D /* libPods-CryptoIdol-CryptoIdolTests.a */; };
 		D44E11212FD1A252EFA662B2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C4A50A506EE3E17A0E780A1A /* PrivacyInfo.xcprivacy */; };
-		D86FA1EAEA754F2380A1753F /* libPods-NativeCryptoIdol.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEF394072B2009EFC04119C /* libPods-NativeCryptoIdol.a */; };
+		D86FA1EAEA754F2380A1753F /* libPods-CryptoIdol.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEF394072B2009EFC04119C /* libPods-CryptoIdol.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,35 +28,35 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = NativeCryptoIdol;
+			remoteInfo = CryptoIdol;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* NativeCryptoIdolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NativeCryptoIdolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* CryptoIdolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoIdolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* NativeCryptoIdolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeCryptoIdolTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* NativeCryptoIdol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeCryptoIdol.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = NativeCryptoIdol/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = NativeCryptoIdol/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NativeCryptoIdol/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NativeCryptoIdol/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NativeCryptoIdol/main.m; sourceTree = "<group>"; };
-		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = NativeCryptoIdol/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		1DB72C51A116CA33966D6B16 /* Pods-NativeCryptoIdol.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol.release.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol.release.xcconfig"; sourceTree = "<group>"; };
-		28C78712766AE9B858C0719B /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig"; sourceTree = "<group>"; };
-		5EEF394072B2009EFC04119C /* libPods-NativeCryptoIdol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NativeCryptoIdol.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6056DACA2CD8708600E3D058 /* NativeCryptoIdol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NativeCryptoIdol.entitlements; path = NativeCryptoIdol/NativeCryptoIdol.entitlements; sourceTree = "<group>"; };
-		6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeCryptoIdolModuleBridge.m; path = NativeCryptoIdol/NativeCryptoIdolModuleBridge.m; sourceTree = "<group>"; };
-		6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NativeCryptoIdolModule.swift; path = NativeCryptoIdol/NativeCryptoIdolModule.swift; sourceTree = "<group>"; };
-		6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NativeCryptoIdol/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		694ACC9DDCFDDA296F3FBE72 /* Pods-NativeCryptoIdol.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol.debug.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NativeCryptoIdol/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		88A222568F7F3DFE3DEB918A /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		C28841A9E9BA8162FF02E08D /* libPods-NativeCryptoIdol-NativeCryptoIdolTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NativeCryptoIdol-NativeCryptoIdolTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4A50A506EE3E17A0E780A1A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = NativeCryptoIdol/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* CryptoIdolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptoIdolTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* CryptoIdol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoIdol.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CryptoIdol/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = CryptoIdol/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CryptoIdol/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CryptoIdol/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CryptoIdol/main.m; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = CryptoIdol/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1DB72C51A116CA33966D6B16 /* Pods-CryptoIdol.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoIdol.release.xcconfig"; path = "Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol.release.xcconfig"; sourceTree = "<group>"; };
+		28C78712766AE9B858C0719B /* Pods-CryptoIdol-CryptoIdolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoIdol-CryptoIdolTests.release.xcconfig"; path = "Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests.release.xcconfig"; sourceTree = "<group>"; };
+		5EEF394072B2009EFC04119C /* libPods-CryptoIdol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CryptoIdol.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6056DACA2CD8708600E3D058 /* CryptoIdol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CryptoIdol.entitlements; path = CryptoIdol/CryptoIdol.entitlements; sourceTree = "<group>"; };
+		6067A4D22CD5F34B007A5B41 /* CryptoIdolModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CryptoIdolModuleBridge.m; path = CryptoIdol/CryptoIdolModuleBridge.m; sourceTree = "<group>"; };
+		6067A4D32CD5F34B007A5B41 /* CryptoIdolModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CryptoIdolModule.swift; path = CryptoIdol/CryptoIdolModule.swift; sourceTree = "<group>"; };
+		6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-CryptoIdol/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		694ACC9DDCFDDA296F3FBE72 /* Pods-CryptoIdol.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoIdol.debug.xcconfig"; path = "Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol.debug.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CryptoIdol/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88A222568F7F3DFE3DEB918A /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-CryptoIdol-CryptoIdolTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		C28841A9E9BA8162FF02E08D /* libPods-CryptoIdol-CryptoIdolTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CryptoIdol-CryptoIdolTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4A50A506EE3E17A0E780A1A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = CryptoIdol/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F1787AA643C67D37F6C41A8D /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeCryptoIdol-NativeCryptoIdolTests.debug.xcconfig"; path = "Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F1787AA643C67D37F6C41A8D /* Pods-CryptoIdol-CryptoIdolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoIdol-CryptoIdolTests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDEEAB5BA09F423CA7FFEEF1 /* libPods-NativeCryptoIdol-NativeCryptoIdolTests.a in Frameworks */,
+				CDEEAB5BA09F423CA7FFEEF1 /* libPods-CryptoIdol-CryptoIdolTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D86FA1EAEA754F2380A1753F /* libPods-NativeCryptoIdol.a in Frameworks */,
+				D86FA1EAEA754F2380A1753F /* libPods-CryptoIdol.a in Frameworks */,
 				60063C492CDC7A3700C1B0FF /* EzklPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,13 +80,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* NativeCryptoIdolTests */ = {
+		00E356EF1AD99517003FC87E /* CryptoIdolTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* NativeCryptoIdolTests.m */,
+				00E356F21AD99517003FC87E /* CryptoIdolTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = NativeCryptoIdolTests;
+			path = CryptoIdolTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -97,12 +97,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* NativeCryptoIdol */ = {
+		13B07FAE1A68108700A75B9A /* CryptoIdol */ = {
 			isa = PBXGroup;
 			children = (
-				6056DACA2CD8708600E3D058 /* NativeCryptoIdol.entitlements */,
-				6067A4D32CD5F34B007A5B41 /* NativeCryptoIdolModule.swift */,
-				6067A4D22CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m */,
+				6056DACA2CD8708600E3D058 /* CryptoIdol.entitlements */,
+				6067A4D32CD5F34B007A5B41 /* CryptoIdolModule.swift */,
+				6067A4D22CD5F34B007A5B41 /* CryptoIdolModuleBridge.m */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -112,15 +112,15 @@
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				C4A50A506EE3E17A0E780A1A /* PrivacyInfo.xcprivacy */,
 			);
-			name = NativeCryptoIdol;
+			name = CryptoIdol;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5EEF394072B2009EFC04119C /* libPods-NativeCryptoIdol.a */,
-				C28841A9E9BA8162FF02E08D /* libPods-NativeCryptoIdol-NativeCryptoIdolTests.a */,
+				5EEF394072B2009EFC04119C /* libPods-CryptoIdol.a */,
+				C28841A9E9BA8162FF02E08D /* libPods-CryptoIdol-CryptoIdolTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -135,9 +135,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* NativeCryptoIdol */,
+				13B07FAE1A68108700A75B9A /* CryptoIdol */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* NativeCryptoIdolTests */,
+				00E356EF1AD99517003FC87E /* CryptoIdolTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -151,35 +151,35 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* NativeCryptoIdol.app */,
-				00E356EE1AD99517003FC87E /* NativeCryptoIdolTests.xctest */,
+				13B07F961A680F5B00A75B9A /* CryptoIdol.app */,
+				00E356EE1AD99517003FC87E /* CryptoIdolTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A7D2B220B3C9EE74B3A224D /* NativeCryptoIdolTests */ = {
+		9A7D2B220B3C9EE74B3A224D /* CryptoIdolTests */ = {
 			isa = PBXGroup;
 			children = (
 				88A222568F7F3DFE3DEB918A /* ExpoModulesProvider.swift */,
 			);
-			name = NativeCryptoIdolTests;
+			name = CryptoIdolTests;
 			sourceTree = "<group>";
 		};
-		AB8FF346E063C28EF191611D /* NativeCryptoIdol */ = {
+		AB8FF346E063C28EF191611D /* CryptoIdol */ = {
 			isa = PBXGroup;
 			children = (
 				6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */,
 			);
-			name = NativeCryptoIdol;
+			name = CryptoIdol;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				694ACC9DDCFDDA296F3FBE72 /* Pods-NativeCryptoIdol.debug.xcconfig */,
-				1DB72C51A116CA33966D6B16 /* Pods-NativeCryptoIdol.release.xcconfig */,
-				F1787AA643C67D37F6C41A8D /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.debug.xcconfig */,
-				28C78712766AE9B858C0719B /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig */,
+				694ACC9DDCFDDA296F3FBE72 /* Pods-CryptoIdol.debug.xcconfig */,
+				1DB72C51A116CA33966D6B16 /* Pods-CryptoIdol.release.xcconfig */,
+				F1787AA643C67D37F6C41A8D /* Pods-CryptoIdol-CryptoIdolTests.debug.xcconfig */,
+				28C78712766AE9B858C0719B /* Pods-CryptoIdol-CryptoIdolTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -187,8 +187,8 @@
 		BE96B5E60DFF00606AB03402 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				AB8FF346E063C28EF191611D /* NativeCryptoIdol */,
-				9A7D2B220B3C9EE74B3A224D /* NativeCryptoIdolTests */,
+				AB8FF346E063C28EF191611D /* CryptoIdol */,
+				9A7D2B220B3C9EE74B3A224D /* CryptoIdolTests */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
@@ -196,9 +196,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* NativeCryptoIdolTests */ = {
+		00E356ED1AD99517003FC87E /* CryptoIdolTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NativeCryptoIdolTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CryptoIdolTests" */;
 			buildPhases = (
 				90C5C6C1F194BE153AAAD66D /* [CP] Check Pods Manifest.lock */,
 				190BE2F2140C34BC2B0FBF4B /* [Expo] Configure project */,
@@ -213,14 +213,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = NativeCryptoIdolTests;
-			productName = NativeCryptoIdolTests;
-			productReference = 00E356EE1AD99517003FC87E /* NativeCryptoIdolTests.xctest */;
+			name = CryptoIdolTests;
+			productName = CryptoIdolTests;
+			productReference = 00E356EE1AD99517003FC87E /* CryptoIdolTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* NativeCryptoIdol */ = {
+		13B07F861A680F5B00A75B9A /* CryptoIdol */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NativeCryptoIdol" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CryptoIdol" */;
 			buildPhases = (
 				0ECF8142BAD45888640AAE26 /* [CP] Check Pods Manifest.lock */,
 				C6DD61A0CA9E651732713201 /* [Expo] Configure project */,
@@ -235,12 +235,12 @@
 			);
 			dependencies = (
 			);
-			name = NativeCryptoIdol;
+			name = CryptoIdol;
 			packageProductDependencies = (
 				60063C482CDC7A3700C1B0FF /* EzklPackage */,
 			);
-			productName = NativeCryptoIdol;
-			productReference = 13B07F961A680F5B00A75B9A /* NativeCryptoIdol.app */;
+			productName = CryptoIdol;
+			productReference = 13B07F961A680F5B00A75B9A /* CryptoIdol.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -260,7 +260,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NativeCryptoIdol" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CryptoIdol" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -276,8 +276,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* NativeCryptoIdol */,
-				00E356ED1AD99517003FC87E /* NativeCryptoIdolTests */,
+				13B07F861A680F5B00A75B9A /* CryptoIdol */,
+				00E356ED1AD99517003FC87E /* CryptoIdolTests */,
 			);
 		};
 /* End PBXProject section */
@@ -334,7 +334,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NativeCryptoIdol-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CryptoIdol-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -358,7 +358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-CryptoIdol-CryptoIdolTests/expo-configure-project.sh\"\n";
 		};
 		427AB7427DD0AD39CE919180 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -366,15 +366,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4D906D2A08B577FA65B3B0DB /* [CP] Copy Pods Resources */ = {
@@ -383,15 +383,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol-NativeCryptoIdolTests/Pods-NativeCryptoIdol-NativeCryptoIdolTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D0FADD56C6B516AE20F4AC9 /* [CP] Copy Pods Resources */ = {
@@ -400,15 +400,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		90C5C6C1F194BE153AAAD66D /* [CP] Check Pods Manifest.lock */ = {
@@ -426,7 +426,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NativeCryptoIdol-NativeCryptoIdolTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CryptoIdol-CryptoIdolTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -439,15 +439,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NativeCryptoIdol/Pods-NativeCryptoIdol-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C6DD61A0CA9E651732713201 /* [Expo] Configure project */ = {
@@ -467,7 +467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-NativeCryptoIdol/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-CryptoIdol/expo-configure-project.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -476,7 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* NativeCryptoIdolTests.m in Sources */,
+				00E356F31AD99517003FC87E /* CryptoIdolTests.m in Sources */,
 				7DD47F2D8EEBC260F9B3718E /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,8 +485,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6067A4D42CD5F34B007A5B41 /* NativeCryptoIdolModuleBridge.m in Sources */,
-				6067A4D52CD5F34B007A5B41 /* NativeCryptoIdolModule.swift in Sources */,
+				6067A4D42CD5F34B007A5B41 /* CryptoIdolModuleBridge.m in Sources */,
+				6067A4D52CD5F34B007A5B41 /* CryptoIdolModule.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				4DE00357D32618BB571761DB /* ExpoModulesProvider.swift in Sources */,
@@ -498,7 +498,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* NativeCryptoIdol */;
+			target = 13B07F861A680F5B00A75B9A /* CryptoIdol */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -506,14 +506,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1787AA643C67D37F6C41A8D /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.debug.xcconfig */;
+			baseConfigurationReference = F1787AA643C67D37F6C41A8D /* Pods-CryptoIdol-CryptoIdolTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = NativeCryptoIdolTests/Info.plist;
+				INFOPLIST_FILE = CryptoIdolTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,17 +528,17 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NativeCryptoIdol.app/NativeCryptoIdol";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoIdol.app/CryptoIdol";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28C78712766AE9B858C0719B /* Pods-NativeCryptoIdol-NativeCryptoIdolTests.release.xcconfig */;
+			baseConfigurationReference = 28C78712766AE9B858C0719B /* Pods-CryptoIdol-CryptoIdolTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = NativeCryptoIdolTests/Info.plist;
+				INFOPLIST_FILE = CryptoIdolTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -553,21 +553,21 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NativeCryptoIdol.app/NativeCryptoIdol";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoIdol.app/CryptoIdol";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 694ACC9DDCFDDA296F3FBE72 /* Pods-NativeCryptoIdol.debug.xcconfig */;
+			baseConfigurationReference = 694ACC9DDCFDDA296F3FBE72 /* Pods-CryptoIdol.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = NativeCryptoIdol/NativeCryptoIdol.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CryptoIdol/CryptoIdol.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LMRM26A744;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = NativeCryptoIdol/Info.plist;
+				INFOPLIST_FILE = CryptoIdol/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -581,7 +581,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = NativeCryptoIdol;
+				PRODUCT_NAME = CryptoIdol;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -590,14 +590,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DB72C51A116CA33966D6B16 /* Pods-NativeCryptoIdol.release.xcconfig */;
+			baseConfigurationReference = 1DB72C51A116CA33966D6B16 /* Pods-CryptoIdol.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = NativeCryptoIdol/NativeCryptoIdol.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CryptoIdol/CryptoIdol.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LMRM26A744;
-				INFOPLIST_FILE = NativeCryptoIdol/Info.plist;
+				INFOPLIST_FILE = CryptoIdol/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -611,7 +611,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = NativeCryptoIdol;
+				PRODUCT_NAME = CryptoIdol;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -668,7 +668,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD = "";
 				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -745,7 +745,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD = "";
 				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -780,7 +780,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NativeCryptoIdolTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CryptoIdolTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -789,7 +789,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NativeCryptoIdol" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CryptoIdol" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -798,7 +798,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NativeCryptoIdol" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CryptoIdol" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

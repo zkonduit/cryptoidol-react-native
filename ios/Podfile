@@ -45,7 +45,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'NativeCryptoIdol' do
+target 'CryptoIdol' do
   use_expo_modules!
   post_integrate do |installer|
     begin
@@ -61,7 +61,7 @@ target 'NativeCryptoIdol' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'NativeCryptoIdolTests' do
+  target 'CryptoIdolTests' do
     inherit! :complete
   end
 
