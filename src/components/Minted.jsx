@@ -37,6 +37,7 @@ const useStyles = (globalStyles) => StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    marginTop: 70,
   },
   finishedContainer: {
     marginTop: 20,

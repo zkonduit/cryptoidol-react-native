@@ -76,7 +76,7 @@ const MainFlow = () => {
 
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, marginBottom: 70 }}>
 
       {
         debug && <DebugControls state={state} renderAvatar={renderAvatar}
