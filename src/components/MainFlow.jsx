@@ -11,7 +11,7 @@ import { setupModelProver } from '../prover/setupModelProver'
 import DebugControls from './elements/DebugButton'
 import { Minting } from './Minting'
 import DeviceInfo from 'react-native-device-info'
-import Minted from './Minted'
+import { Minted } from './Minted'
 
 const MainFlow = () => {
   const [state, setState] = useState('start')
@@ -47,13 +47,14 @@ const MainFlow = () => {
     console.debug('NFT minted successfully with ID:', nftId + ' and Image URI:', uri)
   }
 
-  const onTryAgain = () => {
+  const onRestartFlow = () => {
+    setState('start')
     setProof(null)
     setRecordingPath(null)
     setRecordingScore(null)
     setPreprocessedRecordingData(null)
     setNftData(null)
-    setState('start')
+    console.debug('Restarting the flow again')
   }
 
   // Only render the avatar on real devices
@@ -117,12 +118,12 @@ const MainFlow = () => {
       {
         state === 'minting' && (
           <Minting onMinted={onMinted} onCancelled={() => setState('scored')}
-                   proof={proof} onRecordAgain={onTryAgain} />
+                   proof={proof} />
         )
       }
       {
         state === 'minted' && (
-          <Minted nft={nftData} />
+          <Minted nft={nftData} onRestartFlow={onRestartFlow} />
         )
       }
     </SafeAreaView>

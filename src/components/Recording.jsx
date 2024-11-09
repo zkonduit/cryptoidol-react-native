@@ -143,55 +143,47 @@ export const Recording = ({ onSubmit, state, setState }) => {
   }
 
   return (
-    < >
-      <Text style={[styles.headerText]}>{promptText}</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.headerText}>{promptText}</Text>
       <View style={styles.buttonContainer}>
-        <RecordButton startRecord={startRecord} stopRecord={stopRecord}
-                      startPlayback={startPlayback} stopPlayback={stopPlayback} recordingState={state} />
+        <RecordButton
+          startRecord={startRecord}
+          stopRecord={stopRecord}
+          startPlayback={startPlayback}
+          stopPlayback={stopPlayback}
+          recordingState={state}
+        />
         {state === 'recorded' && (
           <>
-            <TouchableOpacity style={styles.submitButton}
-                              onPress={() => onSubmit(collectRecording())}>
-              <Text style={globalStyles.buttonText}>SUBMIT</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.restartButton}
-                              onPress={() => setState('start')}>
+            <TouchableOpacity
+              style={[globalStyles.secondaryButton, styles.actionButton]}
+              onPress={() => setState('start')}
+            >
               <Text style={globalStyles.buttonText}>RESTART</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={[globalStyles.primaryButton, styles.actionButton]}
+              onPress={() => onSubmit(collectRecording())}
+            >
+              <Text style={globalStyles.buttonText}>SUBMIT</Text>
+            </TouchableOpacity>
+
           </>
         )}
       </View>
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  headerText: {
-    marginVertical: 8,
-    marginHorizontal: 16,
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 8,
   },
-  submitButton: {
-    backgroundColor: '#38a169',
+  actionButton: {
     marginHorizontal: 8,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
-  restartButton: {
-    backgroundColor: '#e53e3e',
-    marginHorizontal: 8,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 10,
-  },
-
 })

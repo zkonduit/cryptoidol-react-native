@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { ActivityIndicator, Text, View } from 'react-native'
 import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
-import { cryptoIdolABI, cryptoIdolAddresses, transactionsStyles } from './TransactionPanel'
+import { cryptoIdolABI, cryptoIdolAddresses, useTransactionsStyles } from './TransactionPanel'
+import { useGlobalStyles } from '../../styles'
 import { encodeFunctionData, parseEther } from 'viem'
 
 export default function MintingTransaction({ proofData, onSuccess, onError }) {
@@ -9,10 +10,12 @@ export default function MintingTransaction({ proofData, onSuccess, onError }) {
   const contractAddress = cryptoIdolAddresses.sepolia // Use appropriate address based on chain
 
   const { data: hash, isSuccess, error, sendTransaction } = useSendTransaction()
-
   const { isLoading: isTxLoading, isSuccess: isTxSuccess, error: txError, data } = useWaitForTransactionReceipt({
     hash,
   })
+
+  const globalStyles = useGlobalStyles()
+  const styles = useTransactionsStyles(globalStyles)
 
   useEffect(() => {
     if (error) {
@@ -55,28 +58,29 @@ export default function MintingTransaction({ proofData, onSuccess, onError }) {
   }, [hexProof, instances, contractAddress, sendTransaction])
 
   return (
-    <View style={transactionsStyles.container}>
+    <View style={[styles.outerContainer]}>
       {/* Title */}
-      <Text style={transactionsStyles.title}>Mint Transaction</Text>
+      <Text style={globalStyles.titleText}>Issuing "Mint" Transaction</Text>
 
       {/* Description */}
-      <Text style={transactionsStyles.description}>
+      <Text style={[globalStyles.userText, { marginTop: 10 }]}>
         You’re about to mint your unique NFT, marking your achievement permanently on the blockchain. Please confirm the
         transaction in your wallet.
       </Text>
 
       {/* Loading Indicators */}
       {!isSuccess && (
-        <View style={transactionsStyles.loadingContainer}>
-          <ActivityIndicator size="large" color="#007bff" />
-          <Text style={transactionsStyles.loadingText}>Waiting for user approval...</Text>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="small" color={globalStyles.colors.primary} />
+          <Text style={[styles.loadingText, { color: globalStyles.colors.primary }]}>Waiting for user approval...</Text>
         </View>
       )}
 
       {isTxLoading && (
-        <View style={transactionsStyles.loadingContainer}>
-          <ActivityIndicator size="large" color="#4CAF50" />
-          <Text style={[transactionsStyles.loadingText, { color: '#4CAF50' }]}>Transaction is being confirmed...</Text>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="small" color={globalStyles.colors.success} />
+          <Text style={[styles.loadingText, { color: globalStyles.colors.success }]}>Transaction is being
+            confirmed...</Text>
         </View>
       )}
     </View>

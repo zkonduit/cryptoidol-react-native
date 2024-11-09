@@ -5,11 +5,12 @@ import { runAudioClassifier } from '../audio/audioClassifier'
 import { LinksSection } from './elements/LinkSection'
 import CancelButton from './elements/CancelButton'
 import RotatingSentences from './elements/RotatingSentences'
+import { useGlobalStyles } from '../styles'
 
 const sentences = [
   'Analyzing audio! 🕒',
   'Please give us a minute! ⏳',
-  'Almost there! Verifying your results ⚙️',
+  'Almost there! ⚙️',
 ]
 
 
@@ -19,6 +20,7 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
   const modelResults = useRef(null)
   const [processingState, setProcessingState] = useState('processing') // ['processing', 'finished'
 
+  const globalStyles = useGlobalStyles()
 
   const handleCancel = () => {
     setProcessingState('cancelled')
@@ -67,7 +69,7 @@ export const AudioScoring = ({ onCancel, recording, onFinished }) => {
 
 
   return (
-    <View style={styles.container}>
+    <View style={[globalStyles.container, styles.container]}>
       <RotatingSentences sentences={sentences} />
       <CancelButton onCancel={handleCancel} />
       <LinksSection />

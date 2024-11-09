@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { ActivityIndicator, Text, View } from 'react-native'
 import * as FileSystem from 'expo-file-system'
 import { Buffer } from 'buffer'
 import { useReadContract } from 'wagmi'
-import { cryptoIdolABI, cryptoIdolAddresses } from './TransactionPanel'
+import { cryptoIdolABI, cryptoIdolAddresses, useTransactionsStyles } from './TransactionPanel'
+import { useGlobalStyles } from '../../styles'
 
-export const NFTLoader = ({ tokenId, onLoadedNFT }) => {
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+export const NFTLoader = ({ tokenId, onLoadedNFT, onError }) => {
+
+  const globalStyles = useGlobalStyles()
+  const styles = useTransactionsStyles(globalStyles)
+
 
   const tokenMetadata = useReadContract({
     address: cryptoIdolAddresses.sepolia,
@@ -28,12 +31,10 @@ export const NFTLoader = ({ tokenId, onLoadedNFT }) => {
         })
 
         // Notify the parent component
+        console.debug('NFT image saved to file system:', fileUri)
         onLoadedNFT(fileUri, tokenId)
       } catch (err) {
-        setError('Failed to save NFT image to file system.')
-        console.error(err)
-      } finally {
-        setLoading(false)
+        onError('Failed to save NFT image to file system.\n' + err.toString())
       }
     }
 
@@ -49,56 +50,33 @@ export const NFTLoader = ({ tokenId, onLoadedNFT }) => {
           const base64Image = jsonObject.image.split(',')[1]
           saveImageToFileSystem(base64Image)
         } else {
-          setError('Invalid image data.')
-          setLoading(false)
+          console.debug('Invalid NFT image data.')
+          onError('Invalid NFT image data.')
         }
       } catch (err) {
-        setError('Failed to decode NFT metadata.')
-        console.error(err)
-        setLoading(false)
+        console.debug(err)
+        onError('Failed to decode NFT metadata.')
       }
     } else if (tokenMetadata.isError) {
-      setError('Failed to fetch NFT metadata.')
-      setLoading(false)
+      console.debug(tokenMetadata.error)
+      onError('Failed to load NFT metadata.')
     }
   }, [tokenMetadata.data, tokenMetadata.isError])
 
-  if (loading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#007bff" />
-        <Text style={styles.loadingText}>Loading NFT...</Text>
-      </View>
-    )
-  }
+  return (
+    <View style={[globalStyles.container, styles.outerContainer]}>
+      {/* Title */}
+      <Text style={globalStyles.titleText}>Fetching NFT Details</Text>
 
-  if (error) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.errorText}>{error}</Text>
-      </View>
-    )
-  }
+      {/* Description */}
+      <Text style={[globalStyles.userText, { marginTop: 10 }]}>
+        Retrieving NFT information from the blockchain. This may take a few moments.
+      </Text>
 
-  return null // No UI needed once the NFT is loaded
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="small" color={globalStyles.colors.primary} />
+        <Text style={[styles.loadingText, { color: globalStyles.colors.primary }]}>Loading NFT...</Text>
+      </View>
+    </View>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#f9f9f9',
-  },
-  loadingText: {
-    fontSize: 16,
-    color: '#007bff',
-    marginTop: 10,
-  },
-  errorText: {
-    fontSize: 16,
-    color: 'red',
-    textAlign: 'center',
-  },
-})

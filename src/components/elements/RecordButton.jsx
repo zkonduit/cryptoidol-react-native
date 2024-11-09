@@ -3,7 +3,7 @@ import { Animated, StyleSheet, TouchableOpacity } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
 const RED_COLOR = `#FF214D`
-const GREEN_COLOR = `#359008`
+const GREEN_COLOR = `#46ba0c`
 
 export const RecordButton = ({ startRecord, stopRecord, startPlayback, stopPlayback, recordingState }) => {
   const outerCircleScale = useRef(new Animated.Value(1)).current
@@ -89,7 +89,7 @@ export const RecordButton = ({ startRecord, stopRecord, startPlayback, stopPlayb
           />
         </>
       ) : (
-        <Svg width="40" height="40" viewBox="0 0 75 75" fill="none">
+        <Svg width="32" height="40" viewBox="0 0 75 75" fill="none">
           <Path
             d="M60 27.3397C66.6667 31.1887 66.6667 40.8113 60 44.6603L15 70.641C8.33333 74.49 -3.65772e-06 69.6788 -3.32122e-06 61.9808L-1.04991e-06 10.0192C-7.13424e-07 2.32124 8.33333 -2.49002 15 1.35898L60 27.3397Z"
             fill={GREEN_COLOR}

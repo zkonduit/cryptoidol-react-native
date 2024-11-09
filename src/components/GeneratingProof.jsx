@@ -4,15 +4,18 @@ import { generateProverInputJSON, runModelProver } from '../prover/runModelProve
 import { LinksSection } from './elements/LinkSection'
 import CancelButton from './elements/CancelButton'
 import RotatingSentences from './elements/RotatingSentences'
+import { useGlobalStyles } from '../styles'
 
 const sentences = [
-  'Generating cryptographic proof... 🔐',
-  'Verifying with zero-knowledge technology... ⚙️',
-  'Almost there! Preparing proof for verification... 🛠️',
+  'Generating ZK proof! 🔐',
+  'Please give us a minute! ⏳',
+  'Almost there! ⚙️',
 ]
 
 export const GeneratingProof = ({ score, preprocessedRecordingData, onProofGenerated, onCancelled }) => {
   const canceled = useRef(false)
+
+  const globalStyles = useGlobalStyles()
 
   // TODO - use a real blockchain address when contracts support it
   const blockchainAddress = 0.08811962604522705
@@ -35,7 +38,7 @@ export const GeneratingProof = ({ score, preprocessedRecordingData, onProofGener
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, globalStyles.container]}>
       <RotatingSentences sentences={sentences} />
 
       <CancelButton onCancel={() => {

@@ -32,7 +32,7 @@ createAppKit({
   enableAnalytics: true,
 })
 
-export const Minting = ({ onMinted, onRecordAgain, onCancelled, proof }) => {
+export const Minting = ({ onMinted, onCancelled, proof }) => {
 
   return (
     <WagmiProvider config={wagmiConfig}>

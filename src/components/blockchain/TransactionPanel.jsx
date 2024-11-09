@@ -9,6 +9,7 @@ import MintingTransaction from './MintingTransaction'
 import { AppKit, AppKitButton } from '@reown/appkit-wagmi-react-native'
 import CancelButton from '../elements/CancelButton'
 import { NFTLoader } from './LoadNFT'
+import { useGlobalStyles } from '../../styles'
 
 export const cryptoIdolAddresses = require('../../../assets/blockchain/addresses.json')
 export const cryptoIdolABI = require('../../../assets/blockchain/abi.json')
@@ -19,6 +20,9 @@ export default function TransactionPanel({ onNftLoaded, onCancelled, proof }) {
   const [proofData, setProofData] = useState(null)
   const [nftId, setNftId] = useState(null)
   const { isConnected } = useAccount()
+
+  const globalStyles = useGlobalStyles()
+  const styles = useStyles(globalStyles)
 
   // Preprocess the proof before starting transactions
   const preprocessProof = async () => {
@@ -89,31 +93,32 @@ export default function TransactionPanel({ onNftLoaded, onCancelled, proof }) {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[globalStyles.container, styles.outerContainer]}>
       <AppKitButton balance="show" />
       <AppKit />
 
       {/* Show connection message when waiting for user to connect wallet */}
       {stage === 'connecting' && (
         <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>Please connect your wallet to mint NFT.</Text>
+          <Text style={globalStyles.userText}>Please connect your wallet to mint NFT.</Text>
         </View>
       )}
 
       {/* Display error message if there's an error */}
       {stage === 'error' && (
         <View style={styles.errorContainer}>
-          <Text style={styles.errorTitle}>An error occurred:</Text>
+          <Text style={globalStyles.subtitleText}>An error occurred:</Text>
           <Text style={styles.errorMessage}>{error.substring(0, 100)}{error.length > 100 ? '...' : ''}</Text>
 
           <View style={styles.errorButtonContainer}>
-            <TouchableOpacity style={styles.retryButton} onPress={handleRetry}>
-              <Text style={styles.retryButtonText}>Try Again</Text>
+            <TouchableOpacity style={globalStyles.primaryButton} onPress={handleRetry}>
+              <Text style={globalStyles.buttonText}>TRY AGAIN</Text>
             </TouchableOpacity>
-            <CancelButton onCancel={onCancelled} styleOverwrite={styles.cancelButton} />
+            <CancelButton onCancel={onCancelled} />
           </View>
         </View>
       )}
+
 
       {/* Show committing stage UI if no error */}
       {stage === 'committing' && (
@@ -125,13 +130,13 @@ export default function TransactionPanel({ onNftLoaded, onCancelled, proof }) {
       )}
 
       {/* Show minting stage UI if no error */}
-      {stage === 'minting' && proofData && (
+      {stage === 'minting' && (
         <MintingTransaction proofData={proofData} onSuccess={handleMintSuccess} onError={handleError} />
       )}
 
       {
         stage === 'loadingnft' && (
-          <NFTLoader tokenId={nftId} onLoadedNFT={handleNFTLoaded} />
+          <NFTLoader tokenId={1} onLoadedNFT={handleNFTLoaded} onError={handleError} />
 
         )
       }
@@ -147,49 +152,37 @@ export default function TransactionPanel({ onNftLoaded, onCancelled, proof }) {
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
+const useStyles = (globalStyles) => StyleSheet.create({
+  outerContainer: {
     justifyContent: 'space-between',
-    backgroundColor: '#f9f9f9',
   },
   infoContainer: {
     alignItems: 'center',
-    backgroundColor: '#e3f2fd',
+    // backgroundColor: '#e3f2fd',
+    backgroundColor: globalStyles.isDarkMode ? '#496068' : '#E3F2FD', // Dark navy for dark mode, light blue for light mode
     padding: 15,
     borderRadius: 10,
     marginBottom: 20,
-  },
-  infoText: {
-    fontSize: 16,
-    color: '#007bff',
-    fontWeight: '600',
-    textAlign: 'center',
+    marginTop: 20,
   },
   errorContainer: {
-    backgroundColor: '#fdecea',
+    backgroundColor: globalStyles.isDarkMode ? '#954d4d' : '#fdecea', // Dark muted red for dark mode, light red for light mode
     padding: 20,
     borderRadius: 12,
     alignItems: 'center',
     marginBottom: 20,
-    shadowColor: '#000',
+    marginTop: 20,
+    shadowColor: globalStyles.isDarkMode ? '#000' : '#333', // Softer shadow in dark mode
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-  errorTitle: {
-    color: 'red',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
   errorMessage: {
-    color: '#d32f2f',
+    marginTop: 10,
+    color: globalStyles.isDarkMode ? '#FF6B6B' : '#d32f2f', // Light red for dark mode, dark red for light mode
     fontSize: 16,
     textAlign: 'center',
-    marginBottom: 15,
+    marginBottom: 20,
   },
   errorButtonContainer: {
     flexDirection: 'row',
@@ -197,67 +190,34 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 20,
   },
-  retryButton: {
-    backgroundColor: '#4A90E2',
-    paddingVertical: 10,
-    paddingHorizontal: 25,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginRight: 10,
-    flex: 1,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  retryButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  cancelButton: {
-    flex: 1,
-  },
   bottomCancelButton: {
-    marginTop: 20,
+    marginTop: 10,
     alignSelf: 'center',
   },
 })
 
-export const transactionsStyles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#f9f9f9',
+export const useTransactionsStyles = (globalStyles) => StyleSheet.create({
+  outerContainer: {
+    padding: globalStyles.isDarkMode ? 10 : 20,
+    backgroundColor: globalStyles.isDarkMode ? globalStyles.colors.darkBackground : globalStyles.colors.lightBackground,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    margin: 10,
-    marginTop: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  description: {
-    fontSize: 14,
-    color: '#555',
-    textAlign: 'center',
-    marginBottom: 20,
+    marginVertical: globalStyles.isDarkMode ? 10 : 20,
+    alignItems: 'center',
   },
   loadingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
+    justifyContent: 'center',
+    marginBottom: 5,
+    marginTop: 25,
   },
   loadingText: {
     marginLeft: 10,
     fontSize: 16,
-    color: '#007bff',
   },
 })
 
