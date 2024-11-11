@@ -37,6 +37,11 @@ jobs:
           cd ios
           pod install
 
+      - name: Set up Xcode environment
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          sudo xcodebuild -license accept
+
       - name: Build and Run iOS App in Simulator
         run: |
           npx react-native run-ios --simulator="iPhone 15 Pro"
