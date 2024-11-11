@@ -37,6 +37,9 @@ jobs:
           cd ios
           pod install
 
+      - name: Run Environment Doctor
+        run: npx react-native doctor
+
       - name: Set up Xcode environment
         run: |
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
