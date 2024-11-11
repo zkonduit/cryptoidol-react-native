@@ -32,9 +32,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: List files
-        run: ls -la
-
       - name: Install CocoaPods dependencies
         run: |
           cd ios
