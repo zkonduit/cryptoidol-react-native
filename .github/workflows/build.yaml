@@ -37,9 +37,6 @@ jobs:
           cd ios
           pod install
 
-      - name: Run Environment Doctor
-        run: npx react-native doctor
-
       - name: Set up Xcode environment
         run: |
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
@@ -47,4 +44,4 @@ jobs:
 
       - name: Build and Run iOS App in Simulator
         run: |
-          npx react-native run-ios --simulator="iPhone 15 Pro"
+          npx react-native run-ios --simulator="iPhone 15 Pro (17.5)"
