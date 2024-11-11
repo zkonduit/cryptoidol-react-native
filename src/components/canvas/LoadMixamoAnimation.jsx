@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import { mixamoVRMRigMap } from './MixamoVRRigMap'
+import * as RNFS from 'react-native-fs'
 
 /**
  * Load Mixamo animation, convert for three-vrm use, and return it.
@@ -9,25 +10,27 @@ import { mixamoVRMRigMap } from './MixamoVRRigMap'
  * @param {VRM} vrm A target VRM
  * @returns {Promise<THREE.AnimationClip>} The converted AnimationClip
  */
-export function loadMixamoAnimation(url, vrm) {
+export async function loadMixamoAnimation(url, vrm) {
   const loader = new FBXLoader() // A loader which loads FBX
+
+  const result = await RNFS.readDir(RNFS.MainBundlePath)
 
   let animation = null
   if (url === 'Button Pushing.fbx') {
-    animation = require('../../../assets/3D/animations/ButtonPushing.fbx')
+    animation = result.find((file) => file.name === 'ButtonPushing.fbx')
   } else if (url === 'Chicken Dance.fbx') {
-    animation = require('../../../assets/3D/animations/ChickenDance.fbx')
+    animation = result.find((file) => file.name === 'ChickenDance.fbx')
   } else if (url === 'Thinking.fbx') {
-    animation = require('../../../assets/3D/animations/Thinking.fbx')
+    animation = result.find((file) => file.name === 'Thinking.fbx')
   } else if (url === 'Gangnam Style.fbx') {
-    animation = require('../../../assets/3D/animations/GangnamStyle.fbx')
+    animation = result.find((file) => file.name === 'GangnamStyle.fbx')
   } else if (url === 'Thankful.fbx') {
-    animation = require('../../../assets/3D/animations/Thankful.fbx')
+    animation = result.find((file) => file.name === 'Thankful.fbx')
   } else {
     throw new Error('Unknown animation URL: ' + url)
   }
 
-  return loader.loadAsync(animation).then((asset) => {
+  return loader.loadAsync('file://' + animation.path).then((asset) => {
     const clip = THREE.AnimationClip.findByName(asset.animations, 'mixamo.com') // extract the AnimationClip
 
     const tracks = [] // KeyframeTracks compatible with VRM will be added here

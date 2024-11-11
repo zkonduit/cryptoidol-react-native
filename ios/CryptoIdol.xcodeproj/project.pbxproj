@@ -13,6 +13,32 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4DE00357D32618BB571761DB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203E59577E57577EAABC472 /* ExpoModulesProvider.swift */; };
 		60063C492CDC7A3700C1B0FF /* EzklPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 60063C482CDC7A3700C1B0FF /* EzklPackage */; };
+		604468DC2CE0818D00F9E6B9 /* Bashful.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 604468B52CE07EB300F9E6B9 /* Bashful.fbx */; };
+		604468DD2CE0818D00F9E6B9 /* ButtonPushing.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 604468B62CE07EB300F9E6B9 /* ButtonPushing.fbx */; };
+		604468DE2CE0818D00F9E6B9 /* ChickenDance.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 604468B72CE07EB300F9E6B9 /* ChickenDance.fbx */; };
+		604468DF2CE0818D00F9E6B9 /* Crossed Arms Look Around Confident.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468B82CE07EB300F9E6B9 /* Crossed Arms Look Around Confident.vmd */; };
+		604468E02CE0818D00F9E6B9 /* Fixing Hair or Wig.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468B92CE07EB300F9E6B9 /* Fixing Hair or Wig.vmd */; };
+		604468E12CE0818D00F9E6B9 /* GangnamStyle.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 604468BA2CE07EB300F9E6B9 /* GangnamStyle.fbx */; };
+		604468E22CE0818D00F9E6B9 /* Hat Flip.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468BB2CE07EB300F9E6B9 /* Hat Flip.vmd */; };
+		604468E32CE0818D00F9E6B9 /* Impatient Foot Tapping.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468BC2CE07EB300F9E6B9 /* Impatient Foot Tapping.vmd */; };
+		604468E42CE0818D00F9E6B9 /* Rejected.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 604468BD2CE07EB300F9E6B9 /* Rejected.fbx */; };
+		604468E52CE0818D00F9E6B9 /* Shy.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468BE2CE07EB300F9E6B9 /* Shy.vmd */; };
+		604468E62CE0818D00F9E6B9 /* Skittish Mermay.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468BF2CE07EB300F9E6B9 /* Skittish Mermay.vmd */; };
+		604468E72CE0818D00F9E6B9 /* Smelling Something in the Air.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468C02CE07EB300F9E6B9 /* Smelling Something in the Air.vmd */; };
+		604468E82CE0818D00F9E6B9 /* Something In The Sky.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468C12CE07EB300F9E6B9 /* Something In The Sky.vmd */; };
+		604468E92CE0818D00F9E6B9 /* Stretching.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468C22CE07EB300F9E6B9 /* Stretching.vmd */; };
+		604468EA2CE0818D00F9E6B9 /* Swaying Arms and Hips.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468C32CE07EB300F9E6B9 /* Swaying Arms and Hips.vmd */; };
+		604468EB2CE0818D00F9E6B9 /* Thankful.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 604468C42CE07EB300F9E6B9 /* Thankful.fbx */; };
+		604468EC2CE0818D00F9E6B9 /* Thinking.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 604468C52CE07EB300F9E6B9 /* Thinking.fbx */; };
+		604468ED2CE0818D00F9E6B9 /* Tracker.vmd in Resources */ = {isa = PBXBuildFile; fileRef = 604468C62CE07EB300F9E6B9 /* Tracker.vmd */; };
+		604468EE2CE0818D00F9E6B9 /* body.png in Resources */ = {isa = PBXBuildFile; fileRef = 604468CA2CE07EB300F9E6B9 /* body.png */; };
+		604468EF2CE0818D00F9E6B9 /* hat.png in Resources */ = {isa = PBXBuildFile; fileRef = 604468CB2CE07EB300F9E6B9 /* hat.png */; };
+		604468F02CE0818D00F9E6B9 /* smaller.vrm in Resources */ = {isa = PBXBuildFile; fileRef = 604468CC2CE07EB300F9E6B9 /* smaller.vrm */; };
+		604468F12CE0818D00F9E6B9 /* abi.json in Resources */ = {isa = PBXBuildFile; fileRef = 604468CE2CE07EB300F9E6B9 /* abi.json */; };
+		604468F22CE0818D00F9E6B9 /* addresses.json in Resources */ = {isa = PBXBuildFile; fileRef = 604468CF2CE07EB300F9E6B9 /* addresses.json */; };
+		604468F32CE0818D00F9E6B9 /* kzg16.srs in Resources */ = {isa = PBXBuildFile; fileRef = 604468D62CE07EB300F9E6B9 /* kzg16.srs */; };
+		604468F42CE0818D00F9E6B9 /* model.compiled in Resources */ = {isa = PBXBuildFile; fileRef = 604468D72CE07EB300F9E6B9 /* model.compiled */; };
+		604468F52CE0818D00F9E6B9 /* network.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 604468D82CE07EB300F9E6B9 /* network.onnx */; };
 		6067A4D42CD5F34B007A5B41 /* CryptoIdolModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D22CD5F34B007A5B41 /* CryptoIdolModuleBridge.m */; };
 		6067A4D52CD5F34B007A5B41 /* CryptoIdolModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067A4D32CD5F34B007A5B41 /* CryptoIdolModule.swift */; };
 		7DD47F2D8EEBC260F9B3718E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A222568F7F3DFE3DEB918A /* ExpoModulesProvider.swift */; };
@@ -46,6 +72,38 @@
 		1DB72C51A116CA33966D6B16 /* Pods-CryptoIdol.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoIdol.release.xcconfig"; path = "Target Support Files/Pods-CryptoIdol/Pods-CryptoIdol.release.xcconfig"; sourceTree = "<group>"; };
 		28C78712766AE9B858C0719B /* Pods-CryptoIdol-CryptoIdolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoIdol-CryptoIdolTests.release.xcconfig"; path = "Target Support Files/Pods-CryptoIdol-CryptoIdolTests/Pods-CryptoIdol-CryptoIdolTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EEF394072B2009EFC04119C /* libPods-CryptoIdol.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CryptoIdol.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		604468B52CE07EB300F9E6B9 /* Bashful.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bashful.fbx; sourceTree = "<group>"; };
+		604468B62CE07EB300F9E6B9 /* ButtonPushing.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ButtonPushing.fbx; sourceTree = "<group>"; };
+		604468B72CE07EB300F9E6B9 /* ChickenDance.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChickenDance.fbx; sourceTree = "<group>"; };
+		604468B82CE07EB300F9E6B9 /* Crossed Arms Look Around Confident.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Crossed Arms Look Around Confident.vmd"; sourceTree = "<group>"; };
+		604468B92CE07EB300F9E6B9 /* Fixing Hair or Wig.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fixing Hair or Wig.vmd"; sourceTree = "<group>"; };
+		604468BA2CE07EB300F9E6B9 /* GangnamStyle.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = GangnamStyle.fbx; sourceTree = "<group>"; };
+		604468BB2CE07EB300F9E6B9 /* Hat Flip.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hat Flip.vmd"; sourceTree = "<group>"; };
+		604468BC2CE07EB300F9E6B9 /* Impatient Foot Tapping.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Impatient Foot Tapping.vmd"; sourceTree = "<group>"; };
+		604468BD2CE07EB300F9E6B9 /* Rejected.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rejected.fbx; sourceTree = "<group>"; };
+		604468BE2CE07EB300F9E6B9 /* Shy.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shy.vmd; sourceTree = "<group>"; };
+		604468BF2CE07EB300F9E6B9 /* Skittish Mermay.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Skittish Mermay.vmd"; sourceTree = "<group>"; };
+		604468C02CE07EB300F9E6B9 /* Smelling Something in the Air.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Smelling Something in the Air.vmd"; sourceTree = "<group>"; };
+		604468C12CE07EB300F9E6B9 /* Something In The Sky.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Something In The Sky.vmd"; sourceTree = "<group>"; };
+		604468C22CE07EB300F9E6B9 /* Stretching.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Stretching.vmd; sourceTree = "<group>"; };
+		604468C32CE07EB300F9E6B9 /* Swaying Arms and Hips.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Swaying Arms and Hips.vmd"; sourceTree = "<group>"; };
+		604468C42CE07EB300F9E6B9 /* Thankful.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thankful.fbx; sourceTree = "<group>"; };
+		604468C52CE07EB300F9E6B9 /* Thinking.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thinking.fbx; sourceTree = "<group>"; };
+		604468C62CE07EB300F9E6B9 /* Tracker.vmd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tracker.vmd; sourceTree = "<group>"; };
+		604468C82CE07EB300F9E6B9 /* helvetiker_regular.typeface.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = helvetiker_regular.typeface.json; sourceTree = "<group>"; };
+		604468CA2CE07EB300F9E6B9 /* body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body.png; sourceTree = "<group>"; };
+		604468CB2CE07EB300F9E6B9 /* hat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hat.png; sourceTree = "<group>"; };
+		604468CC2CE07EB300F9E6B9 /* smaller.vrm */ = {isa = PBXFileReference; lastKnownFileType = file; path = smaller.vrm; sourceTree = "<group>"; };
+		604468CE2CE07EB300F9E6B9 /* abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = abi.json; sourceTree = "<group>"; };
+		604468CF2CE07EB300F9E6B9 /* addresses.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = addresses.json; sourceTree = "<group>"; };
+		604468D12CE07EB300F9E6B9 /* anime-share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "anime-share.png"; sourceTree = "<group>"; };
+		604468D22CE07EB300F9E6B9 /* appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore.png; sourceTree = "<group>"; };
+		604468D32CE07EB300F9E6B9 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		604468D42CE07EB300F9E6B9 /* text-share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-share.png"; sourceTree = "<group>"; };
+		604468D62CE07EB300F9E6B9 /* kzg16.srs */ = {isa = PBXFileReference; lastKnownFileType = file; path = kzg16.srs; sourceTree = "<group>"; };
+		604468D72CE07EB300F9E6B9 /* model.compiled */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.compiled; sourceTree = "<group>"; };
+		604468D82CE07EB300F9E6B9 /* network.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; path = network.onnx; sourceTree = "<group>"; };
+		604468D92CE07EB300F9E6B9 /* sample_audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample_audio.wav; sourceTree = "<group>"; };
 		6056DACA2CD8708600E3D058 /* CryptoIdol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CryptoIdol.entitlements; path = CryptoIdol/CryptoIdol.entitlements; sourceTree = "<group>"; };
 		6067A4D22CD5F34B007A5B41 /* CryptoIdolModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CryptoIdolModuleBridge.m; path = CryptoIdol/CryptoIdolModuleBridge.m; sourceTree = "<group>"; };
 		6067A4D32CD5F34B007A5B41 /* CryptoIdolModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CryptoIdolModule.swift; path = CryptoIdol/CryptoIdolModule.swift; sourceTree = "<group>"; };
@@ -125,6 +183,94 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		604468C72CE07EB300F9E6B9 /* animations */ = {
+			isa = PBXGroup;
+			children = (
+				604468B52CE07EB300F9E6B9 /* Bashful.fbx */,
+				604468B62CE07EB300F9E6B9 /* ButtonPushing.fbx */,
+				604468B72CE07EB300F9E6B9 /* ChickenDance.fbx */,
+				604468B82CE07EB300F9E6B9 /* Crossed Arms Look Around Confident.vmd */,
+				604468B92CE07EB300F9E6B9 /* Fixing Hair or Wig.vmd */,
+				604468BA2CE07EB300F9E6B9 /* GangnamStyle.fbx */,
+				604468BB2CE07EB300F9E6B9 /* Hat Flip.vmd */,
+				604468BC2CE07EB300F9E6B9 /* Impatient Foot Tapping.vmd */,
+				604468BD2CE07EB300F9E6B9 /* Rejected.fbx */,
+				604468BE2CE07EB300F9E6B9 /* Shy.vmd */,
+				604468BF2CE07EB300F9E6B9 /* Skittish Mermay.vmd */,
+				604468C02CE07EB300F9E6B9 /* Smelling Something in the Air.vmd */,
+				604468C12CE07EB300F9E6B9 /* Something In The Sky.vmd */,
+				604468C22CE07EB300F9E6B9 /* Stretching.vmd */,
+				604468C32CE07EB300F9E6B9 /* Swaying Arms and Hips.vmd */,
+				604468C42CE07EB300F9E6B9 /* Thankful.fbx */,
+				604468C52CE07EB300F9E6B9 /* Thinking.fbx */,
+				604468C62CE07EB300F9E6B9 /* Tracker.vmd */,
+			);
+			path = animations;
+			sourceTree = "<group>";
+		};
+		604468C92CE07EB300F9E6B9 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				604468C82CE07EB300F9E6B9 /* helvetiker_regular.typeface.json */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		604468CD2CE07EB300F9E6B9 /* 3D */ = {
+			isa = PBXGroup;
+			children = (
+				604468C72CE07EB300F9E6B9 /* animations */,
+				604468C92CE07EB300F9E6B9 /* fonts */,
+				604468CA2CE07EB300F9E6B9 /* body.png */,
+				604468CB2CE07EB300F9E6B9 /* hat.png */,
+				604468CC2CE07EB300F9E6B9 /* smaller.vrm */,
+			);
+			path = 3D;
+			sourceTree = "<group>";
+		};
+		604468D02CE07EB300F9E6B9 /* blockchain */ = {
+			isa = PBXGroup;
+			children = (
+				604468CE2CE07EB300F9E6B9 /* abi.json */,
+				604468CF2CE07EB300F9E6B9 /* addresses.json */,
+			);
+			path = blockchain;
+			sourceTree = "<group>";
+		};
+		604468D52CE07EB300F9E6B9 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				604468D12CE07EB300F9E6B9 /* anime-share.png */,
+				604468D22CE07EB300F9E6B9 /* appstore.png */,
+				604468D32CE07EB300F9E6B9 /* icon.png */,
+				604468D42CE07EB300F9E6B9 /* text-share.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+		604468DA2CE07EB300F9E6B9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				604468D62CE07EB300F9E6B9 /* kzg16.srs */,
+				604468D72CE07EB300F9E6B9 /* model.compiled */,
+				604468D82CE07EB300F9E6B9 /* network.onnx */,
+				604468D92CE07EB300F9E6B9 /* sample_audio.wav */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		604468DB2CE07EB300F9E6B9 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				604468CD2CE07EB300F9E6B9 /* 3D */,
+				604468D02CE07EB300F9E6B9 /* blockchain */,
+				604468D52CE07EB300F9E6B9 /* icons */,
+				604468DA2CE07EB300F9E6B9 /* model */,
+			);
+			name = assets;
+			path = ../assets;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +281,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				604468DB2CE07EB300F9E6B9 /* assets */,
 				13B07FAE1A68108700A75B9A /* CryptoIdol */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* CryptoIdolTests */,
@@ -294,6 +441,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				604468DC2CE0818D00F9E6B9 /* Bashful.fbx in Resources */,
+				604468DD2CE0818D00F9E6B9 /* ButtonPushing.fbx in Resources */,
+				604468DE2CE0818D00F9E6B9 /* ChickenDance.fbx in Resources */,
+				604468DF2CE0818D00F9E6B9 /* Crossed Arms Look Around Confident.vmd in Resources */,
+				604468E02CE0818D00F9E6B9 /* Fixing Hair or Wig.vmd in Resources */,
+				604468E12CE0818D00F9E6B9 /* GangnamStyle.fbx in Resources */,
+				604468E22CE0818D00F9E6B9 /* Hat Flip.vmd in Resources */,
+				604468E32CE0818D00F9E6B9 /* Impatient Foot Tapping.vmd in Resources */,
+				604468E42CE0818D00F9E6B9 /* Rejected.fbx in Resources */,
+				604468E52CE0818D00F9E6B9 /* Shy.vmd in Resources */,
+				604468E62CE0818D00F9E6B9 /* Skittish Mermay.vmd in Resources */,
+				604468E72CE0818D00F9E6B9 /* Smelling Something in the Air.vmd in Resources */,
+				604468E82CE0818D00F9E6B9 /* Something In The Sky.vmd in Resources */,
+				604468E92CE0818D00F9E6B9 /* Stretching.vmd in Resources */,
+				604468EA2CE0818D00F9E6B9 /* Swaying Arms and Hips.vmd in Resources */,
+				604468EB2CE0818D00F9E6B9 /* Thankful.fbx in Resources */,
+				604468EC2CE0818D00F9E6B9 /* Thinking.fbx in Resources */,
+				604468ED2CE0818D00F9E6B9 /* Tracker.vmd in Resources */,
+				604468EE2CE0818D00F9E6B9 /* body.png in Resources */,
+				604468EF2CE0818D00F9E6B9 /* hat.png in Resources */,
+				604468F02CE0818D00F9E6B9 /* smaller.vrm in Resources */,
+				604468F12CE0818D00F9E6B9 /* abi.json in Resources */,
+				604468F22CE0818D00F9E6B9 /* addresses.json in Resources */,
+				604468F32CE0818D00F9E6B9 /* kzg16.srs in Resources */,
+				604468F42CE0818D00F9E6B9 /* model.compiled in Resources */,
+				604468F52CE0818D00F9E6B9 /* network.onnx in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				D44E11212FD1A252EFA662B2 /* PrivacyInfo.xcprivacy in Resources */,
@@ -580,7 +753,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ezkl.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = CryptoIdol;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -610,7 +783,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.ezkl.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = CryptoIdol;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -648,6 +821,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				CXX = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -690,12 +864,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				STRIP_PNG_TEXT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				USE_HERMES = true;
 			};
@@ -732,6 +904,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = YES;
 				CXX = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -766,12 +939,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				STRIP_PNG_TEXT = NO;
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};

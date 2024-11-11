@@ -1,6 +1,5 @@
-import * as FileSystem from 'expo-file-system'
-import { Asset } from 'expo-asset'
 import { NativeModules } from 'react-native'
+import * as RNFS from 'react-native-fs'
 
 const { NativeModelProver } = NativeModules
 
@@ -9,14 +8,19 @@ export let proverAssets = null
 export const setupModelProver = async () => {
   const start = new Date()
 
-  const compiledCircuitPath = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/model.compiled')).uri, `${FileSystem.cacheDirectory}model.ezkl`)
-  const srsPath = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/kzg16.srs')).uri, `${FileSystem.cacheDirectory}kzg17.srs`)
 
+  const result = await RNFS.readDir(RNFS.MainBundlePath)
+  const modelFile = result.find((file) => file.name === 'model.compiled')
+  const srsFile = result.find((file) => file.name === 'kzg16.srs')
+
+  if (!modelFile || !srsFile) {
+    throw new Error('Prover files not found in iOS main bundle')
+  }
 
   // Prepare input parameter as JSON string with paths
   const inputParam = JSON.stringify({
-    compiledCircuit: compiledCircuitPath.uri,
-    srs: srsPath.uri,
+    compiledCircuit: modelFile.path,
+    srs: srsFile.path,
   })
 
   // Call setupCircuitForTheModel and handle the promise
@@ -25,8 +29,8 @@ export const setupModelProver = async () => {
       proverAssets = {
         pkPath: result.pkPath,
         vkPath: result.vkPath,
-        srsPath: srsPath.uri,
-        compiledCircuitPath: compiledCircuitPath.uri,
+        srsPath: srsFile.path,
+        compiledCircuitPath: modelFile.path,
       }
       console.debug('Model Prover setup successful')
       console.debug('Prover Setup time:', (new Date().getTime() - start.getTime()) / 1000, 'seconds')

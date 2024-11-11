@@ -1,7 +1,6 @@
 import * as ort from 'onnxruntime-react-native'
-import * as FileSystem from 'expo-file-system'
-import { Asset } from 'expo-asset'
 import { sleepUntilPreloaded } from '../util/sleepUntilPreloaded'
+import * as RNFS from 'react-native-fs'
 
 export let preloadedModelSession = null
 
@@ -9,9 +8,17 @@ export let preloadedModelSession = null
 export async function preloadModel() {
   const start = new Date()
 
-  const localPath = `${FileSystem.cacheDirectory}network.onnx`
-  const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../assets/model/network.onnx')).uri, localPath)
-  preloadedModelSession = await ort.InferenceSession.create(uri)
+  const result = await RNFS.readDir(RNFS.MainBundlePath)
+  const modelFile = result.find((file) => file.name === 'network.onnx')
+
+  if (!modelFile) {
+    throw new Error('Model file not found in iOS main bundle')
+  }
+
+  console.log('Model file path:', modelFile.path)
+  console.log('Model file:', modelFile)
+
+  preloadedModelSession = await ort.InferenceSession.create(modelFile.path)
 
   console.debug('Model preloaded successfully')
   console.debug('Preloading time:', (new Date().getTime() - start.getTime()) / 1000, 'seconds')

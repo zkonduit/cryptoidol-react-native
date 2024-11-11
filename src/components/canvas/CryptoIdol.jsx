@@ -3,11 +3,11 @@ import { useFrame } from '@react-three/fiber'
 import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm'
 import * as THREE from 'three'
 import { LinearFilter, LinearMipMapNearestFilter, MeshStandardMaterial, TextureLoader } from 'three'
-import { Asset } from 'expo-asset'
 import { GLTFLoader } from 'three-stdlib'
 import * as FileSystem from 'expo-file-system'
 import { SRGBColorSpace } from 'three/src/constants'
 import { loadMixamoAnimation } from './LoadMixamoAnimation'
+import * as RNFS from 'react-native-fs'
 
 const loader = new GLTFLoader()
 loader.register((parser) => {
@@ -32,14 +32,14 @@ export default function CryptoIdol({ avatarState = 'start', onLoadedAvatar, ...p
   const [hatMaterial, setHatMaterial] = useState()
 
   useEffect(() => {
-    console.debug('Loading model...')
+    console.debug('Loading VRM animated model...')
     const loadModel = async () => {
       try {
-        const localPath = `${FileSystem.cacheDirectory}smaller.vrm`
-        const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../../assets/3D/smaller.vrm')).uri, localPath)
+        const result = await RNFS.readDir(RNFS.MainBundlePath)
+        const cryptoIdolAvatar = result.find((file) => file.name === 'smaller.vrm')
 
         loader.load(
-          uri,
+          'file://' + cryptoIdolAvatar.path,
           (gltf) => {
             setGltf(gltf)
             const vrm = gltf.userData.vrm
@@ -98,14 +98,14 @@ export default function CryptoIdol({ avatarState = 'start', onLoadedAvatar, ...p
             setVrm(vrm)
           },
           (progress) => {
-            console.debug('Loading model...', (100.0 * progress.loaded) / progress.total, '%')
+            console.debug('Loading VRM animated model...', (100.0 * progress.loaded) / progress.total, '%')
           },
           (error) => {
-            console.error('Error loading model:', error) // Log the full error
+            console.error('Error loading VRM animated  model:', error) // Log the full error
           },
         )
       } catch (err) {
-        console.error('Error during model loading process:', err)
+        console.error('Error during  VRM animated model loading process:', err)
       }
     }
 
@@ -122,10 +122,12 @@ export default function CryptoIdol({ avatarState = 'start', onLoadedAvatar, ...p
     const loadBodyTexture = async () => {
       try {
         // Download the image to the local filesystem
-        const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../../assets/3D/body.png')).uri, localBodyPath)
+        const result = await RNFS.readDir(RNFS.MainBundlePath)
+        const bodyTextureFile = result.find((file) => file.name === 'body.png')
+
         // Load the texture from the local file URI
         textureLoader.load(
-          uri,
+          'file://' + bodyTextureFile.path,
           (texture) => {
             texture.flipY = false
             texture.minFilter = LinearMipMapNearestFilter
@@ -142,7 +144,7 @@ export default function CryptoIdol({ avatarState = 'start', onLoadedAvatar, ...p
           },
           undefined,
           (error) => {
-            console.error('An error happened while loading the texture:', error)
+            console.error('An error happened while loading the body texture:', error)
           },
         )
       } catch (error) {
@@ -152,11 +154,12 @@ export default function CryptoIdol({ avatarState = 'start', onLoadedAvatar, ...p
     const loadHatTexture = async () => {
       try {
         // Download the image to the local filesystem
-        const { uri } = await FileSystem.downloadAsync(Asset.fromModule(require('../../../assets/3D/hat.png')).uri, localHatPath)
+        const result = await RNFS.readDir(RNFS.MainBundlePath)
+        const hatTextureFile = result.find((file) => file.name === 'hat.png')
 
         // Load the texture from the local file URI
         textureLoader.load(
-          uri,
+          'file://' + hatTextureFile.path,
           (texture) => {
             texture.flipY = false
             texture.minFilter = LinearMipMapNearestFilter
