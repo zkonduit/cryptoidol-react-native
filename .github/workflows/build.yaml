@@ -32,11 +32,13 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: List files
+        run: ls -la
+
       - name: Install CocoaPods dependencies
         run: |
           cd ios
           pod install
-        working-directory: ios
 
       - name: Build and Run iOS App in Simulator
         run: |
