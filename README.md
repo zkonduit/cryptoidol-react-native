@@ -117,12 +117,13 @@ the [Google Cloud Sepolia Faucet](https://cloud.google.com/application/web3/fauc
 
 - **Mac with Xcode**: To build and deploy the app, you need a Mac with Xcode installed.
 - **Node.js**: Install Node.js 20.0 or higher.
+- **CocoaPods** [Install Cocoapods](https://cocoapods.org) for iOS package managment.
 - **iOS Version**: 17.5 or higher
 - **Recommended Device**: iPhone 15 Pro or higher (due to RAM requirements)
 - **RAM Requirement**: 4GB+ for smooth processing of the machine learning model and proof generation
 - **Simulator Support**: You can run the app in the simulator on a Mac instead of deploying to a real device. Due to
   hardware limitations of the [EZKL Swift Package](https://github.com/zkonduit/ezkl-swift-package.git), the simulation
-  mode only works on **M series Macs**.
+  mode only works on **M chip series Macs**.
 
 ## Setup Instructions
 
@@ -142,7 +143,15 @@ the [Google Cloud Sepolia Faucet](https://cloud.google.com/application/web3/fauc
    ```
    cd ios && pod install
    ```
-4. **Run the app**:
+4. **Start Development Server**:
+   ```
+   npx react-native start --reset-cache
+   ```
+
+  And press **i** for iPhone mode when prompted.
+
+
+5. **Run the app**:
 
 - **Simulator**: To run the app in the simulator on your Mac, execute:
 
@@ -155,6 +164,8 @@ the [Google Cloud Sepolia Faucet](https://cloud.google.com/application/web3/fauc
   ```
   npx react-native run-ios
   ```
+
+  Optionally, you can add `mode="Release"` to build a release version of the app, that does not require the development server running in order to use.
 
   **Note**: Running on a real device requires additional configuration in Xcode:
 
